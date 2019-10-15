@@ -7,7 +7,7 @@
     <ProjectGuid>{E8B1E99C-845C-4576-84D6-D238A199DB91}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Localisation_Engine</RootNamespace>
+    <RootNamespace>BH.Engine.Localisation</RootNamespace>
     <AssemblyName>Localisation_Engine</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
