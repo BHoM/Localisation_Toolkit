@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert foot into SI units")]
         [Input("foot", "Foot measurement")]
         [Output("si", "Foot represented as SI units")]
-        public static double FootToSI(this double foot)
+        public static double FromFoot(this double foot)
         {
             return foot / 3.281;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into foot")]
         [Input("si", "SI measurement")]
         [Output("foot", "SI units represented as foot")]
-        public static double SIToFoot(this double si)
+        public static double ToFoot(this double si)
         {
             return si * 3.281;
         }

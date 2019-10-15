@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert millimeters into SI units")]
         [Input("millimeters", "Millimeter measurement")]
         [Output("si", "Millimeters represented as SI units")]
-        public static double MillimetersToSI(this double millimeters)
+        public static double FromMillimeters(this double millimeters)
         {
             return millimeters / 1000;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into millimeters")]
         [Input("si", "SI measurement")]
         [Output("millimeters", "SI units represented as millimeters")]
-        public static double SIToMillimeters(this double si)
+        public static double ToMillimeters(this double si)
         {
             return si * 1000;
         }

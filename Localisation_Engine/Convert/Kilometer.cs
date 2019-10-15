@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert kilometers into SI units")]
         [Input("kilometers", "Kilometer measurement")]
         [Output("si", "Kilometers represented as SI units")]
-        public static double KilometersToSI(this double kilometers)
+        public static double FromKilometers(this double kilometers)
         {
             return kilometers * 1000;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into kilometers")]
         [Input("si", "SI measurement")]
         [Output("kilometers", "SI units represented as kilometers")]
-        public static double SIToKilometers(this double si)
+        public static double ToKilometers(this double si)
         {
             return si / 1000;
         }
