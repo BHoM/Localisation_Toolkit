@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert inch into SI units")]
         [Input("inch", "Inch measurement")]
         [Output("si", "Inch represented as SI units")]
-        public static double InchToSI(this double inch)
+        public static double FromInch(this double inch)
         {
             return inch / 39.37;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into inch")]
         [Input("si", "SI measurement")]
         [Output("inch", "SI units represented as inch")]
-        public static double SIToInch(this double si)
+        public static double ToInch(this double si)
         {
             return si * 39.37;
         }

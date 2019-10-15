@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert nautical mile into SI units")]
         [Input("nauticalMile", "Nautical Mile measurement")]
         [Output("si", "Nautical Mile represented as SI units")]
-        public static double NauticalMileToSI(this double nauticalMile)
+        public static double FromNauticalMile(this double nauticalMile)
         {
             return nauticalMile * 1852;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into nautical mile")]
         [Input("si", "SI measurement")]
         [Output("nautical mile", "SI units represented as nautical mile")]
-        public static double SIToNauticalMile(this double si)
+        public static double ToNauticalMile(this double si)
         {
             return si / 1852;
         }

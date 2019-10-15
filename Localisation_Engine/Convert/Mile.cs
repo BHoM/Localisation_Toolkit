@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert mile into SI units")]
         [Input("mile", "Mile measurement")]
         [Output("si", "Mile represented as SI units")]
-        public static double MileToSI(this double mile)
+        public static double FromMile(this double mile)
         {
             return mile * 1609.344;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into mile")]
         [Input("si", "SI measurement")]
         [Output("mile", "SI units represented as mile")]
-        public static double SIToMile(this double si)
+        public static double ToMile(this double si)
         {
             return si / 1609.344;
         }

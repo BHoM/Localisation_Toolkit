@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert nanometers into SI units")]
         [Input("nanometers", "Nanometer measurement")]
         [Output("si", "Nanometers represented as SI units")]
-        public static double NanometersToSI(this double nanometers)
+        public static double FromNanometers(this double nanometers)
         {
             return nanometers / 1e+09;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into nanometers")]
         [Input("si", "SI measurement")]
         [Output("nanometers", "SI units represented as nanometers")]
-        public static double SIToNanometers(this double si)
+        public static double ToNanometers(this double si)
         {
             return si * 1e+09;
         }

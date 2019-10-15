@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert micrometers into SI units")]
         [Input("micrometers", "Micrometer measurement")]
         [Output("si", "Micrometers represented as SI units")]
-        public static double MicrometersToSI(this double micrometers)
+        public static double FromMicrometers(this double micrometers)
         {
             return micrometers / 1e+06;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into micrometers")]
         [Input("si", "SI measurement")]
         [Output("micrometers", "SI units represented as micrometers")]
-        public static double SIToMicrometers(this double si)
+        public static double ToMicrometers(this double si)
         {
             return si * 1e+06;
         }

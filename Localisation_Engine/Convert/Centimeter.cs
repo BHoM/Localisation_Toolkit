@@ -36,7 +36,7 @@ namespace BH.Engine.Localisation
         [Description("Convert centimeters into SI units")]
         [Input("centimeters", "Centimeter measurement")]
         [Output("si", "Centimeters represented as SI units")]
-        public static double CentimetersToSI(this double centimeters)
+        public static double FromCentimeters(this double centimeters)
         {
             return centimeters / 100;
         }
@@ -44,7 +44,7 @@ namespace BH.Engine.Localisation
         [Description("Convert SI units into centimeters")]
         [Input("si", "SI measurement")]
         [Output("centimeters", "SI units represented as centimeters")]
-        public static double SIToCentimeters(this double si)
+        public static double ToCentimeters(this double si)
         {
             return si * 100;
         }
