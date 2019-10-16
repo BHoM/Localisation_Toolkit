@@ -29,7 +29,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using BH.oM.Reflection.Attributes;
 
-namespace BH.Engine.Localisation
+namespace BH.Engine.Localisation.Length
 {
     public static partial class Convert
     {
