@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert arcminute into SI units")]
+        [Description("Convert arcminute into SI units (radians)")]
         [Input("arcminute", "Arcminute measurement")]
-        [Output("si", "Arcminute represented as SI units")]
+        [Output("si", "Arcminute represented as SI units (radians)")]
         public static double FromArcminute(this double arcminute)
         {
             return arcminute * Math.PI / (60 * 180);
         }
 
-        [Description("Convert SI units into arcminute")]
-        [Input("si", "SI measurement")]
-        [Output("arcminute", "SI units represented as arcminute")]
+        [Description("Convert SI units (radians) into arcminute")]
+        [Input("si", "SI measurement (radians)")]
+        [Output("arcminute", "SI units (radians) represented as arcminute")]
         public static double ToArcminute(this double si)
         {
             return si * (60 * 180) / Math.PI;

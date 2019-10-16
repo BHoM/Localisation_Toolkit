@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert angstrom into SI units")]
+        [Description("Convert angstrom into SI units (meter)")]
         [Input("angstrom", "Angstrom measurement")]
-        [Output("si", "Angstrom represented as SI units")]
+        [Output("si", "Angstrom represented as SI units (meter)")]
         public static double FromAngstroms(this double angstrom)
         {
             return angstrom / 1e+10;
         }
 
-        [Description("Convert SI units into angstrom")]
-        [Input("si", "SI measurement")]
-        [Output("angstrom", "SI units represented as angstrom")]
+        [Description("Convert SI units (meter) into angstrom")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("angstrom", "SI units (meter) represented as angstrom")]
         public static double ToAngstroms(this double si)
         {
             return si * 1e+10;

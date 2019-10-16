@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert yard into SI units")]
+        [Description("Convert yard into SI units (meter)")]
         [Input("yard", "Yard measurement")]
-        [Output("si", "Yard represented as SI units")]
+        [Output("si", "Yard represented as SI units (meter)")]
         public static double FromYard(this double yard)
         {
             return yard / 1.094;
         }
 
-        [Description("Convert SI units into yard")]
-        [Input("si", "SI measurement")]
-        [Output("yard", "SI units represented as yard")]
+        [Description("Convert SI units (meter) into yard")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("yard", "SI units (meter) represented as yard")]
         public static double ToYard(this double si)
         {
             return si * 1.094;

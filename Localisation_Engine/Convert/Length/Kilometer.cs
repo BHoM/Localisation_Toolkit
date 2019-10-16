@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert kilometers into SI units")]
+        [Description("Convert kilometers into SI units (meter)")]
         [Input("kilometers", "Kilometer measurement")]
-        [Output("si", "Kilometers represented as SI units")]
+        [Output("si", "Kilometers represented as SI units (meter)")]
         public static double FromKilometers(this double kilometers)
         {
             return kilometers * 1000;
         }
 
-        [Description("Convert SI units into kilometers")]
-        [Input("si", "SI measurement")]
-        [Output("kilometers", "SI units represented as kilometers")]
+        [Description("Convert SI units (meter) into kilometers")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("kilometers", "SI units (meter) represented as kilometers")]
         public static double ToKilometers(this double si)
         {
             return si / 1000;

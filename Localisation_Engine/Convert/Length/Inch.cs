@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert inch into SI units")]
+        [Description("Convert inch into SI units (meter)")]
         [Input("inch", "Inch measurement")]
-        [Output("si", "Inch represented as SI units")]
+        [Output("si", "Inch represented as SI units (meter)")]
         public static double FromInch(this double inch)
         {
             return inch / 39.37;
         }
 
-        [Description("Convert SI units into inch")]
-        [Input("si", "SI measurement")]
-        [Output("inch", "SI units represented as inch")]
+        [Description("Convert SI units (meter) into inch")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("inch", "SI units (meter) represented as inch")]
         public static double ToInch(this double si)
         {
             return si * 39.37;

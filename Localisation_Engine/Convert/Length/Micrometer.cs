@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert micrometers into SI units")]
+        [Description("Convert micrometers into SI units (meter)")]
         [Input("micrometers", "Micrometer measurement")]
-        [Output("si", "Micrometers represented as SI units")]
+        [Output("si", "Micrometers represented as SI units (meter)")]
         public static double FromMicrometers(this double micrometers)
         {
             return micrometers / 1e+06;
         }
 
-        [Description("Convert SI units into micrometers")]
-        [Input("si", "SI measurement")]
-        [Output("micrometers", "SI units represented as micrometers")]
+        [Description("Convert SI units (meter) into micrometers")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("micrometers", "SI units (meter) represented as micrometers")]
         public static double ToMicrometers(this double si)
         {
             return si * 1e+06;
