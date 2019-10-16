@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert nanometers into SI units")]
+        [Description("Convert nanometers into SI units (meter)")]
         [Input("nanometers", "Nanometer measurement")]
-        [Output("si", "Nanometers represented as SI units")]
+        [Output("si", "Nanometers represented as SI units (meter)")]
         public static double FromNanometers(this double nanometers)
         {
             return nanometers / 1e+09;
         }
 
-        [Description("Convert SI units into nanometers")]
-        [Input("si", "SI measurement")]
-        [Output("nanometers", "SI units represented as nanometers")]
+        [Description("Convert SI units (meter) into nanometers")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("nanometers", "SI units (meter) represented as nanometers")]
         public static double ToNanometers(this double si)
         {
             return si * 1e+09;

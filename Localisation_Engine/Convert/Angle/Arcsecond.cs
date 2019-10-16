@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert arcsecond into SI units")]
+        [Description("Convert arcsecond into SI units (radians)")]
         [Input("arcsecond", "Arcsecond measurement")]
-        [Output("si", "Arcsecond represented as SI units")]
+        [Output("si", "Arcsecond represented as SI units (radians)")]
         public static double FromArcsecond(this double arcsecond)
         {
             return arcsecond * Math.PI / (180 * 3600);
         }
 
-        [Description("Convert SI units into arcsecond")]
-        [Input("si", "SI measurement")]
-        [Output("arcsecond", "SI units represented as arcsecond")]
+        [Description("Convert SI units (radians) into arcsecond")]
+        [Input("si", "SI measurement (radians)")]
+        [Output("arcsecond", "SI units (radians) represented as arcsecond")]
         public static double ToArcsecond(this double si)
         {
             return si * (3600 * 180) / Math.PI;

@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert foot into SI units")]
+        [Description("Convert foot into SI units (meter)")]
         [Input("foot", "Foot measurement")]
-        [Output("si", "Foot represented as SI units")]
+        [Output("si", "Foot represented as SI units (meter)")]
         public static double FromFoot(this double foot)
         {
             return foot / 3.281;
         }
 
-        [Description("Convert SI units into foot")]
-        [Input("si", "SI measurement")]
-        [Output("foot", "SI units represented as foot")]
+        [Description("Convert SI units (meter) into foot")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("foot", "SI units (meter) represented as foot")]
         public static double ToFoot(this double si)
         {
             return si * 3.281;

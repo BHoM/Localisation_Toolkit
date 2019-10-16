@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert centimeters into SI units")]
+        [Description("Convert centimeters into SI units (meter)")]
         [Input("centimeters", "Centimeter measurement")]
-        [Output("si", "Centimeters represented as SI units")]
+        [Output("si", "Centimeters represented as SI units (meter)")]
         public static double FromCentimeters(this double centimeters)
         {
             return centimeters / 100;
         }
 
-        [Description("Convert SI units into centimeters")]
-        [Input("si", "SI measurement")]
-        [Output("centimeters", "SI units represented as centimeters")]
+        [Description("Convert SI units (meter) into centimeters")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("centimeters", "SI units (meter) represented as centimeters")]
         public static double ToCentimeters(this double si)
         {
             return si * 100;

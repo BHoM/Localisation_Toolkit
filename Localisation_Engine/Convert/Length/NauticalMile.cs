@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert nautical mile into SI units")]
+        [Description("Convert nautical mile into SI units (meter)")]
         [Input("nauticalMile", "Nautical Mile measurement")]
-        [Output("si", "Nautical Mile represented as SI units")]
+        [Output("si", "Nautical Mile represented as SI units (meter)")]
         public static double FromNauticalMile(this double nauticalMile)
         {
             return nauticalMile * 1852;
         }
 
-        [Description("Convert SI units into nautical mile")]
-        [Input("si", "SI measurement")]
-        [Output("nautical mile", "SI units represented as nautical mile")]
+        [Description("Convert SI units (meter) into nautical mile")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("nautical mile", "SI units (meter) represented as nautical mile")]
         public static double ToNauticalMile(this double si)
         {
             return si / 1852;

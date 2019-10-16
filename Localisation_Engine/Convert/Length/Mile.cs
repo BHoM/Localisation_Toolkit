@@ -33,17 +33,17 @@ namespace BH.Engine.Localisation
 {
     public static partial class Convert
     {
-        [Description("Convert mile into SI units")]
+        [Description("Convert mile into SI units (meter)")]
         [Input("mile", "Mile measurement")]
-        [Output("si", "Mile represented as SI units")]
+        [Output("si", "Mile represented as SI units (meter)")]
         public static double FromMile(this double mile)
         {
             return mile * 1609.344;
         }
 
-        [Description("Convert SI units into mile")]
-        [Input("si", "SI measurement")]
-        [Output("mile", "SI units represented as mile")]
+        [Description("Convert SI units (meter) into mile")]
+        [Input("si", "SI measurement (meter)")]
+        [Output("mile", "SI units (meter) represented as mile")]
         public static double ToMile(this double si)
         {
             return si / 1609.344;
