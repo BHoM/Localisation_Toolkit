@@ -52,16 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Convert\Centimeter.cs" />
-    <Compile Include="Convert\Foot.cs" />
-    <Compile Include="Convert\Inch.cs" />
-    <Compile Include="Convert\Kilometer.cs" />
-    <Compile Include="Convert\Micrometer.cs" />
-    <Compile Include="Convert\Mile.cs" />
-    <Compile Include="Convert\Millimeter.cs" />
-    <Compile Include="Convert\Nanometer.cs" />
-    <Compile Include="Convert\NauticalMile.cs" />
-    <Compile Include="Convert\Yard.cs" />
+    <Compile Include="Convert\Length\Angstrom.cs" />
+    <Compile Include="Convert\Length\Centimeter.cs" />
+    <Compile Include="Convert\Length\Foot.cs" />
+    <Compile Include="Convert\Length\Inch.cs" />
+    <Compile Include="Convert\Length\Kilometer.cs" />
+    <Compile Include="Convert\Length\Micrometer.cs" />
+    <Compile Include="Convert\Length\Mile.cs" />
+    <Compile Include="Convert\Length\Millimeter.cs" />
+    <Compile Include="Convert\Length\Nanometer.cs" />
+    <Compile Include="Convert\Length\NauticalMile.cs" />
+    <Compile Include="Convert\Length\Yard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
