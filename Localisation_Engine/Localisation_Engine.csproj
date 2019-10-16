@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Convert\Angle\Arcminute.cs" />
+    <Compile Include="Convert\Angle\Arcsecond.cs" />
     <Compile Include="Convert\Length\Angstrom.cs" />
     <Compile Include="Convert\Length\Centimeter.cs" />
     <Compile Include="Convert\Length\Foot.cs" />
