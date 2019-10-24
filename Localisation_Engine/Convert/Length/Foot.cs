@@ -38,7 +38,7 @@ namespace BH.Engine.Localisation.Length
         [Output("si", "Foot represented as SI units (meter)")]
         public static double FromFoot(this double foot)
         {
-            return foot / 3.281;
+            return foot * 0.3048;
         }
 
         [Description("Convert SI units (meter) into foot")]
@@ -46,7 +46,7 @@ namespace BH.Engine.Localisation.Length
         [Output("foot", "SI units (meter) represented as foot")]
         public static double ToFoot(this double si)
         {
-            return si * 3.281;
+            return si / 0.3048;
         }
     }
 }

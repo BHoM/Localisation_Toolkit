@@ -38,7 +38,7 @@ namespace BH.Engine.Localisation.Length
         [Output("si", "Mile represented as SI units (meter)")]
         public static double FromMile(this double mile)
         {
-            return mile * 1609.344;
+            return mile * 1609.347;
         }
 
         [Description("Convert SI units (meter) into mile")]
@@ -46,7 +46,7 @@ namespace BH.Engine.Localisation.Length
         [Output("mile", "SI units (meter) represented as mile")]
         public static double ToMile(this double si)
         {
-            return si / 1609.344;
+            return si / 1.609347;
         }
     }
 }

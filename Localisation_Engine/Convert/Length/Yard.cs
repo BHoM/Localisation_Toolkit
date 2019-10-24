@@ -38,7 +38,7 @@ namespace BH.Engine.Localisation.Length
         [Output("si", "Yard represented as SI units (meter)")]
         public static double FromYard(this double yard)
         {
-            return yard / 1.094;
+            return yard * 0.9144;
         }
 
         [Description("Convert SI units (meter) into yard")]
@@ -46,7 +46,7 @@ namespace BH.Engine.Localisation.Length
         [Output("yard", "SI units (meter) represented as yard")]
         public static double ToYard(this double si)
         {
-            return si * 1.094;
+            return si / 0.9144;
         }
     }
 }
