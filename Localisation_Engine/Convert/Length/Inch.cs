@@ -38,7 +38,7 @@ namespace BH.Engine.Localisation.Length
         [Output("si", "Inch represented as SI units (meter)")]
         public static double FromInch(this double inch)
         {
-            return inch / 39.37;
+            return inch * 0.0254;
         }
 
         [Description("Convert SI units (meter) into inch")]
@@ -46,7 +46,7 @@ namespace BH.Engine.Localisation.Length
         [Output("inch", "SI units (meter) represented as inch")]
         public static double ToInch(this double si)
         {
-            return si * 39.37;
+            return si / 0.0254;
         }
     }
 }
