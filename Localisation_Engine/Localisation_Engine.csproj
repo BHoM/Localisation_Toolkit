@@ -54,6 +54,9 @@
   <ItemGroup>
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\Mass\Pound.cs" />
+    <Compile Include="Convert\Force\Kip.cs" />
+    <Compile Include="Convert\Force\Pound.cs" />
     <Compile Include="Convert\Length\Angstrom.cs" />
     <Compile Include="Convert\Length\Centimeter.cs" />
     <Compile Include="Convert\Length\Foot.cs" />
