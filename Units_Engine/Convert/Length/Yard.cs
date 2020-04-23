@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Yard);
         }
 
-        [Description("Convert yards into SI units (metre)")]
+        [Description("Convert yards into SI units (metres)")]
         [Input("yards", "The number of yards to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromYard(double yards)
