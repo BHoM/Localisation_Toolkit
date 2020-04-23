@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metre) into centimetre")]
+        [Description("Convert SI units (metres) into centimetres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("centimetres", "The number of centimetres")]
         public static double ToCentimetre(double metres)
@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Centimeter);
         }
 
-        [Description("Convert centimetre into SI units (metre)")]
+        [Description("Convert centimetres into SI units (metres)")]
         [Input("centimetres", "The number of centimetres")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromCentimetre(double centimetre)

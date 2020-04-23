@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metre) into nanometres")]
+        [Description("Convert SI units (metres) into nanometres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("nanometres", "The number of nanometres")]
         public static double ToNanometre(double metres)

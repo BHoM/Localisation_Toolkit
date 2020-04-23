@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metre) into millimetres")]
+        [Description("Convert SI units (metres) into millimetres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("millimetres", "The number of millimetres")]
         public static double ToMillimetre(double metres)
@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Millimeter);
         }
 
-        [Description("Convert millimetres into SI units (metre)")]
+        [Description("Convert millimetres into SI units (metres)")]
         [Input("millimetres", "The number of millimetres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromMillimetre(double millimetres)
