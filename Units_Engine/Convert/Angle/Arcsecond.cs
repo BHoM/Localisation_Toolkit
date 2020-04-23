@@ -47,7 +47,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert arcseconds into SI units (radians)")]
-        [Input("arcsecond", "The number of arcseconds")]
+        [Input("arcseconds", "The number of arcseconds")]
         [Output("radians", "The number of radians", typeof(Angle))]
         public static double FromArcsecond(double arcseconds)
         {
