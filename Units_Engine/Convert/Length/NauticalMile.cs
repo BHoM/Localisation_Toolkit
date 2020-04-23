@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into nautical miles")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
+        [Description("Convert SI units (metre) into nautical miles")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("nauticalMiles", "The number of nautical miles")]
-        public static double ToNauticalMile(double meters)
+        public static double ToNauticalMile(double metres)
         {
-            UN.QuantityValue qv = meters;
+            UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.NauticalMile);
         }
 
-        [Description("Convert inch into SI units (meter)")]
+        [Description("Convert nautical miles into SI units (metre)")]
         [Input("nauticalMiles", "The number of nautical miles to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
+        [Output("metres", "The number of metres", typeof(Length))]
         public static double FromNauticalMile(double nauticalMiles)
         {
             UN.QuantityValue qv = nauticalMiles;

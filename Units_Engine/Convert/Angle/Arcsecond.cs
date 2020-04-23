@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, AngleUnit.Radian, AngleUnit.Arcsecond);
         }
 
-        [Description("Convert centimeter into SI units (radians)")]
+        [Description("Convert arcseconds into SI units (radians)")]
         [Input("arcsecond", "The number of arcseconds")]
         [Output("radians", "The number of radians", typeof(Angle))]
         public static double FromArcsecond(double arcseconds)

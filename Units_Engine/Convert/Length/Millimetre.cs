@@ -37,22 +37,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into centimeter")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
-        [Output("centimeters", "The number of centimeters")]
-        public static double ToCentimeter(double meters)
+        [Description("Convert SI units (metre) into millimetres")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
+        [Output("millimetres", "The number of millimetres")]
+        public static double ToMillimetre(double metres)
         {
-            UN.QuantityValue qv = meters;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Centimeter);
+            UN.QuantityValue qv = metres;
+            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Millimeter);
         }
 
-        [Description("Convert centimeter into SI units (meter)")]
-        [Input("centimeters", "The number of centimeters")]
-        [Output("meters", "The number of meters", typeof(Length))]
-        public static double FromCentimeter(double centimeter)
+        [Description("Convert millimetres into SI units (metre)")]
+        [Input("millimetres", "The number of millimetres to convert")]
+        [Output("metres", "The number of metres", typeof(Length))]
+        public static double FromMillimetre(double millimetres)
         {
-            UN.QuantityValue qv = centimeter;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Centimeter, LengthUnit.Meter);
+            UN.QuantityValue qv = millimetres;
+            return UN.UnitConverter.Convert(qv, LengthUnit.Millimeter, LengthUnit.Meter);
         }
     }
 }

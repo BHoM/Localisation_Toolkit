@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into feet")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
+        [Description("Convert SI units (metre) into feet")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("feet", "The number of feet")]
-        public static double ToFeet(double meters)
+        public static double ToFeet(double metres)
         {
-            UN.QuantityValue qv = meters;
+            UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Foot);
         }
 
-        [Description("Convert inch into SI units (meter)")]
+        [Description("Convert feet into SI units (metre)")]
         [Input("feet", "The number of feet to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
+        [Output("metres", "The number of metres", typeof(Length))]
         public static double FromFeet(double feet)
         {
             UN.QuantityValue qv = feet;
