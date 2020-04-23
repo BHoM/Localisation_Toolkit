@@ -55,6 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Convert\Angstrom.cs" />
+    <Compile Include="Convert\Centimeter.cs" />
     <Compile Include="Convert\Inch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
