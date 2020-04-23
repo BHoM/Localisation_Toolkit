@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Centimeter);
         }
 
-        [Description("Convert inch into SI units (meter)")]
+        [Description("Convert centimeter into SI units (meter)")]
         [Input("centimeters", "The number of centimeters")]
         [Output("meters", "The number of meters", typeof(Length))]
         public static double FromCentimeter(double centimeter)
