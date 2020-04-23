@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.NauticalMile);
         }
 
-        [Description("Convert nautical miles into SI units (metre)")]
+        [Description("Convert nautical miles into SI units (metres)")]
         [Input("nauticalMiles", "The number of nautical miles to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromNauticalMile(double nauticalMiles)
