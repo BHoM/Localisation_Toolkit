@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metre) into yards")]
+        [Description("Convert SI units (metres) into yards")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("yards", "The number of yards")]
         public static double ToYard(double metres)
