@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Nanometer);
         }
 
-        [Description("Convert nanometres into SI units (metre)")]
+        [Description("Convert nanometres into SI units (metres)")]
         [Input("nanometres", "The number of nanometres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromNanometre(double nanometres)
