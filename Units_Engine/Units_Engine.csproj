@@ -55,9 +55,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Convert\Angstrom.cs" />
-    <Compile Include="Convert\Centimeter.cs" />
-    <Compile Include="Convert\Inch.cs" />
+    <Compile Include="Convert\Angle\Arcminute.cs" />
+    <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\Length\Angstrom.cs" />
+    <Compile Include="Convert\Length\Centimeter.cs" />
+    <Compile Include="Convert\Length\Foot.cs" />
+    <Compile Include="Convert\Length\Inch.cs" />
+    <Compile Include="Convert\Length\Kilometer.cs" />
+    <Compile Include="Convert\Length\Micrometer.cs" />
+    <Compile Include="Convert\Length\Mile.cs" />
+    <Compile Include="Convert\Length\Millimeter.cs" />
+    <Compile Include="Convert\Length\Nanometer.cs" />
+    <Compile Include="Convert\Length\NauticalMile.cs" />
+    <Compile Include="Convert\Length\Yard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
