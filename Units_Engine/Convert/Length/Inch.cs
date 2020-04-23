@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metre) into inch")]
+        [Description("Convert SI units (metres) into inches")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("inches", "The number of inches")]
         public static double ToInch(double metres)
@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Inch);
         }
 
-        [Description("Convert inch into SI units (metre)")]
+        [Description("Convert inches into SI units (metres)")]
         [Input("inches", "The number of inches to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromInch(double inches)
