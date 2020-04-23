@@ -37,22 +37,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into millimeters")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
-        [Output("millimeters", "The number of millimeters")]
-        public static double ToMillimeter(double meters)
+        [Description("Convert SI units (metre) into micrometres")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
+        [Output("micrometres", "The number of micrometres")]
+        public static double ToMicrometre(double metres)
         {
-            UN.QuantityValue qv = meters;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Millimeter);
+            UN.QuantityValue qv = metres;
+            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Micrometer);
         }
 
-        [Description("Convert inch into SI units (meter)")]
-        [Input("millimeters", "The number of millimeters to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
-        public static double FromMillimeter(double millimeters)
+        [Description("Convert micrometres into SI units (metre)")]
+        [Input("micrometres", "The number of micrometres to convert")]
+        [Output("metres", "The number of metres", typeof(Length))]
+        public static double FromMicrometre(double micrometres)
         {
-            UN.QuantityValue qv = millimeters;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Millimeter, LengthUnit.Meter);
+            UN.QuantityValue qv = micrometres;
+            return UN.UnitConverter.Convert(qv, LengthUnit.Micrometer, LengthUnit.Meter);
         }
     }
 }

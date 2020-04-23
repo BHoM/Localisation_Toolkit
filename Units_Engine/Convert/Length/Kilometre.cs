@@ -37,21 +37,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into kilometers")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
-        [Output("kilometers", "The number of kilometers")]
-        public static double ToKilometer(double meters)
+        [Description("Convert SI units (metre) into kilometres")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
+        [Output("kilometres", "The number of kilometres")]
+        public static double ToKilometre(double metres)
         {
-            UN.QuantityValue qv = meters;
+            UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Kilometer);
         }
 
-        [Description("Convert inch into SI units (meter)")]
-        [Input("kilometers", "The number of kilometers to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
-        public static double FromKilometer(double kilometers)
+        [Description("Convert kilometres into SI units (metre)")]
+        [Input("kilometres", "The number of kilometres to convert")]
+        [Output("metres", "The number of metres", typeof(Length))]
+        public static double FromKilometre(double kilometres)
         {
-            UN.QuantityValue qv = kilometers;
+            UN.QuantityValue qv = kilometres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Kilometer, LengthUnit.Meter);
         }
     }

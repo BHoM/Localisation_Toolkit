@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into yards")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
+        [Description("Convert SI units (metre) into yards")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("yards", "The number of yards")]
-        public static double ToYard(double meters)
+        public static double ToYard(double metres)
         {
-            UN.QuantityValue qv = meters;
+            UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Yard);
         }
 
-        [Description("Convert inch into SI units (meter)")]
+        [Description("Convert yards into SI units (metre)")]
         [Input("yards", "The number of yards to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
+        [Output("metres", "The number of metres", typeof(Length))]
         public static double FromYard(double yards)
         {
             UN.QuantityValue qv = yards;

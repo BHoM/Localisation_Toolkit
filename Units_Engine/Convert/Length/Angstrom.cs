@@ -37,17 +37,17 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert ångstrom into SI units (meter)")]
+        [Description("Convert ångstrom into SI units (metre)")]
         [Input("angstrom", "Ångstrom measurement")]
-        [Output("si", "Ångstrom represented as SI units (meter)")]
+        [Output("si", "Ångstrom represented as SI units (metre)")]
         public static double FromAngstroms(this double angstrom)
         {
             return angstrom / 1e+10;
         }
 
-        [Description("Convert SI units (meter) into ångstrom")]
-        [Input("si", "SI measurement (meter)")]
-        [Output("angstrom", "SI units (meter) represented as ångstrom")]
+        [Description("Convert SI units (metre) into ångstrom")]
+        [Input("si", "SI measurement (metre)")]
+        [Output("angstrom", "SI units (metre) represented as ångstrom")]
         public static double ToAngstroms(this double si)
         {
             return si * 1e+10;

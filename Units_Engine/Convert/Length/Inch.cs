@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (meter) into inch")]
-        [Input("meters", "The number of meters to convert", typeof(Length))]
+        [Description("Convert SI units (metre) into inch")]
+        [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("inches", "The number of inches")]
-        public static double ToInch(double meters)
+        public static double ToInch(double metres)
         {
-            UN.QuantityValue qv = meters;
+            UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Inch);
         }
 
-        [Description("Convert inch into SI units (meter)")]
+        [Description("Convert inch into SI units (metre)")]
         [Input("inches", "The number of inches to convert")]
-        [Output("meters", "The number of meters", typeof(Length))]
+        [Output("metres", "The number of metres", typeof(Length))]
         public static double FromInch(double inches)
         {
             UN.QuantityValue qv = inches;
