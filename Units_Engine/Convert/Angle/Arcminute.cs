@@ -47,7 +47,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert arcminutes into SI units (radians)")]
-        [Input("arcminute", "The number of arcminutes")]
+        [Input("arcminutes", "The number of arcminutes")]
         [Output("radians", "The number of radians", typeof(Angle))]
         public static double FromArcminute(double arcminutes)
         {
