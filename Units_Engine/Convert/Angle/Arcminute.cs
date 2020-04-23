@@ -46,7 +46,7 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, AngleUnit.Radian, AngleUnit.Arcminute);
         }
 
-        [Description("Convert centimeter into SI units (meter)")]
+        [Description("Convert centimeter into SI units (radians)")]
         [Input("arcminute", "The number of arcminutes")]
         [Output("radians", "The number of radians", typeof(Angle))]
         public static double FromArcminute(double arcminutes)
