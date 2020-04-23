@@ -47,7 +47,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert centimetres into SI units (metres)")]
-        [Input("centimetres", "The number of centimetres")]
+        [Input("centimetres", "The number of centimetres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
         public static double FromCentimetre(double centimetre)
         {
