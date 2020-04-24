@@ -73,6 +73,15 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Convert\Acceleration\" />
+    <Folder Include="Convert\AreaMomentOfInertia\" />
+    <Folder Include="Convert\Area\" />
+    <Folder Include="Convert\Density\" />
+    <Folder Include="Convert\ForcePerLength\" />
+    <Folder Include="Convert\Force\" />
+    <Folder Include="Convert\Pressure\" />
+    <Folder Include="Convert\Volume\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
