@@ -38,7 +38,7 @@ namespace BH.Engine.Units
     public static partial class Convert
     {
         [Description("Convert ångstroms into SI units (metres)")]
-        [Input("ångstroms", "The number of ångstroms to convert")]
+        [Input("angstroms", "The number of ångstroms to convert")]
         [Output("metres", "The number of metres")]
         public static double FromAngstroms(this double angstroms)
         {
@@ -48,9 +48,9 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into ångstroms")]
         [Input("metres", "The number of metres to convert")]
         [Output("ångstroms", "The number of ångstroms")]
-        public static double ToAngstroms(this double meters)
+        public static double ToAngstroms(this double metres)
         {
-            return meters * 1e+10;
+            return metres * 1e+10;
         }
     }
 }
