@@ -57,6 +57,15 @@
   <ItemGroup>
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\Area\Hectare.cs" />
+    <Compile Include="Convert\Area\SquareInch.cs" />
+    <Compile Include="Convert\Area\Acre.cs" />
+    <Compile Include="Convert\Area\SquareNauticalMile.cs" />
+    <Compile Include="Convert\Area\SquareYard.cs" />
+    <Compile Include="Convert\Area\SquareMile.cs" />
+    <Compile Include="Convert\Area\SquareMillimetre.cs" />
+    <Compile Include="Convert\Area\SquareCentimetre.cs" />
+    <Compile Include="Convert\Area\SquareKilometre.cs" />
     <Compile Include="Convert\ForcePerLength\KilopoundForcePerFoot.cs" />
     <Compile Include="Convert\ForcePerLength\PoundPerYard.cs" />
     <Compile Include="Convert\ForcePerLength\PoundPerInch.cs" />
@@ -102,7 +111,6 @@
   <ItemGroup>
     <Folder Include="Convert\Acceleration\" />
     <Folder Include="Convert\AreaMomentOfInertia\" />
-    <Folder Include="Convert\Area\" />
     <Folder Include="Convert\Density\" />
     <Folder Include="Convert\Volume\" />
   </ItemGroup>
