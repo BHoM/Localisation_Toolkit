@@ -49,9 +49,9 @@ namespace BH.Engine.Units
         [Description("Convert centimetres into SI units (metres)")]
         [Input("centimetres", "The number of centimetres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromCentimetre(double centimetre)
+        public static double FromCentimetre(double centimetres)
         {
-            UN.QuantityValue qv = centimetre;
+            UN.QuantityValue qv = centimetres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Centimeter, LengthUnit.Meter);
         }
     }
