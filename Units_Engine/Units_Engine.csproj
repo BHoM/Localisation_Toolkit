@@ -81,6 +81,19 @@
     <Compile Include="Convert\Length\Nanometre.cs" />
     <Compile Include="Convert\Length\NauticalMile.cs" />
     <Compile Include="Convert\Length\Yard.cs" />
+    <Compile Include="Convert\Pressure\TechnicalAtmosphere.cs" />
+    <Compile Include="Convert\Pressure\Bar.cs" />
+    <Compile Include="Convert\Pressure\Atmosphere.cs" />
+    <Compile Include="Convert\Pressure\PoundPerSquareFoot.cs" />
+    <Compile Include="Convert\Pressure\PoundPerSquareInch.cs" />
+    <Compile Include="Convert\Pressure\TonneForcePerSquareCentimetre.cs" />
+    <Compile Include="Convert\Pressure\TonneForcePerSquareMillimetre.cs" />
+    <Compile Include="Convert\Pressure\TonneForcePerSquareMetre.cs" />
+    <Compile Include="Convert\Pressure\NewtonPerSquareMillimetre.cs" />
+    <Compile Include="Convert\Pressure\NewtonPerSquareCentimetre.cs" />
+    <Compile Include="Convert\Pressure\KilogramForcePerSquareMillimetre.cs" />
+    <Compile Include="Convert\Pressure\KilogramForcePerSquareCentimetre.cs" />
+    <Compile Include="Convert\Pressure\KilogramForcePerSquareMetre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,7 +104,6 @@
     <Folder Include="Convert\AreaMomentOfInertia\" />
     <Folder Include="Convert\Area\" />
     <Folder Include="Convert\Density\" />
-    <Folder Include="Convert\Pressure\" />
     <Folder Include="Convert\Volume\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
