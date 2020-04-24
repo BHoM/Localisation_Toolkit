@@ -47,7 +47,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert meganewtons into SI units (Newtons)")]
-        [Input("meganewton", "The number of meganewtons to convert")]
+        [Input("meganewtons", "The number of meganewtons to convert")]
         [Output("newtons", "The number of Newtons", typeof(Force))]
         public static double FromMeganewton(double meganewtons)
         {
