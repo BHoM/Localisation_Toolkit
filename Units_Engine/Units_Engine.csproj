@@ -57,6 +57,19 @@
   <ItemGroup>
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\ForcePerLength\KilopoundForcePerFoot.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundPerYard.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundPerInch.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundPerFoot.cs" />
+    <Compile Include="Convert\ForcePerLength\NewtonPerMillimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\KilogramForcePerMetre.cs" />
+    <Compile Include="Convert\Force\KilogramForce.cs" />
+    <Compile Include="Convert\Force\Meganewton.cs" />
+    <Compile Include="Convert\Force\OunceForce.cs" />
+    <Compile Include="Convert\Force\KiloPoundForce.cs" />
+    <Compile Include="Convert\Force\PoundForce.cs" />
+    <Compile Include="Convert\Force\TonneForce.cs" />
+    <Compile Include="Convert\Force\Kilonewton.cs" />
     <Compile Include="Convert\Length\Angstrom.cs" />
     <Compile Include="Convert\Length\Centimetre.cs" />
     <Compile Include="Convert\Length\Foot.cs" />
@@ -78,8 +91,6 @@
     <Folder Include="Convert\AreaMomentOfInertia\" />
     <Folder Include="Convert\Area\" />
     <Folder Include="Convert\Density\" />
-    <Folder Include="Convert\ForcePerLength\" />
-    <Folder Include="Convert\Force\" />
     <Folder Include="Convert\Pressure\" />
     <Folder Include="Convert\Volume\" />
   </ItemGroup>
