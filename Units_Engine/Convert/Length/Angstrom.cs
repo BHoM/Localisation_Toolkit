@@ -40,17 +40,17 @@ namespace BH.Engine.Units
         [Description("Convert ångstroms into SI units (metres)")]
         [Input("ångstroms", "The number of ångstroms to convert")]
         [Output("metres", "The number of metres")]
-        public static double FromAngstroms(this double angstrom)
+        public static double FromAngstroms(this double angstroms)
         {
-            return angstrom / 1e+10;
+            return angstroms / 1e+10;
         }
 
         [Description("Convert SI units (metres) into ångstroms")]
         [Input("metres", "The number of metres to convert")]
         [Output("ångstroms", "The number of ångstroms")]
-        public static double ToAngstroms(this double si)
+        public static double ToAngstroms(this double meters)
         {
-            return si * 1e+10;
+            return meters * 1e+10;
         }
     }
 }
