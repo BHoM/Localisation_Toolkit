@@ -39,7 +39,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (Newtons) into kilonewtons")]
         [Input("newtons", "The number of Newtons to convert", typeof(Force))]
-        [Output("kilonewton", "The number of kilonewtons")]
+        [Output("kilonewtons", "The number of kilonewtons")]
         public static double ToKilonewton(double newtons)
         {
             UN.QuantityValue qv = newtons;
@@ -47,7 +47,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert kilonewtons into SI units (Newtons)")]
-        [Input("kilonewton", "The number of kilonewtons to convert")]
+        [Input("kilonewtons", "The number of kilonewtons to convert")]
         [Output("newtons", "The number of Newtons", typeof(Force))]
         public static double FromKilonewton(double kilonewtons)
         {
