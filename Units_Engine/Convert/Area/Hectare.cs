@@ -51,7 +51,7 @@ namespace BH.Engine.Units
         [Output("squareMetres", "The number of square metres", typeof(Area))]
         public static double FromHectare(double hectares)
         {
-            UN.QuantityValue qv = Hectares;
+            UN.QuantityValue qv = hectares;
             return UN.UnitConverter.Convert(qv, AreaUnit.Hectare, AreaUnit.SquareMeter);
         }
     }
