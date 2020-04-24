@@ -49,9 +49,9 @@ namespace BH.Engine.Units
         [Description("Convert pounds-force per square inch into SI units (Pascals)")]
         [Input("poundsForcePerSquareInch", "The number of pounds-force per square inch to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromPoundForcePerSquareInch(double PoundsForcePerSquareInch)
+        public static double FromPoundForcePerSquareInch(double poundsForcePerSquareInch)
         {
-            UN.QuantityValue qv = PoundsForcePerSquareInch;
+            UN.QuantityValue qv = poundsForcePerSquareInch;
             return UN.UnitConverter.Convert(qv, PressureUnit.PoundForcePerSquareInch, PressureUnit.Pascal);
         }
     }
