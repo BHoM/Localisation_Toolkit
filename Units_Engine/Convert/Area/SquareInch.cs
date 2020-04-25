@@ -37,21 +37,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (square metres) into square Feet")]
+        [Description("Convert SI units (square metres) into square inches")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
-        [Output("squareFeet", "The number of square Feet")]
+        [Output("squareInches", "The number of square inches")]
         public static double ToSquareInch(double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareInch);
         }
 
-        [Description("Convert square Feet into SI units (square metres)")]
-        [Input("squareFeet", "The number of square Feet to convert")]
+        [Description("Convert square inches into SI units (square metres)")]
+        [Input("squareInches", "The number of square inches to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareInch(double squareFeet)
+        public static double FromSquareInch(double squareInches)
         {
-            UN.QuantityValue qv = squareFeet;
+            UN.QuantityValue qv = squareInches;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareInch, AreaUnit.SquareMeter);
         }
     }
