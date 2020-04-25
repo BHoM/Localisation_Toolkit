@@ -106,6 +106,15 @@
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMillimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMetre.cs" />
+    <Compile Include="Convert\Volume\CubicFoot.cs" />
+    <Compile Include="Convert\Volume\CubicInch.cs" />
+    <Compile Include="Convert\Volume\CubicYard.cs" />
+    <Compile Include="Convert\Volume\USGallon.cs" />
+    <Compile Include="Convert\Volume\ImperialGallon.cs" />
+    <Compile Include="Convert\Volume\Litre.cs" />
+    <Compile Include="Convert\Volume\CubicMillimetre.cs" />
+    <Compile Include="Convert\Volume\CubicKilometre.cs" />
+    <Compile Include="Convert\Volume\CubicCentimetre.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +123,6 @@
   <ItemGroup>
     <Folder Include="Convert\AreaMomentOfInertia\" />
     <Folder Include="Convert\Density\" />
-    <Folder Include="Convert\Volume\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
