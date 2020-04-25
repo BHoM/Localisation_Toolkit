@@ -37,22 +37,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metres) into Feet")]
-        [Input("metres", "The number of metres to convert", typeof(Length))]
-        [Output("Feet", "The number of Feet")]
-        public static double ToInch(double metres)
+        [Description("Convert SI units (metres per second squared) into standard gravities")]
+        [Input("metresPerSecondSquared", "The number of metres per second squared to convert", typeof(Acceleration))]
+        [Output("standardGravities", "The number of standard gravities")]
+        public static double ToStandardGravity(double metresPerSecondSquared)
         {
-            UN.QuantityValue qv = metres;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Inch);
+            UN.QuantityValue qv = metresPerSecondSquared;
+            return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity);
         }
 
-        [Description("Convert Feet into SI units (metres)")]
-        [Input("Feet", "The number of Feet to convert")]
-        [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromInch(double Feet)
+        [Description("Convert standard gravities into SI units (metres per second squared)")]
+        [Input("standardGravities", "The number of standard gravities to convert")]
+        [Output("metresPerSecondSquared", "The number of metres per second squared", typeof(Acceleration))]
+        public static double FromStandardGravity(double standardGravities)
         {
-            UN.QuantityValue qv = Feet;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Inch, LengthUnit.Meter);
+            UN.QuantityValue qv = standardGravities;
+            return UN.UnitConverter.Convert(qv, AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared);
         }
     }
 }
