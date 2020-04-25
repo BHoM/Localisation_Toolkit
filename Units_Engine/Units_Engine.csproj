@@ -60,6 +60,10 @@
     <Compile Include="Convert\Acceleration\InchPerSecondSquared.cs" />
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\AreaMomentOfInertia\FootToTheFourth.cs" />
+    <Compile Include="Convert\AreaMomentOfInertia\MillimetreToTheFourth.cs" />
+    <Compile Include="Convert\AreaMomentOfInertia\InchToTheFourth.cs" />
+    <Compile Include="Convert\AreaMomentOfInertia\CentimetreToTheFourth.cs" />
     <Compile Include="Convert\Area\Hectare.cs" />
     <Compile Include="Convert\Area\SquareInch.cs" />
     <Compile Include="Convert\Area\Acre.cs" />
@@ -121,7 +125,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Convert\AreaMomentOfInertia\" />
     <Folder Include="Convert\Density\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
