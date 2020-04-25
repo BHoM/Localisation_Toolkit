@@ -37,22 +37,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metres) into Feet")]
-        [Input("metres", "The number of metres to convert", typeof(Length))]
-        [Output("Feet", "The number of Feet")]
-        public static double ToInch(double metres)
+        [Description("Convert SI units (metres per second squared) into inches per second squared")]
+        [Input("metresPerSecondSquared", "The number of metres per second squared to convert", typeof(Acceleration))]
+        [Output("inchesPerSecondSquared", "The number of inches per second squared")]
+        public static double ToInchPerSecondSquared(double metresPerSecondSquared)
         {
-            UN.QuantityValue qv = metres;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Inch);
+            UN.QuantityValue qv = metresPerSecondSquared;
+            return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.InchPerSecondSquared);
         }
 
-        [Description("Convert Feet into SI units (metres)")]
-        [Input("Feet", "The number of Feet to convert")]
-        [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromInch(double Feet)
+        [Description("Convert inches per second squared into SI units (metres per second squared)")]
+        [Input("inchesPerSecondSquared", "The number of inches per second squared to convert")]
+        [Output("metresPerSecondSquared", "The number of metres per second squared", typeof(Acceleration))]
+        public static double FromInchPerSecondSquared(double inchesPerSecondSquared)
         {
-            UN.QuantityValue qv = Feet;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Inch, LengthUnit.Meter);
+            UN.QuantityValue qv = inchesPerSecondSquared;
+            return UN.UnitConverter.Convert(qv, AccelerationUnit.InchPerSecondSquared, AccelerationUnit.MeterPerSecondSquared);
         }
     }
 }
