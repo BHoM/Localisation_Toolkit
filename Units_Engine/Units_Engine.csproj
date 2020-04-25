@@ -73,6 +73,19 @@
     <Compile Include="Convert\Area\SquareMillimetre.cs" />
     <Compile Include="Convert\Area\SquareCentimetre.cs" />
     <Compile Include="Convert\Area\SquareKilometre.cs" />
+    <Compile Include="Convert\Density\KilogramPerLitre.cs" />
+    <Compile Include="Convert\Density\GramPerMillilitre.cs" />
+    <Compile Include="Convert\Density\GramPerLitre.cs" />
+    <Compile Include="Convert\Density\PoundPerCubicFoot.cs" />
+    <Compile Include="Convert\Density\PoundPerUSGallon.cs" />
+    <Compile Include="Convert\Density\PoundPerImperialGallon.cs" />
+    <Compile Include="Convert\Density\TonnesPerCubicMetre.cs" />
+    <Compile Include="Convert\Density\TonnesPerCubicCentimetre.cs" />
+    <Compile Include="Convert\Density\TonnesPerCubicMillimetre.cs" />
+    <Compile Include="Convert\Density\PoundPerCubicInch.cs" />
+    <Compile Include="Convert\Density\GramPerCubicMetre.cs" />
+    <Compile Include="Convert\Density\GramPerCubicCentimetre.cs" />
+    <Compile Include="Convert\Density\GramPerCubicMillimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilopoundForcePerFoot.cs" />
     <Compile Include="Convert\ForcePerLength\PoundPerYard.cs" />
     <Compile Include="Convert\ForcePerLength\PoundPerInch.cs" />
@@ -124,8 +137,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Convert\Density\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
