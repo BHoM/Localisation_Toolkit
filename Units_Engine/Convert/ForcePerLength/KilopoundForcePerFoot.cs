@@ -37,21 +37,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (Newtons per metre) into kilopounds per foot")]
+        [Description("Convert SI units (Newtons per metre) into kilopounds-force per foot")]
         [Input("newtonsPerMetre", "The number of Newtons per metre to convert", typeof(ForcePerUnitLength))]
-        [Output("kilopoundsPerFoot", "The number of kilopounds per foot")]
-        public static double ToKilopoundPerFoot(double newtonsPerMetre)
+        [Output("kilopoundsForcePerFoot", "The number of kilopounds-force per foot")]
+        public static double ToKilopoundForcePerFoot(double newtonsPerMetre)
         {
             UN.QuantityValue qv = newtonsPerMetre;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilopoundForcePerFoot);
         }
 
-        [Description("Convert kilopounds per foot into SI units (Newtons per metre)")]
-        [Input("kilopoundsPerFoot", "The number of kilopounds per foot to convert")]
+        [Description("Convert kilopounds-force per foot into SI units (Newtons per metre)")]
+        [Input("kilopoundsForcePerFoot", "The number of kilopounds-force per foot to convert")]
         [Output("newtonsPerMetre", "The number of Newtons per metre", typeof(ForcePerUnitLength))]
-        public static double FromKilopoundPerFoot(double kilopoundsPerFoot)
+        public static double FromKilopoundPerFoot(double kilopoundsForcePerFoot)
         {
-            UN.QuantityValue qv = kilopoundsPerFoot;
+            UN.QuantityValue qv = kilopoundsForcePerFoot;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.KilopoundForcePerFoot, ForcePerLengthUnit.NewtonPerMeter);
         }
     }
