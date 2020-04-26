@@ -113,8 +113,8 @@
     <Compile Include="Convert\Pressure\TechnicalAtmosphere.cs" />
     <Compile Include="Convert\Pressure\Bar.cs" />
     <Compile Include="Convert\Pressure\Atmosphere.cs" />
-    <Compile Include="Convert\Pressure\PoundPerSquareFoot.cs" />
-    <Compile Include="Convert\Pressure\PoundPerSquareInch.cs" />
+    <Compile Include="Convert\Pressure\PoundForcePerSquareFoot.cs" />
+    <Compile Include="Convert\Pressure\PoundForcePerSquareInch.cs" />
     <Compile Include="Convert\Pressure\TonneForcePerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\TonneForcePerSquareMillimetre.cs" />
     <Compile Include="Convert\Pressure\TonneForcePerSquareMetre.cs" />
