@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into kilograms-force per square metre")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("kilogramsForcePerSquareMetre", "The number of kilograms-force per square metre")]
-        public static double ToKilogramForcePerSquareMetre(double pascals)
+        public static double ToKilogramForcePerSquareMetre(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.KilogramForcePerSquareMeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert kilograms-force per square metre into SI units (Pascals)")]
         [Input("kilogramsForcePerSquareMetre", "The number of kilograms-force per square metre to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromKilogramForcePerSquareMetre(double kilogramsForcePerSquareMetre)
+        public static double FromKilogramForcePerSquareMetre(this double kilogramsForcePerSquareMetre)
         {
             UN.QuantityValue qv = kilogramsForcePerSquareMetre;
             return UN.UnitConverter.Convert(qv, PressureUnit.KilogramForcePerSquareMeter, PressureUnit.Pascal);

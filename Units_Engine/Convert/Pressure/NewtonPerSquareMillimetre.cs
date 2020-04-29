@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into Newtons per square millimetre")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("newtonsPerSquareMillimetre", "The number of Newtons per square millimetre")]
-        public static double ToNewtonPerSquareMillimetre(double pascals)
+        public static double ToNewtonPerSquareMillimetre(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.NewtonPerSquareMillimeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert Newtons per square millimetre into SI units (Pascals)")]
         [Input("newtonsPerSquareMillimetre", "The number of newtons per square millimetre to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromNewtonPerSquareMillimetre(double newtonsPerSquareMillimetre)
+        public static double FromNewtonPerSquareMillimetre(this double newtonsPerSquareMillimetre)
         {
             UN.QuantityValue qv = newtonsPerSquareMillimetre;
             return UN.UnitConverter.Convert(qv, PressureUnit.NewtonPerSquareMillimeter, PressureUnit.Pascal);

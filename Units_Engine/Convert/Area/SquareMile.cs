@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square miles")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareMiles", "The number of square miles")]
-        public static double ToSquareMile(double squareMetres)
+        public static double ToSquareMile(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareMile);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square miles into SI units (square metres)")]
         [Input("squareMiles", "The number of square miles to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareMile(double squareMiles)
+        public static double FromSquareMile(this double squareMiles)
         {
             UN.QuantityValue qv = squareMiles;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMile, AreaUnit.SquareMeter);

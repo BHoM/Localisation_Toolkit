@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres to the fourth) into millimetres to the fourth")]
         [Input("metresToTheFourth", "The number of metres to the fourth to convert", typeof(AreaMomentOfInertiaUnit))]
         [Output("millimetresToTheFourth", "The number of millimetres to the fourth")]
-        public static double ToMillimetreToTheFourth(double metresToTheFourth)
+        public static double ToMillimetreToTheFourth(this double metresToTheFourth)
         {
             UN.QuantityValue qv = metresToTheFourth;
             return UN.UnitConverter.Convert(qv, AreaMomentOfInertiaUnit.MeterToTheFourth, AreaMomentOfInertiaUnit.MillimeterToTheFourth);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert millimetres to the fourth into SI units (metres to the fourth)")]
         [Input("millimetresToTheFourth", "The number of millimetres to the fourth to convert")]
         [Output("metresToTheFourth", "The number of metres to the fourth", typeof(AreaMomentOfInertiaUnit))]
-        public static double FromMillimetreToTheFourth(double millimetresToTheFourth)
+        public static double FromMillimetreToTheFourth(this double millimetresToTheFourth)
         {
             UN.QuantityValue qv = millimetresToTheFourth;
             return UN.UnitConverter.Convert(qv, AreaMomentOfInertiaUnit.MillimeterToTheFourth, AreaMomentOfInertiaUnit.MeterToTheFourth);

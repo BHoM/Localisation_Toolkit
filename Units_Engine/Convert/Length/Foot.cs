@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into feet")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("feet", "The number of feet")]
-        public static double ToFoot(double metres)
+        public static double ToFoot(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Foot);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert feet into SI units (metres)")]
         [Input("feet", "The number of feet to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromFoot(double feet)
+        public static double FromFoot(this double feet)
         {
             UN.QuantityValue qv = feet;
             return UN.UnitConverter.Convert(qv, LengthUnit.Foot, LengthUnit.Meter);

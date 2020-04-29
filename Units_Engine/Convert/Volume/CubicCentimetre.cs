@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into cubic centimetres")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("cubicCentimetres", "The number of cubic centimetres")]
-        public static double ToCubicCentimetre(double cubicMetres)
+        public static double ToCubicCentimetre(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.CubicCentimeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert cubic centimetres into SI units (cubic metres)")]
         [Input("cubicCentimetres", "The number of cubic centimetres to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromCubicCentimetre(double cubicCentimetres)
+        public static double FromCubicCentimetre(this double cubicCentimetres)
         {
             UN.QuantityValue qv = cubicCentimetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicCentimeter, VolumeUnit.CubicMeter);

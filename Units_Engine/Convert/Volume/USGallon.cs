@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into US gallons")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("usGallons", "The number of US gallons")]
-        public static double ToUSGallon(double cubicMetres)
+        public static double ToUSGallon(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.UsGallon);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert US gallons into SI units (cubic metres)")]
         [Input("usGallons", "The number of US gallons to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromUSGallon(double usGallons)
+        public static double FromUSGallon(this double usGallons)
         {
             UN.QuantityValue qv = usGallons;
             return UN.UnitConverter.Convert(qv, VolumeUnit.UsGallon, VolumeUnit.CubicMeter);

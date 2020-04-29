@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into tonnes-force per square centimetre")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("tonnesForcePerSquareCentimetre", "The number of tonnes-force per square centimetre")]
-        public static double ToTonneForcePerSquareCentimetre(double pascals)
+        public static double ToTonneForcePerSquareCentimetre(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.TonneForcePerSquareCentimeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert tonnes-force per square centimetre into SI units (Pascals)")]
         [Input("tonnesForcePerSquareCentimetre", "The number of tonnes-force per square centimetre to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromTonneForcePerSquareCentimetre(double tonnesForcePerSquareCentimetre)
+        public static double FromTonneForcePerSquareCentimetre(this double tonnesForcePerSquareCentimetre)
         {
             UN.QuantityValue qv = tonnesForcePerSquareCentimetre;
             return UN.UnitConverter.Convert(qv, PressureUnit.TonneForcePerSquareCentimeter, PressureUnit.Pascal);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into nautical miles")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("nauticalMiles", "The number of nautical miles")]
-        public static double ToNauticalMile(double metres)
+        public static double ToNauticalMile(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.NauticalMile);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert nautical miles into SI units (metres)")]
         [Input("nauticalMiles", "The number of nautical miles to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromNauticalMile(double nauticalMiles)
+        public static double FromNauticalMile(this double nauticalMiles)
         {
             UN.QuantityValue qv = nauticalMiles;
             return UN.UnitConverter.Convert(qv, LengthUnit.NauticalMile, LengthUnit.Meter);

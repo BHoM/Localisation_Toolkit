@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into nanometres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("nanometres", "The number of nanometres")]
-        public static double ToNanometre(double metres)
+        public static double ToNanometre(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Nanometer);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert nanometres into SI units (metres)")]
         [Input("nanometres", "The number of nanometres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromNanometre(double nanometres)
+        public static double FromNanometre(this double nanometres)
         {
             UN.QuantityValue qv = nanometres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Nanometer, LengthUnit.Meter);

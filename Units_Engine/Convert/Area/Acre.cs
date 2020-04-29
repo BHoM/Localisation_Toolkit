@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into acres")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("acres", "The number of acres")]
-        public static double ToAcre(double squareMetres)
+        public static double ToAcre(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.Acre);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert acres into SI units (square metres)")]
         [Input("acres", "The number of acres to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromAcre(double acres)
+        public static double FromAcre(this double acres)
         {
             UN.QuantityValue qv = acres;
             return UN.UnitConverter.Convert(qv, AreaUnit.Acre, AreaUnit.SquareMeter);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Newtons per metre) into pounds per yard")]
         [Input("newtonsPerMetre", "The number of Newtons per metre to convert", typeof(ForcePerUnitLength))]
         [Output("poundsPerYard", "The number of pounds per yard")]
-        public static double ToPoundPerYard(double newtonsPerMetre)
+        public static double ToPoundPerYard(this double newtonsPerMetre)
         {
             UN.QuantityValue qv = newtonsPerMetre;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerYard);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert pounds per yard into SI units (Newtons per metre)")]
         [Input("poundsPerYard", "The number of pounds per yard to convert")]
         [Output("newtonsPerMetre", "The number of Newtons per metre", typeof(ForcePerUnitLength))]
-        public static double FromPoundPerYard(double poundsPerYard)
+        public static double FromPoundPerYard(this double poundsPerYard)
         {
             UN.QuantityValue qv = poundsPerYard;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.PoundForcePerYard, ForcePerLengthUnit.NewtonPerMeter);

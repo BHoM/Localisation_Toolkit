@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into miles")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("miles", "The number of miles")]
-        public static double ToMile(double metres)
+        public static double ToMile(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Mile);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert miles into SI units (metres)")]
         [Input("miles", "The number of miles to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromMile(double miles)
+        public static double FromMile(this double miles)
         {
             UN.QuantityValue qv = miles;
             return UN.UnitConverter.Convert(qv, LengthUnit.Mile, LengthUnit.Meter);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into technical atmospheres")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("technicalAtmospheres", "The number of technical atmospheres")]
-        public static double ToTechnicalAtmosphere(double pascals)
+        public static double ToTechnicalAtmosphere(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.TechnicalAtmosphere);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert technical atmospheres into SI units (Pascals)")]
         [Input("technicalAtmospheres", "The number of technical atmospheres to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromTechnicalAtmosphere(double technicalAtmospheres)
+        public static double FromTechnicalAtmosphere(this double technicalAtmospheres)
         {
             UN.QuantityValue qv = technicalAtmospheres;
             return UN.UnitConverter.Convert(qv, PressureUnit.TechnicalAtmosphere, PressureUnit.Pascal);

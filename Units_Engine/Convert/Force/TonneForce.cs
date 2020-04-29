@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Newtons) into tonnes-force")]
         [Input("newtons", "The number of Newtons to convert", typeof(Force))]
         [Output("tonnesForce", "The number of tonnes-force")]
-        public static double ToTonneForce(double newtons)
+        public static double ToTonneForce(this double newtons)
         {
             UN.QuantityValue qv = newtons;
             return UN.UnitConverter.Convert(qv, ForceUnit.Newton, ForceUnit.TonneForce);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert tonnes-force into SI units (Newtons)")]
         [Input("tonnesForce", "The number of tonnes-force to convert")]
         [Output("newtons", "The number of Newtons", typeof(Force))]
-        public static double FromTonneForce(double tonnesForce)
+        public static double FromTonneForce(this double tonnesForce)
         {
             UN.QuantityValue qv = tonnesForce;
             return UN.UnitConverter.Convert(qv, ForceUnit.TonneForce, ForceUnit.Newton);

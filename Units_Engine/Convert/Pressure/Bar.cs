@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into bars")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("bars", "The number of bars")]
-        public static double ToBar(double pascals)
+        public static double ToBar(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.Bar);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert bars into SI units (Pascals)")]
         [Input("bars", "The number of bars to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromBar(double bars)
+        public static double FromBar(this double bars)
         {
             UN.QuantityValue qv = bars;
             return UN.UnitConverter.Convert(qv, PressureUnit.Bar, PressureUnit.Pascal);
