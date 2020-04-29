@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square millimetres")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareMillimetres", "The number of square millimetres")]
-        public static double ToSquareMillimetre(double squareMetres)
+        public static double ToSquareMillimetre(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareMillimeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square millimetres into SI units (square metres)")]
         [Input("squareMillimetres", "The number of square millimetres to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareMillimetre(double squareMillimetres)
+        public static double FromSquareMillimetre(this double squareMillimetres)
         {
             UN.QuantityValue qv = squareMillimetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMillimeter, AreaUnit.SquareMeter);

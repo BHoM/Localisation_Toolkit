@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres per second squared) into standard gravities")]
         [Input("metresPerSecondSquared", "The number of metres per second squared to convert", typeof(Acceleration))]
         [Output("standardGravities", "The number of standard gravities")]
-        public static double ToStandardGravity(double metresPerSecondSquared)
+        public static double ToStandardGravity(this double metresPerSecondSquared)
         {
             UN.QuantityValue qv = metresPerSecondSquared;
             return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.StandardGravity);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert standard gravities into SI units (metres per second squared)")]
         [Input("standardGravities", "The number of standard gravities to convert")]
         [Output("metresPerSecondSquared", "The number of metres per second squared", typeof(Acceleration))]
-        public static double FromStandardGravity(double standardGravities)
+        public static double FromStandardGravity(this double standardGravities)
         {
             UN.QuantityValue qv = standardGravities;
             return UN.UnitConverter.Convert(qv, AccelerationUnit.StandardGravity, AccelerationUnit.MeterPerSecondSquared);

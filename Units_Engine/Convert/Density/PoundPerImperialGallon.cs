@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilograms per cubic metre) into pounds per imperial gallon")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("poundsPerImperialGallon", "The number of pounds per cubic imperial gallon")]
-        public static double ToPoundPerImperialGallon(double kilogramsPerCubicMetre)
+        public static double ToPoundPerImperialGallon(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerImperialGallon);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert pounds per imperial gallon into SI units (kilograms per cubic metre)")]
         [Input("poundsPerImperialGallon", "The number of pounds per imperial gallon to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromPoundPerImperialGallon(double poundsPerImperialGallon)
+        public static double FromPoundPerImperialGallon(this double poundsPerImperialGallon)
         {
             UN.QuantityValue qv = poundsPerImperialGallon;
             return UN.UnitConverter.Convert(qv, DensityUnit.PoundPerImperialGallon, DensityUnit.KilogramPerCubicMeter);

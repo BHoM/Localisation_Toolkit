@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into yards")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("yards", "The number of yards")]
-        public static double ToYard(double metres)
+        public static double ToYard(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Yard);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert yards into SI units (metres)")]
         [Input("yards", "The number of yards to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromYard(double yards)
+        public static double FromYard(this double yards)
         {
             UN.QuantityValue qv = yards;
             return UN.UnitConverter.Convert(qv, LengthUnit.Yard, LengthUnit.Meter);

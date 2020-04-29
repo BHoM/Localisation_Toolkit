@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into cubic yards")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("cubicYards", "The number of cubic yards")]
-        public static double ToCubicYard(double cubicMetres)
+        public static double ToCubicYard(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.CubicYard);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert cubic yards into SI units (cubic metres)")]
         [Input("cubicYards", "The number of cubic yards to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromCubicYard(double cubicYards)
+        public static double FromCubicYard(this double cubicYards)
         {
             UN.QuantityValue qv = cubicYards;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicYard, VolumeUnit.CubicMeter);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilograms per cubic metre) into pounds per cubic foot")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("poundsPerCubicFoot", "The number of pounds per cubic foot")]
-        public static double ToPoundPerCubicFoot(double kilogramsPerCubicMetre)
+        public static double ToPoundPerCubicFoot(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicFoot);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert pounds per cubic foot into SI units (kilograms per cubic metre)")]
         [Input("poundsPerCubicFoot", "The number of pounds per cubic foot to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromPoundPerCubicFoot(double poundsPerCubicFoot)
+        public static double FromPoundPerCubicFoot(this double poundsPerCubicFoot)
         {
             UN.QuantityValue qv = poundsPerCubicFoot;
             return UN.UnitConverter.Convert(qv, DensityUnit.PoundPerCubicFoot, DensityUnit.KilogramPerCubicMeter);

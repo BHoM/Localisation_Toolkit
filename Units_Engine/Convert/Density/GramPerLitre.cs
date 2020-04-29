@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilogram per cubic metre) into grams per litre")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("gramsPerLitre", "The number of grams per litre")]
-        public static double ToGramPerLitre(double kilogramsPerCubicMetre)
+        public static double ToGramPerLitre(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.GramPerLiter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert grams per litre into SI units (kilograms per cubic metre)")]
         [Input("gramsPerLitre", "The number of grams per litre to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromGramPerLitre(double gramsPerLitre)
+        public static double FromGramPerLitre(this double gramsPerLitre)
         {
             UN.QuantityValue qv = gramsPerLitre;
             return UN.UnitConverter.Convert(qv, DensityUnit.GramPerLiter, DensityUnit.KilogramPerCubicMeter);

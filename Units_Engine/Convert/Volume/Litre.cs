@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into litres")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("litres", "The number of litres")]
-        public static double ToLitre(double cubicMetres)
+        public static double ToLitre(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.Liter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert litres into SI units (cubic metres)")]
         [Input("litres", "The number of litres to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromLitre(double litres)
+        public static double FromLitre(this double litres)
         {
             UN.QuantityValue qv = litres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.Liter, VolumeUnit.CubicMeter);

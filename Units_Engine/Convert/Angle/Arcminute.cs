@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (radians) into arcminutes")]
         [Input("radians", "The number of radians to convert", typeof(Angle))]
         [Output("arcminutes", "The number of arcminutes")]
-        public static double ToArcminutes(double radians)
+        public static double ToArcminutes(this double radians)
         {
             UN.QuantityValue qv = radians;
             return UN.UnitConverter.Convert(qv, AngleUnit.Radian, AngleUnit.Arcminute);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert arcminutes into SI units (radians)")]
         [Input("arcminutes", "The number of arcminutes to convert")]
         [Output("radians", "The number of radians", typeof(Angle))]
-        public static double FromArcminute(double arcminutes)
+        public static double FromArcminute(this double arcminutes)
         {
             UN.QuantityValue qv = arcminutes;
             return UN.UnitConverter.Convert(qv, AngleUnit.Arcminute, AngleUnit.Radian);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into kilometres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("kilometres", "The number of kilometres")]
-        public static double ToKilometre(double metres)
+        public static double ToKilometre(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Kilometer);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert kilometres into SI units (metres)")]
         [Input("kilometres", "The number of kilometres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromKilometre(double kilometres)
+        public static double FromKilometre(this double kilometres)
         {
             UN.QuantityValue qv = kilometres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Kilometer, LengthUnit.Meter);

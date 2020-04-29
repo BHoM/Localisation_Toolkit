@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilogram per cubic metre) into kilograms per litre")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("kilogramsPerLitre", "The number of kilograms per litre")]
-        public static double ToKilogramPerLitre(double kilogramsPerCubicMetre)
+        public static double ToKilogramPerLitre(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.KilogramPerLiter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert kilograms per litre into SI units (kilograms per cubic metre)")]
         [Input("kilogramsPerLitre", "The number of kilograms per litre to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromKilogramPerLitre(double kilogramsPerLitre)
+        public static double FromKilogramPerLitre(this double kilogramsPerLitre)
         {
             UN.QuantityValue qv = kilogramsPerLitre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerLiter, DensityUnit.KilogramPerCubicMeter);

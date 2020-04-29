@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square kilometres")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareKilometres", "The number of square kilometres")]
-        public static double ToSquareKilometre(double squareMetres)
+        public static double ToSquareKilometre(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareKilometer);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square kilometres into SI units (square metres)")]
         [Input("squareKilometres", "The number of square kilometres to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareKilometre(double squareKilometres)
+        public static double FromSquareKilometre(this double squareKilometres)
         {
             UN.QuantityValue qv = squareKilometres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareKilometer, AreaUnit.SquareMeter);

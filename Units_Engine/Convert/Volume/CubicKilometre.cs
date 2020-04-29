@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into cubic kilometres")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("cubicKilometres", "The number of cubic kilometres")]
-        public static double ToCubicKilometre(double cubicMetres)
+        public static double ToCubicKilometre(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.CubicKilometer);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert cubic kilometres into SI units (cubic metres)")]
         [Input("cubicKilometres", "The number of cubic kilometres to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromCubicKilometre(double cubicKilometres)
+        public static double FromCubicKilometre(this double cubicKilometres)
         {
             UN.QuantityValue qv = cubicKilometres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicKilometer, VolumeUnit.CubicMeter);

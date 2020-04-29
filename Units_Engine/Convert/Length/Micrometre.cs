@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres) into micrometres")]
         [Input("metres", "The number of metres to convert", typeof(Length))]
         [Output("micrometres", "The number of micrometres")]
-        public static double ToMicrometre(double metres)
+        public static double ToMicrometre(this double metres)
         {
             UN.QuantityValue qv = metres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Meter, LengthUnit.Micrometer);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert micrometres into SI units (metres)")]
         [Input("micrometres", "The number of micrometres to convert")]
         [Output("metres", "The number of metres", typeof(Length))]
-        public static double FromMicrometre(double micrometres)
+        public static double FromMicrometre(this double micrometres)
         {
             UN.QuantityValue qv = micrometres;
             return UN.UnitConverter.Convert(qv, LengthUnit.Micrometer, LengthUnit.Meter);

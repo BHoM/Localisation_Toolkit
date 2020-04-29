@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square nautical miles")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareNauticalMiles", "The number of square nautical miles")]
-        public static double ToSquareNauticalMile(double squareMetres)
+        public static double ToSquareNauticalMile(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareNauticalMile);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square nautical miles into SI units (square metres)")]
         [Input("squareNauticalMiles", "The number of square nautical miles to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareNauticalMile(double squareNauticalMiles)
+        public static double FromSquareNauticalMile(this double squareNauticalMiles)
         {
             UN.QuantityValue qv = squareNauticalMiles;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareNauticalMile, AreaUnit.SquareMeter);

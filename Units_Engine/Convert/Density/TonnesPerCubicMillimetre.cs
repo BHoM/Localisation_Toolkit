@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilograms per cubic metre) into tonnes per cubic millimetre")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("tonnesPerCubicMillimetre", "The number of tonnes per cubic millimetre")]
-        public static double ToTonnePerCubicMillimetre(double kilogramsPerCubicMetre)
+        public static double ToTonnePerCubicMillimetre(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.TonnePerCubicMillimeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert tonnes per cubic millimetre into SI units (kilograms per cubic metre)")]
         [Input("tonnesPerCubicMillimetre", "The number of tonnes per cubic millimetre to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromTonnePerCubicMillimetre(double tonnesPerCubicMillimetre)
+        public static double FromTonnePerCubicMillimetre(this double tonnesPerCubicMillimetre)
         {
             UN.QuantityValue qv = tonnesPerCubicMillimetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.TonnePerCubicMillimeter, DensityUnit.KilogramPerCubicMeter);

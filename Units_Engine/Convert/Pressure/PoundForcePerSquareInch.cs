@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Pascals) into pounds-force per square inch")]
         [Input("pascals", "The number of Pascals to convert", typeof(Pressure))]
         [Output("poundsForcePerSquareInch", "The number of pounds-force per square inch")]
-        public static double ToPoundForcePerSquareInch(double pascals)
+        public static double ToPoundForcePerSquareInch(this double pascals)
         {
             UN.QuantityValue qv = pascals;
             return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, PressureUnit.PoundForcePerSquareInch);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert pounds-force per square inch into SI units (Pascals)")]
         [Input("poundsForcePerSquareInch", "The number of pounds-force per square inch to convert")]
         [Output("pascals", "The number of Pascals", typeof(Pressure))]
-        public static double FromPoundForcePerSquareInch(double poundsForcePerSquareInch)
+        public static double FromPoundForcePerSquareInch(this double poundsForcePerSquareInch)
         {
             UN.QuantityValue qv = poundsForcePerSquareInch;
             return UN.UnitConverter.Convert(qv, PressureUnit.PoundForcePerSquareInch, PressureUnit.Pascal);

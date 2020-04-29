@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Newtons) into ounces-force")]
         [Input("newtons", "The number of Newtons to convert", typeof(Force))]
         [Output("ouncesForce", "The number of ounces-force")]
-        public static double ToOunceForce(double newtons)
+        public static double ToOunceForce(this double newtons)
         {
             UN.QuantityValue qv = newtons;
             return UN.UnitConverter.Convert(qv, ForceUnit.Newton, ForceUnit.OunceForce);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert ounces-force into SI units (Newtons)")]
         [Input("ouncesForce", "The number of ounces-force to convert")]
         [Output("newtons", "The number of Newtons", typeof(Force))]
-        public static double FromOunceForce(double ouncesForce)
+        public static double FromOunceForce(this double ouncesForce)
         {
             UN.QuantityValue qv = ouncesForce;
             return UN.UnitConverter.Convert(qv, ForceUnit.OunceForce, ForceUnit.Newton);

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (metres per second squared) into feet per second squared")]
         [Input("metresPerSecondSquared", "The number of metres per second squared to convert", typeof(Acceleration))]
         [Output("feetPerSecondSquared", "The number of feet per second squared")]
-        public static double ToFootPerSecondSquared(double metresPerSecondSquared)
+        public static double ToFootPerSecondSquared(this double metresPerSecondSquared)
         {
             UN.QuantityValue qv = metresPerSecondSquared;
             return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, AccelerationUnit.FootPerSecondSquared);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert feet per second squared into SI units (metres per second squared)")]
         [Input("feetPerSecondSquared", "The number of feet per second squared to convert")]
         [Output("metresPerSecondSquared", "The number of metres per second squared", typeof(Acceleration))]
-        public static double FromFootPerSecondSquared(double feetPerSecondSquared)
+        public static double FromFootPerSecondSquared(this double feetPerSecondSquared)
         {
             UN.QuantityValue qv = feetPerSecondSquared;
             return UN.UnitConverter.Convert(qv, AccelerationUnit.FootPerSecondSquared, AccelerationUnit.MeterPerSecondSquared);

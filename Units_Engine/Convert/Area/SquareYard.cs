@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square yards")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareYards", "The number of square yards")]
-        public static double ToSquareYard(double squareMetres)
+        public static double ToSquareYard(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareYard);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square yards into SI units (square metres)")]
         [Input("squareYards", "The number of square yards to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareYard(double squareYards)
+        public static double FromSquareYard(this double squareYards)
         {
             UN.QuantityValue qv = squareYards;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareYard, AreaUnit.SquareMeter);

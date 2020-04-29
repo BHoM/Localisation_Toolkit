@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (square metres) into square inches")]
         [Input("squareMetres", "The number of square metres to convert", typeof(Area))]
         [Output("squareInches", "The number of square inches")]
-        public static double ToSquareInch(double squareMetres)
+        public static double ToSquareInch(this double squareMetres)
         {
             UN.QuantityValue qv = squareMetres;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, AreaUnit.SquareInch);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert square inches into SI units (square metres)")]
         [Input("squareInches", "The number of square inches to convert")]
         [Output("squareMetres", "The number of square metres", typeof(Area))]
-        public static double FromSquareInch(double squareInches)
+        public static double FromSquareInch(this double squareInches)
         {
             UN.QuantityValue qv = squareInches;
             return UN.UnitConverter.Convert(qv, AreaUnit.SquareInch, AreaUnit.SquareMeter);

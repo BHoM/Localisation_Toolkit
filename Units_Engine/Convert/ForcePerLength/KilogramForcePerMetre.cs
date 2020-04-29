@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Newtons per metre) into kilograms-force per metre")]
         [Input("newtonsPerMetre", "The number of Newtons per metre to convert", typeof(ForcePerUnitLength))]
         [Output("kilogramsForcePerMetre", "The number of kilograms-force per metre")]
-        public static double ToKilogramForcePerMetre(double newtonsPerMetre)
+        public static double ToKilogramForcePerMetre(this double newtonsPerMetre)
         {
             UN.QuantityValue qv = newtonsPerMetre;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.KilogramForcePerMeter);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert kilograms-force per metre into SI units (Newtons per metre)")]
         [Input("kilogramsForcePerMetre", "The number of kilograms-force per metre to convert")]
         [Output("newtonsPerMetre", "The number of Newtons per metre", typeof(ForcePerUnitLength))]
-        public static double FromKilogramForcePerMetre(double kilogramsForcePerMetre)
+        public static double FromKilogramForcePerMetre(this double kilogramsForcePerMetre)
         {
             UN.QuantityValue qv = kilogramsForcePerMetre;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.KilogramForcePerMeter, ForcePerLengthUnit.NewtonPerMeter);

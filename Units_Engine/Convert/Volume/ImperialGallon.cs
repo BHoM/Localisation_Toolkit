@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into imperial gallons")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("imperialGallons", "The number of imperial gallons")]
-        public static double ToImperialGallon(double cubicMetres)
+        public static double ToImperialGallon(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.ImperialGallon);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert imperial gallons into SI units (cubic metres)")]
         [Input("imperialGallons", "The number of imperial gallons to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromImperialGallon(double imperialGallons)
+        public static double FromImperialGallon(this double imperialGallons)
         {
             UN.QuantityValue qv = imperialGallons;
             return UN.UnitConverter.Convert(qv, VolumeUnit.ImperialGallon, VolumeUnit.CubicMeter);

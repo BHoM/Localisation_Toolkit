@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (kilograms per cubic metre) into pounds per cubic inch")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("poundsPerCubicInch", "The number of pounds per cubic inch")]
-        public static double ToPoundPerCubicInch(double kilogramsPerCubicMetre)
+        public static double ToPoundPerCubicInch(this double kilogramsPerCubicMetre)
         {
             UN.QuantityValue qv = kilogramsPerCubicMetre;
             return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.PoundPerCubicInch);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert pounds per cubic inch into SI units (kilograms per cubic metre)")]
         [Input("poundsPerCubicInch", "The number of pounds per cubic inch to convert")]
         [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
-        public static double FromPoundPerCubicInch(double poundsPerCubicInch)
+        public static double FromPoundPerCubicInch(this double poundsPerCubicInch)
         {
             UN.QuantityValue qv = poundsPerCubicInch;
             return UN.UnitConverter.Convert(qv, DensityUnit.PoundPerCubicInch, DensityUnit.KilogramPerCubicMeter);

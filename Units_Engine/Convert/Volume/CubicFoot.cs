@@ -40,7 +40,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (cubic metres) into cubic feet")]
         [Input("cubicMetres", "The number of cubic metres to convert", typeof(Volume))]
         [Output("cubicFeet", "The number of cubic feet")]
-        public static double ToCubicFoot(double cubicMetres)
+        public static double ToCubicFoot(this double cubicMetres)
         {
             UN.QuantityValue qv = cubicMetres;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicMeter, VolumeUnit.CubicFoot);
@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Description("Convert cubic feet into SI units (cubic metres)")]
         [Input("cubicFeet", "The number of cubic feet to convert")]
         [Output("cubicMetres", "The number of cubic metres", typeof(Volume))]
-        public static double FromCubicFoot(double cubicFeet)
+        public static double FromCubicFoot(this double cubicFeet)
         {
             UN.QuantityValue qv = cubicFeet;
             return UN.UnitConverter.Convert(qv, VolumeUnit.CubicFoot, VolumeUnit.CubicMeter);
