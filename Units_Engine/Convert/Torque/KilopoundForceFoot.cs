@@ -38,22 +38,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (Newton-metres) into Newton-centimetres")]
+        [Description("Convert SI units (Newton-metres) into kilopound-force feet")]
         [Input("newtonMetres", "The number of Newton-metres to convert", typeof(Moment))]
-        [Output("newtonCentimetre", "The number of Newton-centimetres")]
-        public static double ToNewtonCentimetre(this double newtonMetres)
+        [Output("KilopoundForceFeet", "The number of kilopound-force feet")]
+        public static double ToKilopoundForceFoot(this double newtonMetres)
         {
             UN.QuantityValue qv = newtonMetres;
-            return UN.UnitConverter.Convert(qv, TorqueUnit.NewtonMeter, TorqueUnit.NewtonCentimeter);
+            return UN.UnitConverter.Convert(qv, TorqueUnit.NewtonMeter, TorqueUnit.KilopoundForceFoot);
         }
 
-        [Description("Convert Newton-centimetres into SI units (Newton-metres)")]
-        [Input("newtonCentimetres", "The number of Newton-centimetres to convert")]
+        [Description("Convert kilopound-force feet into SI units (Newton-metres)")]
+        [Input("KilopoundForceFeet", "The number of kilopound-force feet to convert")]
         [Output("newtonMetres", "The number of Newton-metres", typeof(Moment))]
-        public static double FromNewtonCentimetre(this double newtonCentimetres)
+        public static double FromKilopoundForceFoot(this double KilopoundForceFeet)
         {
-            UN.QuantityValue qv = newtonCentimetres;
-            return UN.UnitConverter.Convert(qv, TorqueUnit.NewtonCentimeter, TorqueUnit.NewtonMeter);
+            UN.QuantityValue qv = KilopoundForceFeet;
+            return UN.UnitConverter.Convert(qv, TorqueUnit.KilopoundForceFoot, TorqueUnit.NewtonMeter);
         }
     }
 }
