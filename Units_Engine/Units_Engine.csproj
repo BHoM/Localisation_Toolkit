@@ -67,6 +67,7 @@
     <Compile Include="Convert\AreaMomentOfInertia\InchToTheFourth.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\CentimetreToTheFourth.cs" />
     <Compile Include="Convert\Area\Hectare.cs" />
+    <Compile Include="Convert\Area\SquareFoot.cs" />
     <Compile Include="Convert\Area\SquareInch.cs" />
     <Compile Include="Convert\Area\Acre.cs" />
     <Compile Include="Convert\Area\SquareNauticalMile.cs" />
