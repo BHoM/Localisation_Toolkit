@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert tonne-force centimetres into SI units (Newton-metres)")]
-        [Input("TonneForceCentimetres", "The number of tonne-force centimetres to convert")]
+        [Input("tonneForceCentimetres", "The number of tonne-force centimetres to convert")]
         [Output("newtonMetres", "The number of Newton-metres", typeof(Moment))]
         public static double FromTonneForceCentimetre(this double tonneForceCentimetres)
         {
