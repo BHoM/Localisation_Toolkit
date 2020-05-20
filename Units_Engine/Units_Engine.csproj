@@ -82,9 +82,11 @@
     <Compile Include="Convert\Density\PoundPerCubicFoot.cs" />
     <Compile Include="Convert\Density\PoundPerUSGallon.cs" />
     <Compile Include="Convert\Density\PoundPerImperialGallon.cs" />
-    <Compile Include="Convert\Density\TonnesPerCubicMetre.cs" />
-    <Compile Include="Convert\Density\TonnesPerCubicCentimetre.cs" />
-    <Compile Include="Convert\Density\TonnesPerCubicMillimetre.cs" />
+    <Compile Include="Convert\Density\KilogramPerCubicCentimetre.cs" />
+    <Compile Include="Convert\Density\TonnePerCubicMetre.cs" />
+    <Compile Include="Convert\Density\TonnePerCubicCentimetre.cs" />
+    <Compile Include="Convert\Density\KilogramPerCubicMillimetre.cs" />
+    <Compile Include="Convert\Density\TonnePerCubicMillimetre.cs" />
     <Compile Include="Convert\Density\PoundPerCubicInch.cs" />
     <Compile Include="Convert\Density\GramPerCubicMetre.cs" />
     <Compile Include="Convert\Density\GramPerCubicCentimetre.cs" />
