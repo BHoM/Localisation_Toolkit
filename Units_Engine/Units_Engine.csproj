@@ -125,6 +125,16 @@
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMillimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMetre.cs" />
+    <Compile Include="Convert\Torque\TonneForceMetre.cs" />
+    <Compile Include="Convert\Torque\TonneForceMillimetre.cs" />
+    <Compile Include="Convert\Torque\TonneForceCentimetre.cs" />
+    <Compile Include="Convert\Torque\KilogramForceMetre.cs" />
+    <Compile Include="Convert\Torque\KilogramForceCentimetre.cs" />
+    <Compile Include="Convert\Torque\KilogramForceMillimetre.cs" />
+    <Compile Include="Convert\Torque\PoundForceFoot.cs" />
+    <Compile Include="Convert\Torque\PoundForceInch.cs" />
+    <Compile Include="Convert\Torque\NewtonCentimetre.cs" />
+    <Compile Include="Convert\Torque\NewtonMillimetre.cs" />
     <Compile Include="Convert\Volume\CubicFoot.cs" />
     <Compile Include="Convert\Volume\CubicInch.cs" />
     <Compile Include="Convert\Volume\CubicYard.cs" />
