@@ -116,6 +116,8 @@
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMillimetre.cs" />
+    <Compile Include="Convert\Pressure\KilopoundForcePerSquareFoot.cs" />
+    <Compile Include="Convert\Pressure\KilopoundForcePerSquareInch.cs" />
     <Compile Include="Convert\Pressure\TechnicalAtmosphere.cs" />
     <Compile Include="Convert\Pressure\Bar.cs" />
     <Compile Include="Convert\Pressure\Atmosphere.cs" />
