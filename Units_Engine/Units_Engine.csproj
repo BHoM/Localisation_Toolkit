@@ -119,6 +119,13 @@
     <Compile Include="Convert\Length\Nanometre.cs" />
     <Compile Include="Convert\Length\NauticalMile.cs" />
     <Compile Include="Convert\Length\Yard.cs" />
+    <Compile Include="Convert\MomentPerLength\KilopoundForceFootPerFoot.cs" />
+    <Compile Include="Convert\MomentPerLength\TonneForceMetrePerMetre.cs" />
+    <Compile Include="Convert\MomentPerLength\KilonewtonMetrePerMetre.cs" />
+    <Compile Include="Convert\MomentPerLength\KilogramForceMetrePerMetre.cs" />
+    <Compile Include="Convert\MomentPerLength\PoundForceFootPerFoot.cs" />
+    <Compile Include="Convert\MomentPerLength\NewtonCentimetrePerMetre.cs" />
+    <Compile Include="Convert\MomentPerLength\NewtonMillimetrePerMetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMillimetre.cs" />
