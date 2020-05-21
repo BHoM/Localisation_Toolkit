@@ -41,7 +41,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (Newton-metres per metre) into Newton-millimetres per metre")]
         [Input("newtonMetresPerMetre", "The number of Newton-metres per metre to convert", typeof(MomentPerUnitLength))]
         [Output("newtonMillimetresPerMetre", "The number of Newton-millimetres per metre")]
-        public static double ToNewtonMillimetresPerMetre(this double newtonMetresPerMetre)
+        public static double ToNewtonMillimetrePerMetre(this double newtonMetresPerMetre)
         {
             UN.QuantityValue qv = newtonMetresPerMetre;
             return UN.UnitConverter.Convert(qv, TorquePerLengthUnit.NewtonMeterPerMeter, TorquePerLengthUnit.NewtonMillimeterPerMeter);
@@ -50,7 +50,7 @@ namespace BH.Engine.Units
         [Description("Convert Newton-millimetres per metre into SI units (Newton-metres per metre)")]
         [Input("newtonMillimetresPerMetre", "The number of Newton-millimetres per metre to convert")]
         [Output("newtonMetresPerMetre", "The number of Newton-metres per metre", typeof(ForcePerUnitLength))]
-        public static double FromNewtonMillimetresPerMetre(this double newtonMillimetresPerMetre)
+        public static double FromNewtonMillimetrePerMetre(this double newtonMillimetresPerMetre)
         {
             UN.QuantityValue qv = newtonMillimetresPerMetre;
             return UN.UnitConverter.Convert(qv, TorquePerLengthUnit.NewtonMillimeterPerMeter, TorquePerLengthUnit.NewtonMeterPerMeter);
