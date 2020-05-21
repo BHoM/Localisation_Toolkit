@@ -52,7 +52,7 @@ namespace BH.Engine.Units
         public static double FromDeltaDegreeFahrenheit(this double degreesFahrenheit)
         {
             UN.QuantityValue qv = degreesFahrenheit;
-            return UN.UnitConverter.Convert(qv, TemperatureDeltaUnit.DegreeCelsius, TemperatureDeltaUnit.Kelvin);
+            return UN.UnitConverter.Convert(qv, TemperatureDeltaUnit.DegreeFahrenheit, TemperatureDeltaUnit.Kelvin);
         }
     }
 }
