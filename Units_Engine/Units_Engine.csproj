@@ -96,9 +96,9 @@
     <Compile Include="Convert\ForcePerLength\KilonewtonPerMetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilopoundForcePerFoot.cs" />
     <Compile Include="Convert\ForcePerLength\KilonewtonPerMillimetre.cs" />
-    <Compile Include="Convert\ForcePerLength\PoundPerYard.cs" />
-    <Compile Include="Convert\ForcePerLength\PoundPerInch.cs" />
-    <Compile Include="Convert\ForcePerLength\PoundPerFoot.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundForcePerYard.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundForcePerInch.cs" />
+    <Compile Include="Convert\ForcePerLength\PoundForcePerFoot.cs" />
     <Compile Include="Convert\ForcePerLength\NewtonPerMillimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilogramForcePerMetre.cs" />
     <Compile Include="Convert\Force\KilogramForce.cs" />
