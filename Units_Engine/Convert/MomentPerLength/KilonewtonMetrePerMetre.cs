@@ -40,7 +40,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (Newton-metres per metre) into kilonewton-metres per metre")]
         [Input("newtonMetresPerMetre", "The number of Newton-metres per metre to convert", typeof(MomentPerUnitLength))]
-        [Output("kilonewtonMetresMetre", "The number of kilonewton-metres per metre")]
+        [Output("kilonewtonMetresPerMetre", "The number of kilonewton-metres per metre")]
         public static double ToKilonewtonMetrePerMetre(this double newtonMetresPerMetre)
         {
             UN.QuantityValue qv = newtonMetresPerMetre;

@@ -40,7 +40,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (Newton-metres per metre) into Newton-centimetres per metre")]
         [Input("newtonMetresPerMetre", "The number of Newton-metres per metre to convert", typeof(MomentPerUnitLength))]
-        [Output("newtonCentimetresMetre", "The number of Newton-centimetres per metre")]
+        [Output("newtonCentimetresPerMetre", "The number of Newton-centimetres per metre")]
         public static double ToNewtonCentimetrePerMetre(this double newtonMetresPerMetre)
         {
             UN.QuantityValue qv = newtonMetresPerMetre;
