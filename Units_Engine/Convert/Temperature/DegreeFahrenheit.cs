@@ -48,7 +48,7 @@ namespace BH.Engine.Units
 
         [Description("Convert degrees Fahrenheit into SI units (Kelvins)")]
         [Input("degreesFahrenheit", "The number of degrees Fahrenheit to convert")]
-        [Output("kelvins", "The number of kelvins", typeof(Temperature))]
+        [Output("kelvins", "The number of Kelvins", typeof(Temperature))]
         public static double FromDegreeFahrenheit(this double degreesFahrenheit)
         {
             UN.QuantityValue qv = degreesFahrenheit;

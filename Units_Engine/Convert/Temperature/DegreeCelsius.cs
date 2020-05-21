@@ -39,7 +39,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (Kelvins) into degrees Celsius")]
         [Input("kelvins", "The number of Kelvins to convert", typeof(Temperature))]
-        [Output("degreesCelsius", "The number of degrees celsius")]
+        [Output("degreesCelsius", "The number of degrees Celsius")]
         public static double ToDegreeCelsius(this double kelvins)
         {
             UN.QuantityValue qv = kelvins;
@@ -48,7 +48,7 @@ namespace BH.Engine.Units
 
         [Description("Convert degrees Celsius into SI units (Kelvins)")]
         [Input("degreesCelsius", "The number of degrees Celsius to convert")]
-        [Output("kelvins", "The number of kelvins", typeof(Temperature))]
+        [Output("kelvins", "The number of Kelvins", typeof(Temperature))]
         public static double FromDegreeCelsius(this double degreesCelsius)
         {
             UN.QuantityValue qv = degreesCelsius;
