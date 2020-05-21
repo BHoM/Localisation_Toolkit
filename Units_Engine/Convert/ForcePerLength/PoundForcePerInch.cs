@@ -37,22 +37,22 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (Newtons per metre) into pounds per yard")]
+        [Description("Convert SI units (Newtons per metre) into pounds-force per inch")]
         [Input("newtonsPerMetre", "The number of Newtons per metre to convert", typeof(ForcePerUnitLength))]
-        [Output("poundsPerYard", "The number of pounds per yard")]
-        public static double ToPoundPerYard(this double newtonsPerMetre)
+        [Output("poundsForcePerInch", "The number of pounds-force per inch")]
+        public static double ToPoundPerInch(this double newtonsPerMetre)
         {
             UN.QuantityValue qv = newtonsPerMetre;
-            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerYard);
+            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerInch);
         }
 
-        [Description("Convert pounds per yard into SI units (Newtons per metre)")]
-        [Input("poundsPerYard", "The number of pounds per yard to convert")]
+        [Description("Convert pounds-force per inch into SI units (Newtons per metre)")]
+        [Input("poundsForcePerInch", "The number of pounds-force per inch to convert")]
         [Output("newtonsPerMetre", "The number of Newtons per metre", typeof(ForcePerUnitLength))]
-        public static double FromPoundPerYard(this double poundsPerYard)
+        public static double FromPoundPerInch(this double poundsForcePerInch)
         {
-            UN.QuantityValue qv = poundsPerYard;
-            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.PoundForcePerYard, ForcePerLengthUnit.NewtonPerMeter);
+            UN.QuantityValue qv = poundsForcePerInch;
+            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.PoundForcePerInch, ForcePerLengthUnit.NewtonPerMeter);
         }
     }
 }
