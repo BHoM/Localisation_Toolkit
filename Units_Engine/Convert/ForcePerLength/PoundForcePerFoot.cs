@@ -37,21 +37,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (Newtons per metre) into pounds per foot")]
+        [Description("Convert SI units (Newtons per metre) into pounds-force per foot")]
         [Input("newtonsPerMetre", "The number of Newtons per metre to convert", typeof(ForcePerUnitLength))]
-        [Output("poundsPerFoot", "The number of pounds per foot")]
-        public static double ToPoundPerFoot(this double newtonsPerMetre)
+        [Output("poundsForcePerFoot", "The number of pounds-force per foot")]
+        public static double ToPoundForcePerFoot(this double newtonsPerMetre)
         {
             UN.QuantityValue qv = newtonsPerMetre;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ForcePerLengthUnit.PoundForcePerFoot);
         }
 
-        [Description("Convert pounds per foot into SI units (Newtons per metre)")]
-        [Input("poundsPerFoot", "The number of pounds per foot to convert")]
+        [Description("Convert pounds-force per foot into SI units (Newtons per metre)")]
+        [Input("poundsForcePerFoot", "The number of pounds-force per foot to convert")]
         [Output("newtonsPerMetre", "The number of Newtons per metre", typeof(ForcePerUnitLength))]
-        public static double FromPoundPerFoot(this double poundsPerFoot)
+        public static double FromPoundForcePerFoot(this double poundsForcePerFoot)
         {
-            UN.QuantityValue qv = poundsPerFoot;
+            UN.QuantityValue qv = poundsForcePerFoot;
             return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.PoundForcePerFoot, ForcePerLengthUnit.NewtonPerMeter);
         }
     }
