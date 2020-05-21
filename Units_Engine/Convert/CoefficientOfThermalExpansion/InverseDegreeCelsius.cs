@@ -49,7 +49,7 @@ namespace BH.Engine.Units
 
         [Description("Convert inverse degrees Celsius into SI units (inverse Kelvins)")]
         [Input("inverseDegreesCelsius", "The number of inverse degrees Celsius to convert")]
-        [Output("inverseKelvins", "The number of inverse kelvins", typeof(ThermalExpansionCoefficient))]
+        [Output("inverseKelvins", "The number of inverse Kelvins", typeof(ThermalExpansionCoefficient))]
         public static double FromInverseDegreeCelsius(this double inverseDegreesCelsius)
         {
             UN.QuantityValue qv = inverseDegreesCelsius;
