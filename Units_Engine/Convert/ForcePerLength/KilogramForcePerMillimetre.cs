@@ -52,7 +52,7 @@ namespace BH.Engine.Units
         public static double FromKilogramForcePerMillimetre(this double kilogramsForcePerMillimetre)
         {
             UN.QuantityValue qv = kilogramsForcePerMillimetre;
-            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.KilogramForcePerCentimeter, ForcePerLengthUnit.NewtonPerMeter);
+            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.KilogramForcePerMillimeter, ForcePerLengthUnit.NewtonPerMeter);
         }
     }
 }

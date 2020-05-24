@@ -93,9 +93,17 @@
     <Compile Include="Convert\Density\GramPerCubicMetre.cs" />
     <Compile Include="Convert\Density\GramPerCubicCentimetre.cs" />
     <Compile Include="Convert\Density\GramPerCubicMillimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\KilopoundForcePerInch.cs" />
+    <Compile Include="Convert\ForcePerLength\TonneForcePerMetre.cs" />
+    <Compile Include="Convert\ForcePerLength\TonneForcePerMillimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\TonneForcePerCentimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\KilogramForcePerMillimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\KilogramForcePerCentimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilonewtonPerMetre.cs" />
+    <Compile Include="Convert\ForcePerLength\KilonewtonPerCentimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilopoundForcePerFoot.cs" />
     <Compile Include="Convert\ForcePerLength\KilonewtonPerMillimetre.cs" />
+    <Compile Include="Convert\ForcePerLength\NewtonPerCentimetre.cs" />
     <Compile Include="Convert\ForcePerLength\PoundForcePerYard.cs" />
     <Compile Include="Convert\ForcePerLength\PoundForcePerInch.cs" />
     <Compile Include="Convert\ForcePerLength\PoundForcePerFoot.cs" />
