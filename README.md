@@ -9,6 +9,7 @@ The Localisation_Toolkit provides a wrapper for the Unit.net libraries between C
 https://www.nuget.org/packages/UnitsNet/
 
 ### Known Versions of Software Supported
+UnitsNet 4.61.0
 UnitsNet 4.58.0
 
 ### Documentation
