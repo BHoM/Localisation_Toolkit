@@ -76,7 +76,7 @@
     <Compile Include="Convert\Area\SquareMillimetre.cs" />
     <Compile Include="Convert\Area\SquareCentimetre.cs" />
     <Compile Include="Convert\Area\SquareKilometre.cs" />
-    <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDegreeCelsius.cs" />
+    <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeCelsius.cs" />
     <Compile Include="Convert\DeltaTemperature\DeltaDegreeFahrenheit.cs" />
     <Compile Include="Convert\Density\KilogramPerLitre.cs" />
     <Compile Include="Convert\Density\GramPerMillilitre.cs" />
@@ -152,7 +152,7 @@
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMillimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMetre.cs" />
-    <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDegreeFahrenheit.cs" />
+    <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeFahrenheit.cs" />
     <Compile Include="Convert\DeltaTemperature\DeltaDegreeCelsius.cs" />
     <Compile Include="Convert\Temperature\DegreeFahrenheit.cs" />
     <Compile Include="Convert\Temperature\DegreeCelsius.cs" />
