@@ -38,21 +38,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (inverse Kelvins) into inverse degress Fahrenheit")]
-        [Input("inverseKelvins", "The number of inverse Kelvins to convert", typeof(ThermalExpansionCoefficient))]
-        [Output("inverseDegreesFahrenheit", "The number of inverse degrees Fahrenheit")]
-        public static double ToInverseDegreeFahrenheit(this double inverseKelvins)
+        [Description("Convert SI units (inverse delta Kelvins) into inverse delta degress Fahrenheit")]
+        [Input("inverseDeltaKelvins", "The number of inverse delta Kelvins to convert", typeof(ThermalExpansionCoefficient))]
+        [Output("inverseDeltaDegreesFahrenheit", "The number of inverse delta degrees Fahrenheit")]
+        public static double ToInverseDeltaDegreeFahrenheit(this double inverseDeltaKelvins)
         {
-            UN.QuantityValue qv = inverseKelvins;
+            UN.QuantityValue qv = inverseDeltaKelvins;
             return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit);
         }
 
-        [Description("Convert inverse degrees Fahrenheit into SI units (inverse Kelvins)")]
-        [Input("inverseDegreesFahrenheit", "The number of inverse degrees Fahrenheit to convert")]
-        [Output("inverseKelvins", "The number of inverse Kelvins", typeof(ThermalExpansionCoefficient))]
-        public static double FromInverseDegreeFahrenheit(this double inverseDegreesFahrenheit)
+        [Description("Convert inverse delta degrees Fahrenheit into SI units (inverse delta Kelvins)")]
+        [Input("inverseDeltaDegreesFahrenheit", "The number of inverse delta degrees Fahrenheit to convert")]
+        [Output("inverseDeltaKelvins", "The number of inverse delta Kelvins", typeof(ThermalExpansionCoefficient))]
+        public static double FromInverseDeltaDegreeFahrenheit(this double inverseDeltaDegreesFahrenheit)
         {
-            UN.QuantityValue qv = inverseDegreesFahrenheit;
+            UN.QuantityValue qv = inverseDeltaDegreesFahrenheit;
             return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit, CoefficientOfThermalExpansionUnit.InverseKelvin);
         }
     }
