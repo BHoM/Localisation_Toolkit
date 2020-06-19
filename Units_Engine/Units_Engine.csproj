@@ -62,6 +62,7 @@
     <Compile Include="Convert\Acceleration\InchPerSecondSquared.cs" />
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
+    <Compile Include="Convert\Angle\Degree.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\FootToTheFourth.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\MillimetreToTheFourth.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\InchToTheFourth.cs" />
