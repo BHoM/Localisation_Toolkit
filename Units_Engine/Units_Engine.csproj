@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -57,17 +57,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Convert\Acceleration\Acceleration.cs" />
     <Compile Include="Convert\Acceleration\StandardGravity.cs" />
     <Compile Include="Convert\Acceleration\FootPerSecondSquared.cs" />
     <Compile Include="Convert\Acceleration\InchPerSecondSquared.cs" />
     <Compile Include="Convert\Angle\Arcminute.cs" />
     <Compile Include="Convert\Angle\Arcsecond.cs" />
     <Compile Include="Convert\Angle\Degree.cs" />
+    <Compile Include="Convert\Angle\Angle.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\FootToTheFourth.cs" />
+    <Compile Include="Convert\AreaMomentOfInertia\AreaMomentOfInertia.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\MillimetreToTheFourth.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\InchToTheFourth.cs" />
     <Compile Include="Convert\AreaMomentOfInertia\CentimetreToTheFourth.cs" />
     <Compile Include="Convert\Area\Hectare.cs" />
+    <Compile Include="Convert\Area\Area.cs" />
     <Compile Include="Convert\Area\SquareFoot.cs" />
     <Compile Include="Convert\Area\SquareInch.cs" />
     <Compile Include="Convert\Area\Acre.cs" />
@@ -78,10 +82,13 @@
     <Compile Include="Convert\Area\SquareCentimetre.cs" />
     <Compile Include="Convert\Area\SquareKilometre.cs" />
     <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeCelsius.cs" />
+    <Compile Include="Convert\CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.cs" />
     <Compile Include="Convert\DeltaTemperature\DeltaDegreeFahrenheit.cs" />
+    <Compile Include="Convert\DeltaTemperature\DeltaTemperature.cs" />
     <Compile Include="Convert\Density\KilogramPerLitre.cs" />
     <Compile Include="Convert\Density\GramPerMillilitre.cs" />
     <Compile Include="Convert\Density\GramPerLitre.cs" />
+    <Compile Include="Convert\Density\Density.cs" />
     <Compile Include="Convert\Density\PoundPerCubicFoot.cs" />
     <Compile Include="Convert\Density\PoundPerUSGallon.cs" />
     <Compile Include="Convert\Density\PoundPerImperialGallon.cs" />
@@ -95,6 +102,7 @@
     <Compile Include="Convert\Density\GramPerCubicCentimetre.cs" />
     <Compile Include="Convert\Density\GramPerCubicMillimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilopoundForcePerInch.cs" />
+    <Compile Include="Convert\ForcePerLength\ForcePerLength.cs" />
     <Compile Include="Convert\ForcePerLength\TonneForcePerMetre.cs" />
     <Compile Include="Convert\ForcePerLength\TonneForcePerMillimetre.cs" />
     <Compile Include="Convert\ForcePerLength\TonneForcePerCentimetre.cs" />
@@ -111,12 +119,14 @@
     <Compile Include="Convert\ForcePerLength\NewtonPerMillimetre.cs" />
     <Compile Include="Convert\ForcePerLength\KilogramForcePerMetre.cs" />
     <Compile Include="Convert\Force\KilogramForce.cs" />
+    <Compile Include="Convert\Force\Force.cs" />
     <Compile Include="Convert\Force\Meganewton.cs" />
     <Compile Include="Convert\Force\OunceForce.cs" />
     <Compile Include="Convert\Force\KiloPoundForce.cs" />
     <Compile Include="Convert\Force\PoundForce.cs" />
     <Compile Include="Convert\Force\TonneForce.cs" />
     <Compile Include="Convert\Force\Kilonewton.cs" />
+    <Compile Include="Convert\Length\Length.cs" />
     <Compile Include="Convert\Length\Angstrom.cs" />
     <Compile Include="Convert\Length\Centimetre.cs" />
     <Compile Include="Convert\Length\Foot.cs" />
@@ -135,6 +145,8 @@
     <Compile Include="Convert\MomentPerLength\PoundForceFootPerFoot.cs" />
     <Compile Include="Convert\MomentPerLength\NewtonCentimetrePerMetre.cs" />
     <Compile Include="Convert\MomentPerLength\NewtonMillimetrePerMetre.cs" />
+    <Compile Include="Convert\MomentPerLength\MomentPerLength.cs" />
+    <Compile Include="Convert\Pressure\Pressure.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilonewtonPerSquareMillimetre.cs" />
@@ -157,11 +169,13 @@
     <Compile Include="Convert\DeltaTemperature\DeltaDegreeCelsius.cs" />
     <Compile Include="Convert\Temperature\DegreeFahrenheit.cs" />
     <Compile Include="Convert\Temperature\DegreeCelsius.cs" />
+    <Compile Include="Convert\Temperature\Temperature.cs" />
     <Compile Include="Convert\Torque\KilonewtonMetre.cs" />
     <Compile Include="Convert\Torque\KilonewtonMillimetre.cs" />
     <Compile Include="Convert\Torque\KilonewtonCentimetre.cs" />
     <Compile Include="Convert\Torque\KilopoundForceFoot.cs" />
     <Compile Include="Convert\Torque\KilopoundForceInch.cs" />
+    <Compile Include="Convert\Torque\Torque.cs" />
     <Compile Include="Convert\Torque\TonneForceMetre.cs" />
     <Compile Include="Convert\Torque\TonneForceMillimetre.cs" />
     <Compile Include="Convert\Torque\TonneForceCentimetre.cs" />
@@ -175,6 +189,7 @@
     <Compile Include="Convert\Volume\CubicFoot.cs" />
     <Compile Include="Convert\Volume\CubicInch.cs" />
     <Compile Include="Convert\Volume\CubicYard.cs" />
+    <Compile Include="Convert\Volume\Volume.cs" />
     <Compile Include="Convert\Volume\USGallon.cs" />
     <Compile Include="Convert\Volume\ImperialGallon.cs" />
     <Compile Include="Convert\Volume\Litre.cs" />
