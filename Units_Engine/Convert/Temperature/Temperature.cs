@@ -106,6 +106,7 @@ namespace BH.Engine.Units
                 default:
                     return UNU.TemperatureUnit.Undefined;
             }
+        }
     }
 }
 
