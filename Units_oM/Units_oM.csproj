@@ -41,12 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums\Velocity.cs" />
     <Compile Include="Enums\Acceleration.cs" />
     <Compile Include="Enums\Angle.cs" />
     <Compile Include="Enums\Area.cs" />
     <Compile Include="Enums\AreaMomentOfInertia.cs" />
     <Compile Include="Enums\CoefficientOfThermalExpansion.cs" />
-    <Compile Include="Enums\DeltaTemperature.cs" />
+    <Compile Include="Enums\TemperatureDelta.cs" />
     <Compile Include="Enums\Density.cs" />
     <Compile Include="Enums\Force.cs" />
     <Compile Include="Enums\ForcePerLength.cs" />

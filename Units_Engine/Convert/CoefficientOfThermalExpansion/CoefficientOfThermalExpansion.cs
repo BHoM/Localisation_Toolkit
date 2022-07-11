@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromCoefficientOfThermalExpansion(this double coefficientOfThermalExpansion, object unit)
         {
             UN.QuantityValue qv = coefficientOfThermalExpansion;
-            return UN.UnitConverter.Convert(qv, ToCoefficientOfThermalExpansionUnit(unit), CoefficientOfThermalExpansionUnit.InverseKelvin);
+            return UN.UnitConverter.Convert(qv, ToCoefficientOfThermalExpansionUnit(unit), UNU.CoefficientOfThermalExpansionUnit.InverseKelvin);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToCoefficientOfThermalExpansion(this double inverseDeltaKelvins, object unit)
         {
             UN.QuantityValue qv = inverseDeltaKelvins;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseKelvin, ToCoefficientOfThermalExpansionUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.CoefficientOfThermalExpansionUnit.InverseKelvin, ToCoefficientOfThermalExpansionUnit(unit));
         }
 
         /***************************************************/

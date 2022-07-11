@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromAngle(this double angle, object unit)
         {
             UN.QuantityValue qv = angle;
-            return UN.UnitConverter.Convert(qv, ToAngleUnit(unit), AngleUnit.Radian);
+            return UN.UnitConverter.Convert(qv, ToAngleUnit(unit), UNU.AngleUnit.Radian);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToAngle(this double radian, object unit)
         {
             UN.QuantityValue qv = radian;
-            return UN.UnitConverter.Convert(qv, AngleUnit.Radian, ToAngleUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.AngleUnit.Radian, ToAngleUnit(unit));
         }
 
         /***************************************************/

@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromArea(this double area, object unit)
         {
             UN.QuantityValue qv = area;
-            return UN.UnitConverter.Convert(qv, ToAreaUnit(unit), AreaUnit.SquareMeter);
+            return UN.UnitConverter.Convert(qv, ToAreaUnit(unit), UNU.AreaUnit.SquareMeter);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToArea(this double squareMetres, object unit)
         {
             UN.QuantityValue qv = squareMetres;
-            return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, ToAreaUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.AreaUnit.SquareMeter, ToAreaUnit(unit));
         }
 
         /***************************************************/

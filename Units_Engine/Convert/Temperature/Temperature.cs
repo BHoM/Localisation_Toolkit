@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromTemperature(this double temperature, object unit)
         {
             UN.QuantityValue qv = temperature;
-            return UN.UnitConverter.Convert(qv, ToTemperatureUnit(unit), TemperatureUnit.DegreeCelsius);
+            return UN.UnitConverter.Convert(qv, ToTemperatureUnit(unit), UNU.TemperatureUnit.DegreeCelsius);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToTemperature(this double celsius, object unit)
         {
             UN.QuantityValue qv = celsius;
-            return UN.UnitConverter.Convert(qv, TemperatureUnit.DegreeCelsius, ToTemperatureUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.TemperatureUnit.DegreeCelsius, ToTemperatureUnit(unit));
         }
 
         /***************************************************/

@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromPressure(this double pressure, object unit)
         {
             UN.QuantityValue qv = pressure;
-            return UN.UnitConverter.Convert(qv, ToPressureUnit(unit), PressureUnit.Pascal);
+            return UN.UnitConverter.Convert(qv, ToPressureUnit(unit), UNU.PressureUnit.Pascal);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToPressure(this double pascal, object unit)
         {
             UN.QuantityValue qv = pascal;
-            return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, ToPressureUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.PressureUnit.Pascal, ToPressureUnit(unit));
         }
 
         /***************************************************/

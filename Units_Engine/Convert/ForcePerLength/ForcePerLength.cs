@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromForcePerLength(this double forcePerLength, object unit)
         {
             UN.QuantityValue qv = forcePerLength;
-            return UN.UnitConverter.Convert(qv, ToForcePerLengthUnit(unit), ForcePerLengthUnit.NewtonPerMeter);
+            return UN.UnitConverter.Convert(qv, ToForcePerLengthUnit(unit), UNU.ForcePerLengthUnit.NewtonPerMeter);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToForcePerLength(this double newtonPerMetre, object unit)
         {
             UN.QuantityValue qv = newtonPerMetre;
-            return UN.UnitConverter.Convert(qv, ForcePerLengthUnit.NewtonPerMeter, ToForcePerLengthUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.ForcePerLengthUnit.NewtonPerMeter, ToForcePerLengthUnit(unit));
         }
 
         /***************************************************/

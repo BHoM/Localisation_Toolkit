@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromAcceleration(this double acceleration, object unit)
         {
             UN.QuantityValue qv = acceleration;
-            return UN.UnitConverter.Convert(qv, ToAccelerationUnit(unit), AccelerationUnit.MeterPerSecondSquared);
+            return UN.UnitConverter.Convert(qv, ToAccelerationUnit(unit), UNU.AccelerationUnit.MeterPerSecondSquared);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToAcceleration(this double metresPerSecondSquared, object unit)
         {
             UN.QuantityValue qv = metresPerSecondSquared;
-            return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, ToAccelerationUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.AccelerationUnit.MeterPerSecondSquared, ToAccelerationUnit(unit));
         }
 
         /***************************************************/
