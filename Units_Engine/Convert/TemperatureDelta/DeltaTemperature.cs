@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromTemperatureDelta(this double temperatureDelta, object unit)
         {
             UN.QuantityValue qv = temperatureDelta;
-            return UN.UnitConverter.Convert(qv, ToTemperatureDeltaUnit(unit), TemperatureDeltaUnit.Kelvin);
+            return UN.UnitConverter.Convert(qv, ToTemperatureDeltaUnit(unit), UNU.TemperatureDeltaUnit.Kelvin);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToTemperatureDelta(this double kelvin, object unit)
         {
             UN.QuantityValue qv = kelvin;
-            return UN.UnitConverter.Convert(qv, TemperatureDeltaUnit.Kelvin, ToTemperatureDeltaUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.TemperatureDeltaUnit.Kelvin, ToTemperatureDeltaUnit(unit));
         }
 
         /***************************************************/

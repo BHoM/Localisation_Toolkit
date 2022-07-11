@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromAreaMomentOfInertia(this double areaMomentOfInertia, object unit)
         {
             UN.QuantityValue qv = areaMomentOfInertia;
-            return UN.UnitConverter.Convert(qv, ToAreaMomentOfInertiaUnit(unit), AreaMomentOfInertiaUnit.MeterToTheFourth);
+            return UN.UnitConverter.Convert(qv, ToAreaMomentOfInertiaUnit(unit), UNU.AreaMomentOfInertiaUnit.MeterToTheFourth);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToAreaMomentOfInertia(this double metresToTheFourth, object unit)
         {
             UN.QuantityValue qv = metresToTheFourth;
-            return UN.UnitConverter.Convert(qv, AreaMomentOfInertiaUnit.MeterToTheFourth, ToAreaMomentOfInertiaUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.AreaMomentOfInertiaUnit.MeterToTheFourth, ToAreaMomentOfInertiaUnit(unit));
         }
 
         /***************************************************/

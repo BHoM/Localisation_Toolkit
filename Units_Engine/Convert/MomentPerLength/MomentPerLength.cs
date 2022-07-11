@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromMomentPerLength(this double momentPerLength, object unit)
         {
             UN.QuantityValue qv = momentPerLength;
-            return UN.UnitConverter.Convert(qv, ToTorquePerLengthUnit(unit), TorquePerLengthUnit.NewtonMeterPerMeter);
+            return UN.UnitConverter.Convert(qv, ToTorquePerLengthUnit(unit), UNU.TorquePerLengthUnit.NewtonMeterPerMeter);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToMomentPerLength(this double newtonMeterPerMeter, object unit)
         {
             UN.QuantityValue qv = newtonMeterPerMeter;
-            return UN.UnitConverter.Convert(qv, TorquePerLengthUnit.NewtonMeterPerMeter, ToTorquePerLengthUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.TorquePerLengthUnit.NewtonMeterPerMeter, ToTorquePerLengthUnit(unit));
         }
 
         /***************************************************/

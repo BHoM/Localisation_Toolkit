@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromForce(this double force, object unit)
         {
             UN.QuantityValue qv = force;
-            return UN.UnitConverter.Convert(qv, ToForceUnit(unit), ForceUnit.Newton);
+            return UN.UnitConverter.Convert(qv, ToForceUnit(unit), UNU.ForceUnit.Newton);
         }
 
         /***************************************************/
@@ -61,7 +61,7 @@ namespace BH.Engine.Units
         public static double ToForce(this double newtons, object unit)
         {
             UN.QuantityValue qv = newtons;
-            return UN.UnitConverter.Convert(qv, ForceUnit.Newton, ToForceUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.ForceUnit.Newton, ToForceUnit(unit));
         }
 
         /***************************************************/

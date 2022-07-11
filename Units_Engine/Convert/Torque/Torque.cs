@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         public static double FromTorque(this double torque, object unit)
         {
             UN.QuantityValue qv = torque;
-            return UN.UnitConverter.Convert(qv, ToTorqueUnit(unit), TorqueUnit.NewtonMeter);
+            return UN.UnitConverter.Convert(qv, ToTorqueUnit(unit), UNU.TorqueUnit.NewtonMeter);
         }
 
         /***************************************************/
@@ -61,7 +61,7 @@ namespace BH.Engine.Units
         public static double ToTorque(this double newtonMeter, object unit)
         {
             UN.QuantityValue qv = newtonMeter;
-            return UN.UnitConverter.Convert(qv, TorqueUnit.NewtonMeter, ToTorqueUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.TorqueUnit.NewtonMeter, ToTorqueUnit(unit));
         }
 
         /***************************************************/

@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         public static double FromDensity(this double density, object unit)
         {
             UN.QuantityValue qv = density;
-            return UN.UnitConverter.Convert(qv, ToDensityUnit(unit), DensityUnit.KilogramPerCubicMeter);
+            return UN.UnitConverter.Convert(qv, ToDensityUnit(unit), UNU.DensityUnit.KilogramPerCubicMeter);
         }
 
         /***************************************************/
@@ -60,7 +60,7 @@ namespace BH.Engine.Units
         public static double ToDensity(this double kilogramPerCubicMetres, object unit)
         {
             UN.QuantityValue qv = kilogramPerCubicMetres;
-            return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, ToDensityUnit(unit));
+            return UN.UnitConverter.Convert(qv, UNU.DensityUnit.KilogramPerCubicMeter, ToDensityUnit(unit));
         }
 
         /***************************************************/

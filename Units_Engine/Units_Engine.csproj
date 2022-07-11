@@ -87,8 +87,8 @@
     <Compile Include="Convert\Area\SquareKilometre.cs" />
     <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeCelsius.cs" />
     <Compile Include="Convert\CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.cs" />
-    <Compile Include="Convert\DeltaTemperature\DeltaDegreeFahrenheit.cs" />
-    <Compile Include="Convert\DeltaTemperature\DeltaTemperature.cs" />
+    <Compile Include="Convert\TemperatureDelta\DeltaDegreeFahrenheit.cs" />
+    <Compile Include="Convert\TemperatureDelta\DeltaTemperature.cs" />
     <Compile Include="Convert\Density\KilogramPerLitre.cs" />
     <Compile Include="Convert\Density\GramPerMillilitre.cs" />
     <Compile Include="Convert\Density\GramPerLitre.cs" />
@@ -170,7 +170,7 @@
     <Compile Include="Convert\Pressure\KilogramForcePerSquareCentimetre.cs" />
     <Compile Include="Convert\Pressure\KilogramForcePerSquareMetre.cs" />
     <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeFahrenheit.cs" />
-    <Compile Include="Convert\DeltaTemperature\DeltaDegreeCelsius.cs" />
+    <Compile Include="Convert\TemperatureDelta\DeltaDegreeCelsius.cs" />
     <Compile Include="Convert\Temperature\DegreeFahrenheit.cs" />
     <Compile Include="Convert\Temperature\DegreeCelsius.cs" />
     <Compile Include="Convert\Temperature\Temperature.cs" />
@@ -190,6 +190,9 @@
     <Compile Include="Convert\Torque\PoundForceInch.cs" />
     <Compile Include="Convert\Torque\NewtonCentimetre.cs" />
     <Compile Include="Convert\Torque\NewtonMillimetre.cs" />
+    <Compile Include="Convert\Speed\Speed.cs" />
+    <Compile Include="Convert\Speed\FootPerSecond.cs" />
+    <Compile Include="Convert\Speed\InchPerSecond.cs" />
     <Compile Include="Convert\Volume\CubicFoot.cs" />
     <Compile Include="Convert\Volume\CubicInch.cs" />
     <Compile Include="Convert\Volume\CubicYard.cs" />
