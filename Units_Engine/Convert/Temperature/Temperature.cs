@@ -27,35 +27,85 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a temperature into SI units (celsius).")]
         [Input("temperature", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("celsius", "The equivalent number of celsius.")]
-        public static double FromTemperature(this double temperature, TemperatureUnit unit)
+        public static double FromTemperature(this double temperature, object unit)
         {
             UN.QuantityValue qv = temperature;
-            return UN.UnitConverter.Convert(qv, unit, TemperatureUnit.DegreeCelsius);
+            return UN.UnitConverter.Convert(qv, ToTemperatureUnit(unit), TemperatureUnit.DegreeCelsius);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (celsius) into another temperature unit.")]
         [Input("celsius", "The number of celsius to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("temperature", "The equivalent quantity defined in the specified unit.")]
-        public static double ToTemperature(this double celsius, TemperatureUnit unit)
+        public static double ToTemperature(this double celsius, object unit)
         {
             UN.QuantityValue qv = celsius;
-            return UN.UnitConverter.Convert(qv, TemperatureUnit.DegreeCelsius, unit);
+            return UN.UnitConverter.Convert(qv, TemperatureUnit.DegreeCelsius, ToTemperatureUnit(unit));
         }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.TemperatureUnit ToTemperatureUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case "celsius":
+                case "c":
+                case TemperatureUnit.DegreeCelsius:
+                    return UNU.TemperatureUnit.DegreeCelsius;
+                case TemperatureUnit.DegreeDelisle:
+                    return UNU.TemperatureUnit.DegreeDelisle;
+                case "fahrenheit":
+                case "f":
+                case TemperatureUnit.DegreeFahrenheit:
+                    return UNU.TemperatureUnit.DegreeFahrenheit;
+                case TemperatureUnit.DegreeNewton:
+                    return UNU.TemperatureUnit.DegreeNewton;
+                case "rankine":
+                case "r":
+                case TemperatureUnit.DegreeRankine:
+                    return UNU.TemperatureUnit.DegreeRankine;
+                case TemperatureUnit.DegreeReaumur:
+                    return UNU.TemperatureUnit.DegreeReaumur;
+                case TemperatureUnit.DegreeRoemer:
+                    return UNU.TemperatureUnit.DegreeRoemer;
+                case "kelvin":
+                case "k":
+                case TemperatureUnit.Kelvin:
+                    return UNU.TemperatureUnit.Kelvin;
+                case TemperatureUnit.MillidegreeCelsius:
+                    return UNU.TemperatureUnit.MillidegreeCelsius;
+                case TemperatureUnit.SolarTemperature:
+                    return UNU.TemperatureUnit.SolarTemperature;
+                case TemperatureUnit.Undefined:
+                default:
+                    return UNU.TemperatureUnit.Undefined;
+            }
     }
 }
 

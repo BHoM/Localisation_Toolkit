@@ -27,34 +27,90 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a force into SI units (newtons).")]
         [Input("force", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("newtons", "The equivalent number of newtons.")]
-        public static double FromForce(this double force, ForceUnit unit)
+        public static double FromForce(this double force, object unit)
         {
             UN.QuantityValue qv = force;
-            return UN.UnitConverter.Convert(qv, unit, ForceUnit.Newton);
+            return UN.UnitConverter.Convert(qv, ToForceUnit(unit), ForceUnit.Newton);
         }
+
+        /***************************************************/
+
 
         [Description("Convert SI units (newtons) into another force unit.")]
         [Input("newtons", "The number of newtons to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("force", "The equivalent quantity defined in the specified unit.")]
-        public static double ToForce(this double newtons, ForceUnit unit)
+        public static double ToForce(this double newtons, object unit)
         {
             UN.QuantityValue qv = newtons;
-            return UN.UnitConverter.Convert(qv, ForceUnit.Newton, unit);
+            return UN.UnitConverter.Convert(qv, ForceUnit.Newton, ToForceUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.ForceUnit ToForceUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case ForceUnit.Decanewton:
+                    return UNU.ForceUnit.Decanewton;
+                case ForceUnit.Dyn:
+                    return UNU.ForceUnit.Dyn;
+                case ForceUnit.KilogramForce:
+                    return UNU.ForceUnit.KilogramForce;
+                case "kn":
+                case ForceUnit.Kilonewton:
+                    return UNU.ForceUnit.Kilonewton;
+                case ForceUnit.KiloPond:
+                    return UNU.ForceUnit.KiloPond;
+                case "kip":
+                case ForceUnit.KilopoundForce:
+                    return UNU.ForceUnit.KilopoundForce;
+                case ForceUnit.Meganewton:
+                    return UNU.ForceUnit.Meganewton;
+                case ForceUnit.Micronewton:
+                    return UNU.ForceUnit.Micronewton;
+                case ForceUnit.Millinewton:
+                    return UNU.ForceUnit.Millinewton;
+                case ForceUnit.Newton:
+                    return UNU.ForceUnit.Newton;
+                case ForceUnit.OunceForce:
+                    return UNU.ForceUnit.OunceForce;
+                case ForceUnit.Poundal:
+                    return UNU.ForceUnit.Poundal;
+                case "pound":
+                case "lb":
+                case ForceUnit.PoundForce:
+                    return UNU.ForceUnit.PoundForce;
+                case ForceUnit.TonneForce:
+                    return UNU.ForceUnit.TonneForce;
+                case ForceUnit.Undefined:
+                default:
+                    return UNU.ForceUnit.Undefined;
+            }
         }
     }
 }

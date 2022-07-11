@@ -27,34 +27,85 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a area into SI units (squareMetres).")]
         [Input("area", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("squareMetres", "The equivalent number of squareMetres.")]
-        public static double FromArea(this double area, AreaUnit unit)
+        public static double FromArea(this double area, object unit)
         {
             UN.QuantityValue qv = area;
-            return UN.UnitConverter.Convert(qv, unit, AreaUnit.SquareMeter);
+            return UN.UnitConverter.Convert(qv, ToAreaUnit(unit), AreaUnit.SquareMeter);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (squareMetres) into another area unit.")]
         [Input("squareMetres", "The number of squareMetres to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("area", "The equivalent quantity defined in the specified unit.")]
-        public static double ToArea(this double squareMetres, AreaUnit unit)
+        public static double ToArea(this double squareMetres, object unit)
         {
             UN.QuantityValue qv = squareMetres;
-            return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, unit);
+            return UN.UnitConverter.Convert(qv, AreaUnit.SquareMeter, ToAreaUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.AreaUnit ToAreaUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case AreaUnit.Acre:
+                    return UNU.AreaUnit.Acre;
+                case AreaUnit.Hectare:
+                    return UNU.AreaUnit.Hectare;
+                case AreaUnit.SquareCentimeter:
+                    return UNU.AreaUnit.SquareCentimeter;
+                case AreaUnit.SquareDecimeter:
+                    return UNU.AreaUnit.SquareDecimeter;
+                case AreaUnit.SquareFoot:
+                    return UNU.AreaUnit.SquareFoot;
+                case AreaUnit.SquareInch:
+                    return UNU.AreaUnit.SquareInch;
+                case AreaUnit.SquareKilometer:
+                    return UNU.AreaUnit.SquareKilometer;
+                case AreaUnit.SquareMeter:
+                    return UNU.AreaUnit.SquareMeter;
+                case AreaUnit.SquareMicrometer:
+                    return UNU.AreaUnit.SquareMicrometer;
+                case AreaUnit.SquareMile:
+                    return UNU.AreaUnit.SquareMile;
+                case AreaUnit.SquareMillimeter:
+                    return UNU.AreaUnit.SquareMillimeter;
+                case AreaUnit.SquareNauticalMile:
+                    return UNU.AreaUnit.SquareNauticalMile;
+                case AreaUnit.SquareYard:
+                    return UNU.AreaUnit.SquareYard;
+                case AreaUnit.UsSurveySquareFoot:
+                    return UNU.AreaUnit.UsSurveySquareFoot;
+                case AreaUnit.Undefined:
+                default:
+                    return UNU.AreaUnit.Undefined;
+            }
         }
     }
 }

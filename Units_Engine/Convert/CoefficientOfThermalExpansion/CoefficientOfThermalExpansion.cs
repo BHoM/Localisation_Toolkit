@@ -27,34 +27,63 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a coefficientOfThermalExpansion into SI units (inverseDeltaKelvins).")]
         [Input("coefficientOfThermalExpansion", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("inverseDeltaKelvins", "The equivalent number of inverseDeltaKelvins.")]
-        public static double FromCoefficientOfThermalExpansion(this double coefficientOfThermalExpansion, CoefficientOfThermalExpansionUnit unit)
+        public static double FromCoefficientOfThermalExpansion(this double coefficientOfThermalExpansion, object unit)
         {
             UN.QuantityValue qv = coefficientOfThermalExpansion;
-            return UN.UnitConverter.Convert(qv, unit, CoefficientOfThermalExpansionUnit.InverseKelvin);
+            return UN.UnitConverter.Convert(qv, ToCoefficientOfThermalExpansionUnit(unit), CoefficientOfThermalExpansionUnit.InverseKelvin);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (inverseDeltaKelvins) into another coefficientOfThermalExpansion unit.")]
         [Input("inverseDeltaKelvins", "The number of inverseDeltaKelvins to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("coefficientOfThermalExpansion", "The equivalent quantity defined in the specified unit.")]
-        public static double ToCoefficientOfThermalExpansion(this double inverseDeltaKelvins, CoefficientOfThermalExpansionUnit unit)
+        public static double ToCoefficientOfThermalExpansion(this double inverseDeltaKelvins, object unit)
         {
             UN.QuantityValue qv = inverseDeltaKelvins;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseKelvin, unit);
+            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseKelvin, ToCoefficientOfThermalExpansionUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.CoefficientOfThermalExpansionUnit ToCoefficientOfThermalExpansionUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
+                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeCelsius;
+                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
+                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit;
+                case CoefficientOfThermalExpansionUnit.InverseKelvin:
+                    return UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+                case CoefficientOfThermalExpansionUnit.Undefined:
+                default:
+                    return UNU.CoefficientOfThermalExpansionUnit.Undefined;
+            }
         }
     }
 }
