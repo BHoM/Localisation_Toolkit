@@ -27,34 +27,83 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a acceleration into SI units (metresPerSecondSquared).")]
         [Input("acceleration", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AccelerationUnit.")]
         [Output("metresPerSecondSquared", "The equivalent number of metresPerSecondSquared.")]
-        public static double FromAcceleration(this double acceleration, AccelerationUnit unit)
+        public static double FromAcceleration(this double acceleration, object unit)
         {
             UN.QuantityValue qv = acceleration;
-            return UN.UnitConverter.Convert(qv, unit, AccelerationUnit.MeterPerSecondSquared);
+            return UN.UnitConverter.Convert(qv, ToAccelerationUnit(unit), AccelerationUnit.MeterPerSecondSquared);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (metresPerSecondSquared) into another acceleration unit.")]
         [Input("metresPerSecondSquared", "The number of metresPerSecondSquared to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AccelerationUnit.")]
         [Output("acceleration", "The equivalent quantity defined in the specified unit.")]
-        public static double ToAcceleration(this double metresPerSecondSquared, AccelerationUnit unit)
+        public static double ToAcceleration(this double metresPerSecondSquared, object unit)
         {
             UN.QuantityValue qv = metresPerSecondSquared;
-            return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, unit);
+            return UN.UnitConverter.Convert(qv, AccelerationUnit.MeterPerSecondSquared, ToAccelerationUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.AccelerationUnit ToAccelerationUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case AccelerationUnit.CentimeterPerSecondSquared:
+                    return UNU.AccelerationUnit.CentimeterPerSecondSquared;
+                case AccelerationUnit.DecimeterPerSecondSquared:
+                    return UNU.AccelerationUnit.DecimeterPerSecondSquared;
+                case AccelerationUnit.FootPerSecondSquared:
+                    return UNU.AccelerationUnit.FootPerSecondSquared;
+                case AccelerationUnit.InchPerSecondSquared:
+                    return UNU.AccelerationUnit.InchPerSecondSquared;
+                case AccelerationUnit.KilometerPerSecondSquared:
+                    return UNU.AccelerationUnit.KilometerPerSecondSquared;
+                case AccelerationUnit.KnotPerHour:
+                    return UNU.AccelerationUnit.KnotPerHour;
+                case AccelerationUnit.KnotPerMinute:
+                    return UNU.AccelerationUnit.KnotPerMinute;
+                case AccelerationUnit.KnotPerSecond:
+                    return UNU.AccelerationUnit.KnotPerSecond;
+                case AccelerationUnit.MeterPerSecondSquared:
+                    return UNU.AccelerationUnit.MeterPerSecondSquared;
+                case AccelerationUnit.MicrometerPerSecondSquared:
+                    return UNU.AccelerationUnit.MicrometerPerSecondSquared;
+                case AccelerationUnit.MillimeterPerSecondSquared:
+                    return UNU.AccelerationUnit.MillimeterPerSecondSquared;
+                case AccelerationUnit.NanometerPerSecondSquared:
+                    return UNU.AccelerationUnit.NanometerPerSecondSquared;
+                case AccelerationUnit.StandardGravity:
+                    return UNU.AccelerationUnit.StandardGravity;
+                case AccelerationUnit.Undefined:
+                default:
+                    return UNU.AccelerationUnit.Undefined;
+            }
         }
     }
 }

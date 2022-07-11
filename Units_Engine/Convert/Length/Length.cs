@@ -27,36 +27,102 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a length into SI units (metres).")]
         [Input("length", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("metres", "The equivalent number of metres.")]
-        public static double FromLength(this double length, LengthUnit unit)
+        public static double FromLength(this double length, object unit)
         {
             UN.QuantityValue qv = length;
-            return UN.UnitConverter.Convert(qv, unit, LengthUnit.Meter);
+            return UN.UnitConverter.Convert(qv, ToLengthUnit(unit), UNU.LengthUnit.Meter);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (metres) into another length unit.")]
         [Input("metres", "The number of metres to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("length", "The equivalent quantity defined in the specified unit.")]
-        public static double ToLength(this double metres, LengthUnit unit)
+        public static double ToLength(this double metres, object unit)
         {
             UN.QuantityValue qv = metres;
-            return UN.UnitConverter.Convert(qv, LengthUnit.Meter, unit);
+            return UN.UnitConverter.Convert(qv, UNU.LengthUnit.Meter, ToLengthUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.LengthUnit ToLengthUnit(object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case "cm":
+                case LengthUnit.Centimeter:
+                    return UNU.LengthUnit.Centimeter;
+                case "chain":
+                case LengthUnit.Chain:
+                    return UNU.LengthUnit.Chain;
+                case LengthUnit.Decimeter:
+                    return UNU.LengthUnit.Decimeter;
+                case LengthUnit.Fathom:
+                    return UNU.LengthUnit.Fathom;
+                case "foot":
+                case "feet":
+                case "ft":
+                case LengthUnit.Foot:
+                    return UNU.LengthUnit.Foot;
+                case LengthUnit.Hectometer:
+                    return UNU.LengthUnit.Hectometer;
+                case "inch":
+                case "in":
+                case "inches":
+                case LengthUnit.Inch:
+                    return UNU.LengthUnit.Inch;
+                case "km":
+                case LengthUnit.Kilometer:
+                    return UNU.LengthUnit.Kilometer;
+                case "m":
+                case LengthUnit.Meter:
+                    return UNU.LengthUnit.Meter;
+                case LengthUnit.Microinch:
+                    return UNU.LengthUnit.Microinch;
+                case LengthUnit.Micrometer:
+                    return UNU.LengthUnit.Micrometer;
+                case LengthUnit.Mil:
+                    return UNU.LengthUnit.Mil;
+                case "mi":
+                case LengthUnit.Mile:
+                    return UNU.LengthUnit.Mile;
+                case "mm":
+                case LengthUnit.Millimeter:
+                    return UNU.LengthUnit.Millimeter;
+                case LengthUnit.Nanometer:
+                    return UNU.LengthUnit.Nanometer;
+                case "yd":
+                case LengthUnit.Yard:
+                    return UNU.LengthUnit.Yard;
+                case LengthUnit.Undefined:
+                default:
+                    return UNU.LengthUnit.Undefined;
+            }
         }
     }
 }
-
-

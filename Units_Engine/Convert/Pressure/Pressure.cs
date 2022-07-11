@@ -27,34 +27,141 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UnitsNet.Units;
+using UNU = UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Convert a pressure into SI units (pascal).")]
         [Input("pressure", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined.")]
         [Output("pascal", "The equivalent number of pascal.")]
-        public static double FromPressure(this double pressure, PressureUnit unit)
+        public static double FromPressure(this double pressure, object unit)
         {
             UN.QuantityValue qv = pressure;
-            return UN.UnitConverter.Convert(qv, unit, PressureUnit.Pascal);
+            return UN.UnitConverter.Convert(qv, ToPressureUnit(unit), PressureUnit.Pascal);
         }
+
+        /***************************************************/
 
         [Description("Convert SI units (pascal) into another pressure unit.")]
         [Input("pascal", "The number of pascal to convert.")]
         [Input("unit", "The unit to convert to.")]
         [Output("pressure", "The equivalent quantity defined in the specified unit.")]
-        public static double ToPressure(this double pascal, PressureUnit unit)
+        public static double ToPressure(this double pascal, object unit)
         {
             UN.QuantityValue qv = pascal;
-            return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, unit);
+            return UN.UnitConverter.Convert(qv, PressureUnit.Pascal, ToPressureUnit(unit));
+        }
+
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        private static UNU.PressureUnit ToPressureUnit(this object unit)
+        {
+            if (unit.GetType() == typeof(string))
+                unit = unit.ToString().ToLower();
+
+            switch (unit)
+            {
+                case PressureUnit.Atmosphere:
+                    return UNU.PressureUnit.Atmosphere;
+                case PressureUnit.Bar:
+                    return UNU.PressureUnit.Bar;
+                case PressureUnit.Centibar:
+                    return UNU.PressureUnit.Centibar;
+                case PressureUnit.Decapascal:
+                    return UNU.PressureUnit.Decapascal;
+                case PressureUnit.Decibar:
+                    return UNU.PressureUnit.Decibar;
+                case PressureUnit.DynePerSquareCentimeter:
+                    return UNU.PressureUnit.DynePerSquareCentimeter;
+                case PressureUnit.FootOfHead:
+                    return UNU.PressureUnit.FootOfHead;
+                case PressureUnit.Gigapascal:
+                    return UNU.PressureUnit.Gigapascal;
+                case PressureUnit.Hectopascal:
+                    return UNU.PressureUnit.Hectopascal;
+                case PressureUnit.InchOfMercury:
+                    return UNU.PressureUnit.InchOfMercury;
+                case PressureUnit.InchOfWaterColumn:
+                    return UNU.PressureUnit.InchOfWaterColumn;
+                case PressureUnit.Kilobar:
+                    return UNU.PressureUnit.Kilobar;
+                case PressureUnit.KilogramForcePerSquareCentimeter:
+                    return UNU.PressureUnit.KilogramForcePerSquareCentimeter;
+                case PressureUnit.KilogramForcePerSquareMeter:
+                    return UNU.PressureUnit.KilogramForcePerSquareMeter;
+                case PressureUnit.KilogramForcePerSquareMillimeter:
+                    return UNU.PressureUnit.KilogramForcePerSquareMillimeter;
+                case PressureUnit.KilonewtonPerSquareCentimeter:
+                    return UNU.PressureUnit.KilonewtonPerSquareCentimeter;
+                case PressureUnit.KilonewtonPerSquareMeter:
+                    return UNU.PressureUnit.KilonewtonPerSquareMeter;
+                case PressureUnit.KilonewtonPerSquareMillimeter:
+                    return UNU.PressureUnit.KilonewtonPerSquareMillimeter;
+                case PressureUnit.Kilopascal:
+                    return UNU.PressureUnit.Kilopascal;
+                case PressureUnit.KilopoundForcePerSquareFoot:
+                    return UNU.PressureUnit.KilopoundForcePerSquareFoot;
+                case PressureUnit.KilopoundForcePerSquareInch:
+                    return UNU.PressureUnit.KilopoundForcePerSquareInch;
+                case PressureUnit.Megabar:
+                    return UNU.PressureUnit.Megabar;
+                case PressureUnit.MeganewtonPerSquareMeter:
+                    return UNU.PressureUnit.MeganewtonPerSquareMeter;
+                case PressureUnit.Megapascal:
+                    return UNU.PressureUnit.Megapascal;
+                case PressureUnit.MeterOfHead:
+                    return UNU.PressureUnit.MeterOfHead;
+                case PressureUnit.Microbar:
+                    return UNU.PressureUnit.Microbar;
+                case PressureUnit.Micropascal:
+                    return UNU.PressureUnit.Micropascal;
+                case PressureUnit.Millibar:
+                    return UNU.PressureUnit.Millibar;
+                case PressureUnit.MillimeterOfMercury:
+                    return UNU.PressureUnit.MillimeterOfMercury;
+                case PressureUnit.Millipascal:
+                    return UNU.PressureUnit.Millipascal;
+                case PressureUnit.NewtonPerSquareCentimeter:
+                    return UNU.PressureUnit.NewtonPerSquareCentimeter;
+                case PressureUnit.NewtonPerSquareMeter:
+                    return UNU.PressureUnit.NewtonPerSquareMeter;
+                case PressureUnit.NewtonPerSquareMillimeter:
+                    return UNU.PressureUnit.NewtonPerSquareMillimeter;
+                case PressureUnit.Pascal:
+                    return UNU.PressureUnit.Pascal;
+                case PressureUnit.PoundForcePerSquareFoot:
+                    return UNU.PressureUnit.PoundForcePerSquareFoot;
+                case PressureUnit.PoundForcePerSquareInch:
+                    return UNU.PressureUnit.PoundForcePerSquareInch;
+                case PressureUnit.PoundPerInchSecondSquared:
+                    return UNU.PressureUnit.PoundPerInchSecondSquared;
+                case PressureUnit.TechnicalAtmosphere:
+                    return UNU.PressureUnit.TechnicalAtmosphere;
+                case PressureUnit.TonneForcePerSquareCentimeter:
+                    return UNU.PressureUnit.TonneForcePerSquareCentimeter;
+                case PressureUnit.TonneForcePerSquareMeter:
+                    return UNU.PressureUnit.TonneForcePerSquareMeter;
+                case PressureUnit.TonneForcePerSquareMillimeter:
+                    return UNU.PressureUnit.TonneForcePerSquareMillimeter;
+                case PressureUnit.Torr:
+                    return UNU.PressureUnit.Torr;
+                case PressureUnit.Undefined:
+                default:
+                    return UNU.PressureUnit.Undefined;
+            }
         }
     }
 }
