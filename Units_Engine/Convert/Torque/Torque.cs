@@ -121,6 +121,7 @@ namespace BH.Engine.Units
                 default:
                     return UNU.TorqueUnit.Undefined;
             }
+        }
     }
 }
 
