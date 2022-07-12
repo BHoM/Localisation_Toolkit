@@ -45,9 +45,9 @@ namespace BH.Engine.Units
         [Input("speed", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum SpeedUnit.")]
         [Output("metresPerSecond", "The equivalent number of metresPerSecond.")]
-        public static double FromSpeed(this double acceleration, object unit)
+        public static double FromSpeed(this double speed, object unit)
         {
-            UN.QuantityValue qv = acceleration;
+            UN.QuantityValue qv = speed;
             return UN.UnitConverter.Convert(qv, ToSpeedUnit(unit), UNU.SpeedUnit.MeterPerSecond);
         }
 
