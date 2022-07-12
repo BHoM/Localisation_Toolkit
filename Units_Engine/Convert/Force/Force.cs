@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a force into SI units (newtons).")]
         [Input("force", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum ForceUnit.")]
         [Output("newtons", "The equivalent number of newtons.")]
         public static double FromForce(this double force, object unit)
         {
@@ -56,7 +56,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (newtons) into another force unit.")]
         [Input("newtons", "The number of newtons to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum ForceUnit.")]
         [Output("force", "The equivalent quantity defined in the specified unit.")]
         public static double ToForce(this double newtons, object unit)
         {

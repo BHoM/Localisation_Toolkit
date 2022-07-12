@@ -88,7 +88,7 @@
     <Compile Include="Convert\CoefficientOfThermalExpansion\InverseDeltaDegreeCelsius.cs" />
     <Compile Include="Convert\CoefficientOfThermalExpansion\CoefficientOfThermalExpansion.cs" />
     <Compile Include="Convert\TemperatureDelta\DeltaDegreeFahrenheit.cs" />
-    <Compile Include="Convert\TemperatureDelta\DeltaTemperature.cs" />
+    <Compile Include="Convert\TemperatureDelta\TemperatureDelta.cs" />
     <Compile Include="Convert\Density\KilogramPerLitre.cs" />
     <Compile Include="Convert\Density\GramPerMillilitre.cs" />
     <Compile Include="Convert\Density\GramPerLitre.cs" />

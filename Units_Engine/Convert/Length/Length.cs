@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a length into SI units (metres).")]
         [Input("length", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum LengthUnit.")]
         [Output("metres", "The equivalent number of metres.")]
         public static double FromLength(this double length, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (metres) into another length unit.")]
         [Input("metres", "The number of metres to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum LengthUnit.")]
         [Output("length", "The equivalent quantity defined in the specified unit.")]
         public static double ToLength(this double metres, object unit)
         {

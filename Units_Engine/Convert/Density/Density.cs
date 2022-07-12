@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a density into SI units (kilogramPerCubicMetres).")]
         [Input("density", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum DensityUnit.")]
         [Output("kilogramPerCubicMetres", "The equivalent number of kilogramPerCubicMetres.")]
         public static double FromDensity(this double density, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (kilogramPerCubicMetres) into another density unit.")]
         [Input("kilogramPerCubicMetres", "The number of kilogramPerCubicMetres to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum DensityUnit.")]
         [Output("density", "The equivalent quantity defined in the specified unit.")]
         public static double ToDensity(this double kilogramPerCubicMetres, object unit)
         {

@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a areaMomentOfInertia into SI units (metresToTheFourth).")]
         [Input("areaMomentOfInertia", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum AreaMomentOfInertiaUnit.")]
         [Output("metresToTheFourth", "The equivalent number of metresToTheFourth.")]
         public static double FromAreaMomentOfInertia(this double areaMomentOfInertia, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (metresToTheFourth) into another areaMomentOfInertia unit.")]
         [Input("metresToTheFourth", "The number of metresToTheFourth to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AreaMomentOfInertiaUnit.")]
         [Output("areaMomentOfInertia", "The equivalent quantity defined in the specified unit.")]
         public static double ToAreaMomentOfInertia(this double metresToTheFourth, object unit)
         {

@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a temperatureDelta into SI units (kelvin).")]
         [Input("temperatureDelta", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum TemperatureDeltaUnit.")]
         [Output("kelvin", "The equivalent number of kelvin.")]
         public static double FromTemperatureDelta(this double temperatureDelta, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (kelvin) into another temperatureDelta unit.")]
         [Input("kelvin", "The number of kelvin to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum TemperatureDeltaUnit.")]
         [Output("temperatureDelta", "The equivalent quantity defined in the specified unit.")]
         public static double ToTemperatureDelta(this double kelvin, object unit)
         {

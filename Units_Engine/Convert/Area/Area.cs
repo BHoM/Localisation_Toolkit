@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a area into SI units (squareMetres).")]
         [Input("area", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum AreaUnit.")]
         [Output("squareMetres", "The equivalent number of squareMetres.")]
         public static double FromArea(this double area, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (squareMetres) into another area unit.")]
         [Input("squareMetres", "The number of squareMetres to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AreaUnit.")]
         [Output("area", "The equivalent quantity defined in the specified unit.")]
         public static double ToArea(this double squareMetres, object unit)
         {

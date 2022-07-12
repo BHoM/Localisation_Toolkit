@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a temperature into SI units (celsius).")]
         [Input("temperature", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum TemperatureUnit.")]
         [Output("celsius", "The equivalent number of celsius.")]
         public static double FromTemperature(this double temperature, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (celsius) into another temperature unit.")]
         [Input("celsius", "The number of celsius to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum TemperatureUnit.")]
         [Output("temperature", "The equivalent quantity defined in the specified unit.")]
         public static double ToTemperature(this double celsius, object unit)
         {
