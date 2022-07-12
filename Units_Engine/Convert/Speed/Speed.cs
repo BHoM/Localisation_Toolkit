@@ -41,9 +41,9 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a acceleration into SI units (metresPerSecond).")]
-        [Input("acceleration", "The quantity to convert.")]
-        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum SpeedUnit.")]
+        [Description("Convert a speed into SI units (metresPerSecond).")]
+        [Input("speed", "The quantity to convert.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum SpeedUnit.")]
         [Output("metresPerSecond", "The equivalent number of metresPerSecond.")]
         public static double FromSpeed(this double acceleration, object unit)
         {
@@ -53,10 +53,10 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (metresPerSecond) into another acceleration unit.")]
+        [Description("Convert SI units (metresPerSecond) into another speed unit.")]
         [Input("metresPerSecond", "The number of metresPerSecond to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum SpeedUnit.")]
-        [Output("acceleration", "The equivalent quantity defined in the specified unit.")]
+        [Output("speed", "The equivalent quantity defined in the specified unit.")]
         public static double ToSpeed(this double metresPerSecond, object unit)
         {
             UN.QuantityValue qv = metresPerSecond;

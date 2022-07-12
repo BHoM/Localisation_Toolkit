@@ -41,9 +41,9 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a acceleration into SI units (metresPerSecondSquared).")]
+        [Description("Convert an acceleration into SI units (metresPerSecondSquared).")]
         [Input("acceleration", "The quantity to convert.")]
-        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AccelerationUnit.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum AccelerationUnit.")]
         [Output("metresPerSecondSquared", "The equivalent number of metresPerSecondSquared.")]
         public static double FromAcceleration(this double acceleration, object unit)
         {

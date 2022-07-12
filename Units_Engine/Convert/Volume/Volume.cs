@@ -40,7 +40,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert a volume into SI units (cubicMeter).")]
         [Input("volume", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum VolumeUnit.")]
         [Output("cubicMeter", "The equivalent number of cubicMeter.")]
         public static double FromVolume(this double volume, object unit)
         {
@@ -52,7 +52,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (cubicMeter) into another volume unit.")]
         [Input("cubicMeter", "The number of cubicMeter to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum VolumeUnit.")]
         [Output("volume", "The equivalent quantity defined in the specified unit.")]
         public static double ToVolume(this double cubicMeter, object unit)
         {

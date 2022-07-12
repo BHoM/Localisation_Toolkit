@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a momentPerLength into SI units (newtonMeterPerMeter).")]
         [Input("momentPerLength", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum TorquePerLengthUnit.")]
         [Output("newtonMeterPerMeter", "The equivalent number of newtonMeterPerMeter.")]
         public static double FromMomentPerLength(this double momentPerLength, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (newtonMeterPerMeter) into another momentPerLength unit.")]
         [Input("newtonMeterPerMeter", "The number of newtonMeterPerMeter to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum TorquePerLengthUnit.")]
         [Output("momentPerLength", "The equivalent quantity defined in the specified unit.")]
         public static double ToMomentPerLength(this double newtonMeterPerMeter, object unit)
         {

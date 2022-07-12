@@ -44,7 +44,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a torque into SI units (newtonMeter).")]
         [Input("torque", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum TorqueUnit.")]
         [Output("newtonMeter", "The equivalent number of newtonMeter.")]
         public static double FromTorque(this double torque, object unit)
         {
@@ -56,7 +56,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (newtonMeter) into another torque unit.")]
         [Input("newtonMeter", "The number of newtonMeter to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum TorqueUnit.")]
         [Output("torque", "The equivalent quantity defined in the specified unit.")]
         public static double ToTorque(this double newtonMeter, object unit)
         {

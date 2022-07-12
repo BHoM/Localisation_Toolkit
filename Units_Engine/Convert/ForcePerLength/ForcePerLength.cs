@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a forcePerLength into SI units (newtonPerMetre).")]
         [Input("forcePerLength", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum ForcePerLengthUnit.")]
         [Output("newtonPerMetre", "The equivalent number of newtonPerMetre.")]
         public static double FromForcePerLength(this double forcePerLength, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (newtonPerMetre) into another forcePerLength unit.")]
         [Input("newtonPerMetre", "The number of newtonPerMetre to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum ForcePerLengthUnit.")]
         [Output("forcePerLength", "The equivalent quantity defined in the specified unit.")]
         public static double ToForcePerLength(this double newtonPerMetre, object unit)
         {

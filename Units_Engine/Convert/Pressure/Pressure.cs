@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a pressure into SI units (pascal).")]
         [Input("pressure", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum PressureUnit.")]
         [Output("pascal", "The equivalent number of pascal.")]
         public static double FromPressure(this double pressure, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (pascal) into another pressure unit.")]
         [Input("pascal", "The number of pascal to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum PressureUnit.")]
         [Output("pressure", "The equivalent quantity defined in the specified unit.")]
         public static double ToPressure(this double pascal, object unit)
         {

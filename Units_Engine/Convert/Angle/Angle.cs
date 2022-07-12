@@ -43,7 +43,7 @@ namespace BH.Engine.Units
 
         [Description("Convert a angle into SI units (radian).")]
         [Input("angle", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum AngleUnit.")]
         [Output("radian", "The equivalent number of radian.")]
         public static double FromAngle(this double angle, object unit)
         {
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
 
         [Description("Convert SI units (radian) into another angle unit.")]
         [Input("radian", "The number of radian to convert.")]
-        [Input("unit", "The unit to convert to.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AngleUnit.")]
         [Output("angle", "The equivalent quantity defined in the specified unit.")]
         public static double ToAngle(this double radian, object unit)
         {
