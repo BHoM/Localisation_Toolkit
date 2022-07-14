@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -48,7 +49,13 @@ namespace BH.Engine.Units
         public static double FromAcceleration(this double acceleration, object unit)
         {
             UN.QuantityValue qv = acceleration;
-            return UN.UnitConverter.Convert(qv, ToAccelerationUnit(unit), UNU.AccelerationUnit.MeterPerSecondSquared);
+            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            if (unUnit != UNU.AccelerationUnit.Undefined)
+
+                return UN.UnitConverter.Convert(qv, unUnit, UNU.AccelerationUnit.MeterPerSecondSquared);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -60,7 +67,12 @@ namespace BH.Engine.Units
         public static double ToAcceleration(this double metresPerSecondSquared, object unit)
         {
             UN.QuantityValue qv = metresPerSecondSquared;
-            return UN.UnitConverter.Convert(qv, UNU.AccelerationUnit.MeterPerSecondSquared, ToAccelerationUnit(unit));
+            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            if (unUnit != UNU.AccelerationUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, UNU.AccelerationUnit.MeterPerSecondSquared, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +81,17 @@ namespace BH.Engine.Units
 
         private static UNU.AccelerationUnit ToAccelerationUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.AccelerationUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                AccelerationUnit unitEnum;
+                if (Enum.TryParse<AccelerationUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {
