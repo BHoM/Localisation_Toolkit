@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("metresPerSecond", "The equivalent number of metresPerSecond.")]
         public static double FromSpeed(this double speed, object unit)
         {
+            if (Double.IsNaN(speed) || Double.IsInfinity(speed))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = speed;
-            return UN.UnitConverter.Convert(qv, ToSpeedUnit(unit), UNU.SpeedUnit.MeterPerSecond);
+            UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
+            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+
+            if (unUnit != UNU.SpeedUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("speed", "The equivalent quantity defined in the specified unit.")]
         public static double ToSpeed(this double metresPerSecond, object unit)
         {
+            if (Double.IsNaN(metresPerSecond) || Double.IsInfinity(metresPerSecond))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = metresPerSecond;
-            return UN.UnitConverter.Convert(qv, UNU.SpeedUnit.MeterPerSecond, ToSpeedUnit(unit));
+            UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
+            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+
+            if (unUnit != UNU.SpeedUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.SpeedUnit ToSpeedUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.SpeedUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                SpeedUnit unitEnum;
+                if (Enum.TryParse<SpeedUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

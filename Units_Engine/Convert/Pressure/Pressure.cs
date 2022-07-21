@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("pascal", "The equivalent number of pascal.")]
         public static double FromPressure(this double pressure, object unit)
         {
+            if (Double.IsNaN(pressure) || Double.IsInfinity(pressure))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = pressure;
-            return UN.UnitConverter.Convert(qv, ToPressureUnit(unit), UNU.PressureUnit.Pascal);
+            UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
+            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+
+            if (unUnit != UNU.PressureUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("pressure", "The equivalent quantity defined in the specified unit.")]
         public static double ToPressure(this double pascal, object unit)
         {
+            if (Double.IsNaN(pascal) || Double.IsInfinity(pascal))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = pascal;
-            return UN.UnitConverter.Convert(qv, UNU.PressureUnit.Pascal, ToPressureUnit(unit));
+            UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
+            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+
+            if (unUnit != UNU.PressureUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.PressureUnit ToPressureUnit(this object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.PressureUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                PressureUnit unitEnum;
+                if (Enum.TryParse<PressureUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

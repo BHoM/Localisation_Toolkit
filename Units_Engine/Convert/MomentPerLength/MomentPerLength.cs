@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("newtonMeterPerMeter", "The equivalent number of newtonMeterPerMeter.")]
         public static double FromMomentPerLength(this double momentPerLength, object unit)
         {
+            if (Double.IsNaN(momentPerLength) || Double.IsInfinity(momentPerLength))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = momentPerLength;
-            return UN.UnitConverter.Convert(qv, ToTorquePerLengthUnit(unit), UNU.TorquePerLengthUnit.NewtonMeterPerMeter);
+            UNU.TorquePerLengthUnit unitSI = UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
+            UNU.TorquePerLengthUnit unUnit = ToTorquePerLengthUnit(unit);
+
+            if (unUnit != UNU.TorquePerLengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("momentPerLength", "The equivalent quantity defined in the specified unit.")]
         public static double ToMomentPerLength(this double newtonMeterPerMeter, object unit)
         {
+            if (Double.IsNaN(newtonMeterPerMeter) || Double.IsInfinity(newtonMeterPerMeter))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = newtonMeterPerMeter;
-            return UN.UnitConverter.Convert(qv, UNU.TorquePerLengthUnit.NewtonMeterPerMeter, ToTorquePerLengthUnit(unit));
+            UNU.TorquePerLengthUnit unitSI = UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
+            UNU.TorquePerLengthUnit unUnit = ToTorquePerLengthUnit(unit);
+
+            if (unUnit != UNU.TorquePerLengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.TorquePerLengthUnit ToTorquePerLengthUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.TorquePerLengthUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                TorquePerLengthUnit unitEnum;
+                if (Enum.TryParse<TorquePerLengthUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("kilogramPerCubicMetres", "The equivalent number of kilogramPerCubicMetres.")]
         public static double FromDensity(this double density, object unit)
         {
+            if (Double.IsNaN(density) || Double.IsInfinity(density))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = density;
-            return UN.UnitConverter.Convert(qv, ToDensityUnit(unit), UNU.DensityUnit.KilogramPerCubicMeter);
+            UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
+            UNU.DensityUnit unUnit = ToDensityUnit(unit);
+
+            if (unUnit != UNU.DensityUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("density", "The equivalent quantity defined in the specified unit.")]
         public static double ToDensity(this double kilogramPerCubicMetres, object unit)
         {
+            if (Double.IsNaN(kilogramPerCubicMetres) || Double.IsInfinity(kilogramPerCubicMetres))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = kilogramPerCubicMetres;
-            return UN.UnitConverter.Convert(qv, UNU.DensityUnit.KilogramPerCubicMeter, ToDensityUnit(unit));
+            UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
+            UNU.DensityUnit unUnit = ToDensityUnit(unit);
+
+            if (unUnit != UNU.DensityUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.DensityUnit ToDensityUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.DensityUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                DensityUnit unitEnum;
+                if (Enum.TryParse<DensityUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {
