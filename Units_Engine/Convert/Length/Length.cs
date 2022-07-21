@@ -101,8 +101,8 @@ namespace BH.Engine.Units
 
             if (unit.GetType() == typeof(string))
             {
-                AccelerationUnit unitEnum;
-                if (Enum.TryParse<AccelerationUnit>(unit.ToString(), out unitEnum))
+                LengthUnit unitEnum;
+                if (Enum.TryParse<LengthUnit>(unit.ToString(), out unitEnum))
                     unit = unitEnum;
                 else
                     unit = unit.ToString().ToLower();
