@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This file is part of the Buildings and Habitats object Model (BHoM)
  * Copyright (c) 2015 - 2022, the respective contributors. All rights reserved.
  *
@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Units_oM")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("https://github.com/BHoM/Localisation_Toolkit")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Units_oM")]
@@ -55,6 +55,6 @@ using System.Runtime.InteropServices;
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("5.0.0.0")]
-[assembly: AssemblyFileVersion("5.2.0.0")]
+[assembly: AssemblyFileVersion("5.3.0.0")]
 
 
