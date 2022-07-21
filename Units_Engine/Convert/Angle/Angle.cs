@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("radian", "The equivalent number of radian.")]
         public static double FromAngle(this double angle, object unit)
         {
+            if (Double.IsNaN(angle) || Double.IsInfinity(angle))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = angle;
-            return UN.UnitConverter.Convert(qv, ToAngleUnit(unit), UNU.AngleUnit.Radian);
+            UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
+            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+
+            if (unUnit != UNU.AngleUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("angle", "The equivalent quantity defined in the specified unit.")]
         public static double ToAngle(this double radian, object unit)
         {
+            if (Double.IsNaN(radian) || Double.IsInfinity(radian))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = radian;
-            return UN.UnitConverter.Convert(qv, UNU.AngleUnit.Radian, ToAngleUnit(unit));
+            UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
+            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+
+            if (unUnit != UNU.AngleUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.AngleUnit ToAngleUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.AngleUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                AngleUnit unitEnum;
+                if (Enum.TryParse<AngleUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

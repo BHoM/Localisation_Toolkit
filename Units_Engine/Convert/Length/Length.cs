@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("metres", "The equivalent number of metres.")]
         public static double FromLength(this double length, object unit)
         {
+            if (Double.IsNaN(length) || Double.IsInfinity(length))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = length;
-            return UN.UnitConverter.Convert(qv, ToLengthUnit(unit), UNU.LengthUnit.Meter);
+            UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
+            UNU.LengthUnit unUnit = ToLengthUnit(unit);
+
+            if (unUnit != UNU.LengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("length", "The equivalent quantity defined in the specified unit.")]
         public static double ToLength(this double metres, object unit)
         {
+            if (Double.IsNaN(metres) || Double.IsInfinity(metres))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = metres;
-            return UN.UnitConverter.Convert(qv, UNU.LengthUnit.Meter, ToLengthUnit(unit));
+            UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
+            UNU.LengthUnit unUnit = ToLengthUnit(unit);
+
+            if (unUnit != UNU.LengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.LengthUnit ToLengthUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.LengthUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                AccelerationUnit unitEnum;
+                if (Enum.TryParse<AccelerationUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

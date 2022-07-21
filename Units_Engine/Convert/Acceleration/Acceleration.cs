@@ -48,11 +48,18 @@ namespace BH.Engine.Units
         [Output("metresPerSecondSquared", "The equivalent number of metresPerSecondSquared.")]
         public static double FromAcceleration(this double acceleration, object unit)
         {
-            UN.QuantityValue qv = acceleration;
-            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
-            if (unUnit != UNU.AccelerationUnit.Undefined)
+            if (Double.IsNaN(acceleration) || Double.IsInfinity(acceleration))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
 
-                return UN.UnitConverter.Convert(qv, unUnit, UNU.AccelerationUnit.MeterPerSecondSquared);
+            UN.QuantityValue qv = acceleration;
+            UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
+            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+
+            if (unUnit != UNU.AccelerationUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;
@@ -66,10 +73,18 @@ namespace BH.Engine.Units
         [Output("acceleration", "The equivalent quantity defined in the specified unit.")]
         public static double ToAcceleration(this double metresPerSecondSquared, object unit)
         {
+            if (Double.IsNaN(metresPerSecondSquared) || Double.IsInfinity(metresPerSecondSquared))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = metresPerSecondSquared;
+            UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
             UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+
             if (unUnit != UNU.AccelerationUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, UNU.AccelerationUnit.MeterPerSecondSquared, unUnit);
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;

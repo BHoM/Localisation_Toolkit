@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("inverseDeltaKelvins", "The equivalent number of inverseDeltaKelvins.")]
         public static double FromCoefficientOfThermalExpansion(this double coefficientOfThermalExpansion, object unit)
         {
+            if (Double.IsNaN(coefficientOfThermalExpansion) || Double.IsInfinity(coefficientOfThermalExpansion))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = coefficientOfThermalExpansion;
-            return UN.UnitConverter.Convert(qv, ToCoefficientOfThermalExpansionUnit(unit), UNU.CoefficientOfThermalExpansionUnit.InverseKelvin);
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+
+            if (unUnit != UNU.CoefficientOfThermalExpansionUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("coefficientOfThermalExpansion", "The equivalent quantity defined in the specified unit.")]
         public static double ToCoefficientOfThermalExpansion(this double inverseDeltaKelvins, object unit)
         {
+            if (Double.IsNaN(inverseDeltaKelvins) || Double.IsInfinity(inverseDeltaKelvins))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = inverseDeltaKelvins;
-            return UN.UnitConverter.Convert(qv, UNU.CoefficientOfThermalExpansionUnit.InverseKelvin, ToCoefficientOfThermalExpansionUnit(unit));
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+
+            if (unUnit != UNU.CoefficientOfThermalExpansionUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.CoefficientOfThermalExpansionUnit ToCoefficientOfThermalExpansionUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.CoefficientOfThermalExpansionUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                CoefficientOfThermalExpansionUnit unitEnum;
+                if (Enum.TryParse<CoefficientOfThermalExpansionUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

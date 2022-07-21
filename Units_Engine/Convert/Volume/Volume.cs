@@ -33,6 +33,7 @@ using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -44,8 +45,21 @@ namespace BH.Engine.Units
         [Output("cubicMeter", "The equivalent number of cubicMeter.")]
         public static double FromVolume(this double volume, object unit)
         {
+            if (Double.IsNaN(volume) || Double.IsInfinity(volume))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = volume;
-            return UN.UnitConverter.Convert(qv, ToVolumeUnit(unit), UNU.VolumeUnit.CubicMeter);
+            UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
+            UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
+
+            if (unUnit != UNU.VolumeUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -56,8 +70,21 @@ namespace BH.Engine.Units
         [Output("volume", "The equivalent quantity defined in the specified unit.")]
         public static double ToVolume(this double cubicMeter, object unit)
         {
+            if (Double.IsNaN(cubicMeter) || Double.IsInfinity(cubicMeter))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = cubicMeter;
-            return UN.UnitConverter.Convert(qv, UNU.VolumeUnit.CubicMeter, ToVolumeUnit(unit));
+            UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
+            UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
+
+            if (unUnit != UNU.VolumeUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -66,8 +93,17 @@ namespace BH.Engine.Units
 
         private static UNU.VolumeUnit ToVolumeUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.VolumeUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                VolumeUnit unitEnum;
+                if (Enum.TryParse<VolumeUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

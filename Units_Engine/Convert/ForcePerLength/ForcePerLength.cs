@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("newtonPerMetre", "The equivalent number of newtonPerMetre.")]
         public static double FromForcePerLength(this double forcePerLength, object unit)
         {
+            if (Double.IsNaN(forcePerLength) || Double.IsInfinity(forcePerLength))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = forcePerLength;
-            return UN.UnitConverter.Convert(qv, ToForcePerLengthUnit(unit), UNU.ForcePerLengthUnit.NewtonPerMeter);
+            UNU.ForcePerLengthUnit unitSI = UNU.ForcePerLengthUnit.NewtonPerMeter;
+            UNU.ForcePerLengthUnit unUnit = ToForcePerLengthUnit(unit);
+
+            if (unUnit != UNU.ForcePerLengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("forcePerLength", "The equivalent quantity defined in the specified unit.")]
         public static double ToForcePerLength(this double newtonPerMetre, object unit)
         {
+            if (Double.IsNaN(newtonPerMetre) || Double.IsInfinity(newtonPerMetre))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = newtonPerMetre;
-            return UN.UnitConverter.Convert(qv, UNU.ForcePerLengthUnit.NewtonPerMeter, ToForcePerLengthUnit(unit));
+            UNU.ForcePerLengthUnit unitSI = UNU.ForcePerLengthUnit.NewtonPerMeter;
+            UNU.ForcePerLengthUnit unUnit = ToForcePerLengthUnit(unit);
+
+            if (unUnit != UNU.ForcePerLengthUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.ForcePerLengthUnit ToForcePerLengthUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.ForcePerLengthUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                ForcePerLengthUnit unitEnum;
+                if (Enum.TryParse<ForcePerLengthUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

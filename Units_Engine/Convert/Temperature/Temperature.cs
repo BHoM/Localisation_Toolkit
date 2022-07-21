@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,7 +48,21 @@ namespace BH.Engine.Units
         [Output("celsius", "The equivalent number of celsius.")]
         public static double FromTemperature(this double temperature, object unit)
         {
+            if (Double.IsNaN(temperature) || Double.IsInfinity(temperature))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = temperature;
+            UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
+            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
+
+            if (unUnit != UNU.TemperatureUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
             return UN.UnitConverter.Convert(qv, ToTemperatureUnit(unit), UNU.TemperatureUnit.DegreeCelsius);
         }
 
@@ -59,8 +74,21 @@ namespace BH.Engine.Units
         [Output("temperature", "The equivalent quantity defined in the specified unit.")]
         public static double ToTemperature(this double celsius, object unit)
         {
+            if (Double.IsNaN(celsius) || Double.IsInfinity(celsius))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = celsius;
-            return UN.UnitConverter.Convert(qv, UNU.TemperatureUnit.DegreeCelsius, ToTemperatureUnit(unit));
+            UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
+            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
+
+            if (unUnit != UNU.TemperatureUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +97,17 @@ namespace BH.Engine.Units
 
         private static UNU.TemperatureUnit ToTemperatureUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.TemperatureUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                TemperatureUnit unitEnum;
+                if (Enum.TryParse<TemperatureUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

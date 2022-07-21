@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("squareMetres", "The equivalent number of squareMetres.")]
         public static double FromArea(this double area, object unit)
         {
+            if (Double.IsNaN(area) || Double.IsInfinity(area))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = area;
-            return UN.UnitConverter.Convert(qv, ToAreaUnit(unit), UNU.AreaUnit.SquareMeter);
+            UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
+            UNU.AreaUnit unUnit = ToAreaUnit(unit);
+
+            if (unUnit != UNU.AreaUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("area", "The equivalent quantity defined in the specified unit.")]
         public static double ToArea(this double squareMetres, object unit)
         {
+            if (Double.IsNaN(squareMetres) || Double.IsInfinity(squareMetres))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = squareMetres;
-            return UN.UnitConverter.Convert(qv, UNU.AreaUnit.SquareMeter, ToAreaUnit(unit));
+            UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
+            UNU.AreaUnit unUnit = ToAreaUnit(unit);
+
+            if (unUnit != UNU.AreaUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.AreaUnit ToAreaUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.AreaUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                AreaUnit unitEnum;
+                if (Enum.TryParse<AreaUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

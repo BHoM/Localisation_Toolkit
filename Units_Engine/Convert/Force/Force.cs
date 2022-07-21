@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("newtons", "The equivalent number of newtons.")]
         public static double FromForce(this double force, object unit)
         {
+            if (Double.IsNaN(force) || Double.IsInfinity(force))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = force;
-            return UN.UnitConverter.Convert(qv, ToForceUnit(unit), UNU.ForceUnit.Newton);
+            UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
+            UNU.ForceUnit unUnit = ToForceUnit(unit);
+
+            if (unUnit != UNU.ForceUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -60,8 +74,21 @@ namespace BH.Engine.Units
         [Output("force", "The equivalent quantity defined in the specified unit.")]
         public static double ToForce(this double newtons, object unit)
         {
+            if (Double.IsNaN(newtons) || Double.IsInfinity(newtons))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = newtons;
-            return UN.UnitConverter.Convert(qv, UNU.ForceUnit.Newton, ToForceUnit(unit));
+            UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
+            UNU.ForceUnit unUnit = ToForceUnit(unit);
+
+            if (unUnit != UNU.ForceUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -70,8 +97,17 @@ namespace BH.Engine.Units
 
         private static UNU.ForceUnit ToForceUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.ForceUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                AccelerationUnit unitEnum;
+                if (Enum.TryParse<AccelerationUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

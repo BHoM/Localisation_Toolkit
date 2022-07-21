@@ -32,6 +32,7 @@ using UNU = UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -47,8 +48,21 @@ namespace BH.Engine.Units
         [Output("kelvin", "The equivalent number of kelvin.")]
         public static double FromTemperatureDelta(this double temperatureDelta, object unit)
         {
+            if (Double.IsNaN(temperatureDelta) || Double.IsInfinity(temperatureDelta))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = temperatureDelta;
-            return UN.UnitConverter.Convert(qv, ToTemperatureDeltaUnit(unit), UNU.TemperatureDeltaUnit.Kelvin);
+            UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
+            UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
+
+            if (unUnit != UNU.TemperatureDeltaUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -59,8 +73,21 @@ namespace BH.Engine.Units
         [Output("temperatureDelta", "The equivalent quantity defined in the specified unit.")]
         public static double ToTemperatureDelta(this double kelvin, object unit)
         {
+            if (Double.IsNaN(kelvin) || Double.IsInfinity(kelvin))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = kelvin;
-            return UN.UnitConverter.Convert(qv, UNU.TemperatureDeltaUnit.Kelvin, ToTemperatureDeltaUnit(unit));
+            UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
+            UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
+
+            if (unUnit != UNU.TemperatureDeltaUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -69,8 +96,17 @@ namespace BH.Engine.Units
 
         private static UNU.TemperatureDeltaUnit ToTemperatureDeltaUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.TemperatureDeltaUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                TemperatureDeltaUnit unitEnum;
+                if (Enum.TryParse<TemperatureDeltaUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {

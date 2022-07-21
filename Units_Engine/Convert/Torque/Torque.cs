@@ -33,6 +33,7 @@ using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
@@ -48,8 +49,21 @@ namespace BH.Engine.Units
         [Output("newtonMeter", "The equivalent number of newtonMeter.")]
         public static double FromTorque(this double torque, object unit)
         {
+            if (Double.IsNaN(torque) || Double.IsInfinity(torque))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = torque;
-            return UN.UnitConverter.Convert(qv, ToTorqueUnit(unit), UNU.TorqueUnit.NewtonMeter);
+            UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
+            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+
+            if (unUnit != UNU.TorqueUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -60,8 +74,21 @@ namespace BH.Engine.Units
         [Output("torque", "The equivalent quantity defined in the specified unit.")]
         public static double ToTorque(this double newtonMeter, object unit)
         {
+            if (Double.IsNaN(newtonMeter) || Double.IsInfinity(newtonMeter))
+            {
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
+            }
+
             UN.QuantityValue qv = newtonMeter;
-            return UN.UnitConverter.Convert(qv, UNU.TorqueUnit.NewtonMeter, ToTorqueUnit(unit));
+            UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
+            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+
+            if (unUnit != UNU.TorqueUnit.Undefined)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -70,8 +97,17 @@ namespace BH.Engine.Units
 
         private static UNU.TorqueUnit ToTorqueUnit(object unit)
         {
+            if (unit == null || unit.ToString() == null)
+                return UNU.TorqueUnit.Undefined;
+
             if (unit.GetType() == typeof(string))
-                unit = unit.ToString().ToLower();
+            {
+                TorqueUnit unitEnum;
+                if (Enum.TryParse<TorqueUnit>(unit.ToString(), out unitEnum))
+                    unit = unitEnum;
+                else
+                    unit = unit.ToString().ToLower();
+            }
 
             switch (unit)
             {
