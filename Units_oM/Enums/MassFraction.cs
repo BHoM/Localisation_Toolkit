@@ -31,11 +31,11 @@ namespace BH.oM.Units
     public enum MassFractionUnit
     {
         Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6
+        CentigramPerKilogram = 1,
+        DecigramPerKilogram = 2,
+        GramPerKilogram = 3,
+        MicrogramPerKilogram = 4,
+        MilligramPerKilogram = 5,
+        NanogramPerKilogram = 6
     }
 }
