@@ -26,16 +26,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BH.oM.Units
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
+
+using System.ComponentModel;
+using BH.oM.Base.Attributes;
+using BH.oM.Quantities.Attributes;
+using UnitsNet;
+
+namespace BH.Engine.Units
 {
-    public enum MassFractionUnit
+    public static partial class Convert
     {
-        Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6
+        [Description("Convert SI units (second) into millisecond")]
+        [Input("second", "The number of second to convert", typeof(Duration))]
+        [Output("millisecond", "The number of millisecond")]
+        public static double ToMillisecond(this double second)
+        {
+            UN.QuantityValue qv = second;
+            return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Millisecond);
+        }
+
+        [Description("Convert millisecond into SI units (second)")]
+        [Input("millisecond", "The number of millisecond to convert")]
+        [Output("second", "The number of second to convert", typeof(Duration))]
+        public static double FromMillisecond(this double millisecond)
+        {
+            UN.QuantityValue qv = millisecond;
+            return UN.UnitConverter.Convert(qv, DurationUnit.Millisecond, DurationUnit.Second);
+        }
     }
 }
+
+
+

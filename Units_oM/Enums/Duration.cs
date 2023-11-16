@@ -28,14 +28,14 @@ using System.Threading.Tasks;
 
 namespace BH.oM.Units
 {
-    public enum MassFractionUnit
+    public enum DurationUnit
     {
         Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6
+        Millisecond = 1,
+        Second = 2,
+        Minute = 3,
+        Hour = 4
     }
 }
+
+

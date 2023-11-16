@@ -26,16 +26,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BH.oM.Units
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
+
+using System.ComponentModel;
+using BH.oM.Base.Attributes;
+using BH.oM.Quantities.Attributes;
+
+namespace BH.Engine.Units
 {
-    public enum MassFractionUnit
+    public static partial class Convert
     {
-        Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6
+        [Description("Convert SI units (kilogram per cubic metre) into milligrams per litre")]
+        [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
+        [Output("milligramsPerLitre", "The number of milligrams per litre")]
+        public static double ToMilligramPerLitre(this double kilogramsPerCubicMetre)
+        {
+            UN.QuantityValue qv = kilogramsPerCubicMetre;
+            return UN.UnitConverter.Convert(qv, DensityUnit.KilogramPerCubicMeter, DensityUnit.MilligramPerLiter);
+        }
+
+        [Description("Convert grams per litre into SI units (kilograms per cubic metre)")]
+        [Input("milligramsPerLitre", "The number of milligrams per litre to convert")]
+        [Output("kilogramsPerCubicMetre", "The number of kilograms per cubic metre", typeof(Density))]
+        public static double FromMilligramPerLitre(this double milligramsPerLitre)
+        {
+            UN.QuantityValue qv = milligramsPerLitre;
+            return UN.UnitConverter.Convert(qv, DensityUnit.MilligramPerLiter, DensityUnit.KilogramPerCubicMeter);
+        }
     }
 }
+
+
+

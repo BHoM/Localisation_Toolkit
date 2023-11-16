@@ -26,16 +26,37 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BH.oM.Units
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
+
+using System.ComponentModel;
+using BH.oM.Base.Attributes;
+using BH.oM.Quantities.Attributes;
+using UnitsNet;
+
+namespace BH.Engine.Units
 {
-    public enum MassFractionUnit
+    public static partial class Convert
     {
-        Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6
+        [Description("Convert SI units (second) into minute")]
+        [Input("second", "The number of second to convert", typeof(Duration))]
+        [Output("minute", "The number of minute")]
+        public static double ToMinute(this double minute)
+        {
+            UN.QuantityValue qv = minute;
+            return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Minute);
+        }
+
+        [Description("Convert minute into SI units (second)")]
+        [Input("minute", "The number of minute to convert")]
+        [Output("second", "The number of second to convert", typeof(Duration))]
+        public static double FromMinute(this double minute)
+        {
+            UN.QuantityValue qv = minute;
+            return UN.UnitConverter.Convert(qv, DurationUnit.Minute, DurationUnit.Second);
+        }
     }
 }
+
+
+
