@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into nanogram per kilogram")]
-        [Input("kilogramPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("nanogramPerKilogram", "The number of nanograms per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into nanograms per kilogram")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
+        [Output("nanogramsPerKilogram", "The number of nanograms per kilogram")]
         public static double ToNanogramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.NanogramPerKilogram);
         }
 
-        [Description("Convert nanogram per kilogram into SI units (kilogram per kilogram)")]
-        [Input("nanogramPerKilogram", "The number of nanograms per kilogram to convert")]
-        [Output("kilogramPerKilogram", "The number of kilogram per kilogram", typeof(MassFraction))]
+        [Description("Convert nanograms per kilogram into SI units (kilograms per kilogram)")]
+        [Input("nanogramsPerKilogram", "The number of nanograms per kilogram to convert")]
+        [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromNanogramPerKilogram(this double nanogramsPerKilogram)
         {
             UN.QuantityValue qv = nanogramsPerKilogram;

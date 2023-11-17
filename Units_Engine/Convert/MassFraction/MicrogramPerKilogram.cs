@@ -37,16 +37,16 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into microgram per kilogram")]
-        [Input("kilogramPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("microgramPerKilogram", "The number of micrograms per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into micrograms per kilogram")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
+        [Output("microgramsPerKilogram", "The number of micrograms per kilogram")]
         public static double ToMicrogramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.MicrogramPerKilogram);
         }
 
-        [Description("Convert microgram per kilogram into SI units (kilogram per kilogram)")]
+        [Description("Convert micrograms per kilogram into SI units (kilograms per kilogram)")]
         [Input("microgramsPerKilogram", "The number of micrograms per kilogram to convert")]
         [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromMicrogramPerKilogram(this double microgramsPerKilogram)

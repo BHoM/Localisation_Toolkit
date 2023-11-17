@@ -38,21 +38,21 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (second) into hour")]
-        [Input("second", "The number of second to convert", typeof(Duration))]
-        [Output("hour", "The number of hour")]
-        public static double ToHour(this double second)
+        [Description("Convert SI units (seconds) into hours")]
+        [Input("second", "The number of seconds to convert", typeof(Duration))]
+        [Output("hours", "The number of hours")]
+        public static double ToHour(this double seconds)
         {
-            UN.QuantityValue qv = second;
+            UN.QuantityValue qv = seconds;
             return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Hour);
         }
 
-        [Description("Convert minute into SI units (second)")]
-        [Input("hour", "The number of hour to convert")]
-        [Output("second", "The number of second to convert", typeof(Duration))]
-        public static double FromHour(this double hour)
+        [Description("Convert hours into SI units (seconds)")]
+        [Input("hour", "The number of hours to convert")]
+        [Output("seconds", "The number of seconds", typeof(Duration))]
+        public static double FromHour(this double hours)
         {
-            UN.QuantityValue qv = hour;
+            UN.QuantityValue qv = hours;
             return UN.UnitConverter.Convert(qv, DurationUnit.Hour, DurationUnit.Second);
         }
     }

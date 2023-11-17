@@ -37,7 +37,7 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per cubic metre) into milligrams per litre")]
+        [Description("Convert SI units (kilograms per cubic metre) into milligrams per litre")]
         [Input("kilogramsPerCubicMetre", "The number of kilograms per cubic metre to convert", typeof(Density))]
         [Output("milligramsPerLitre", "The number of milligrams per litre")]
         public static double ToMilligramPerLitre(this double kilogramsPerCubicMetre)

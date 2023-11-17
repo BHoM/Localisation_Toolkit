@@ -37,17 +37,17 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into milligrams per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into milligrams per kilogram")]
         [Input("kilogramsPerkilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("milligramPerkilogram", "The number of millograms per kilogram")]
+        [Output("milligramsPerkilogram", "The number of millograms per kilogram")]
         public static double ToMilligramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.MilligramPerKilogram);
         }
 
-        [Description("Convert milligram per kilogram into SI units (kilograms per kilogram)")]
-        [Input("milligramPerKilogram", "The number of milligrams per kilogram to convert")]
+        [Description("Convert milligrams per kilogram into SI units (kilograms per kilogram)")]
+        [Input("milligramsPerKilogram", "The number of milligrams per kilogram to convert")]
         [Output("kilogramPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromMilligramPerKilogram(this double milligramsPerKilogram)
         {

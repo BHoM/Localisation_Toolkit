@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into decigram per kilogram")]
-        [Input("gramPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("gramPerKilogram", "The number of grams per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into grams per kilogram")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
+        [Output("gramsPerKilogram", "The number of grams per kilogram")]
         public static double ToGramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.GramPerKilogram);
         }
 
-        [Description("Convert gram per kilogram into SI units (kilogram per kilogram)")]
-        [Input("gramPerKilogram", "The number of grams per kilogram to convert")]
-        [Output("kilogramPerKilogram", "The number of kilogram per kilogram", typeof(MassFraction))]
+        [Description("Convert grams per kilogram into SI units (kilograms per kilogram)")]
+        [Input("gramsPerKilogram", "The number of grams per kilogram to convert")]
+        [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromGramPerKilogram(this double gramsPerKilogram)
         {
             UN.QuantityValue qv = gramsPerKilogram;

@@ -38,19 +38,19 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (second) into millisecond")]
-        [Input("second", "The number of second to convert", typeof(Duration))]
-        [Output("millisecond", "The number of millisecond")]
-        public static double ToMillisecond(this double second)
+        [Description("Convert SI units (seconds) into milliseconds")]
+        [Input("seconds", "The number of seconds to convert", typeof(Duration))]
+        [Output("milliseconds", "The number of milliseconds")]
+        public static double ToMillisecond(this double seconds)
         {
-            UN.QuantityValue qv = second;
+            UN.QuantityValue qv = seconds;
             return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Millisecond);
         }
 
-        [Description("Convert millisecond into SI units (second)")]
-        [Input("millisecond", "The number of millisecond to convert")]
-        [Output("second", "The number of second to convert", typeof(Duration))]
-        public static double FromMillisecond(this double millisecond)
+        [Description("Convert milliseconds into SI units (seconds)")]
+        [Input("milliseconds", "The number of milliseconds to convert")]
+        [Output("seconds", "The number of seconds to convert", typeof(Duration))]
+        public static double FromMillisecond(this double milliseconds)
         {
             UN.QuantityValue qv = millisecond;
             return UN.UnitConverter.Convert(qv, DurationUnit.Millisecond, DurationUnit.Second);

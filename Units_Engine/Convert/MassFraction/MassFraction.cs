@@ -42,10 +42,10 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a mass fraction into SI units (kilogramPerkilogram).")]
+        [Description("Convert a mass fraction into SI units (kilogramsPerkilogram).")]
         [Input("massFraction", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MassFractionUnit.")]
-        [Output("kilogramPerKilogram", "The equivalent number of kilogramPerKilogram.")]
+        [Output("kilogramsPerKilogram", "The equivalent number of kilogramsPerKilogram.")]
         public static double FromMassFraction(this double massFraction, object unit)
         {
             if (Double.IsNaN(massFraction) || Double.IsInfinity(massFraction))
@@ -67,19 +67,19 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (kilogramPerKilogram) into another massFraction unit.")]
-        [Input("kilogramPerKilogram", "The number of kilogramPerKilogram to convert.")]
+        [Description("Convert SI units (kilogramsPerKilogram) into another massFraction unit.")]
+        [Input("kilogramsPerKilogram", "The number of kilogramsPerKilogram to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum massFractionUnit.")]
         [Output("massFraction", "The equivalent quantity defined in the specified unit.")]
-        public static double ToMassFraction(this double kilogramPerKilogram, object unit)
+        public static double ToMassFraction(this double kilogramsPerKilogram, object unit)
         {
-            if (Double.IsNaN(kilogramPerKilogram) || Double.IsInfinity(kilogramPerKilogram))
+            if (Double.IsNaN(kilogramsPerKilogram) || Double.IsInfinity(kilogramsPerKilogram))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = kilogramPerKilogram;
+            UN.QuantityValue qv = kilogramsPerKilogram;
             UNU.MassFractionUnit unitSI = UNU.MassFractionUnit.KilogramPerKilogram;
             UNU.MassFractionUnit unUnit = ToMassFractionUnit(unit);
 

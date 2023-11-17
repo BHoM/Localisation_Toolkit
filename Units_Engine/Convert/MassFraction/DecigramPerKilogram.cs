@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into decigram per kilogram")]
-        [Input("kilogramPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("decigramPerKilogram", "The number of decigrams per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into decigrams per kilogram")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
+        [Output("decigramsPerKilogram", "The number of decigrams per kilogram")]
         public static double ToDecigramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.DecigramPerKilogram);
         }
 
-        [Description("Convert decigram per kilogram into SI units (kilogram per kilogram)")]
-        [Input("decigramPerKilogram", "The number of decigrams per kilogram to convert")]
-        [Output("kilogramPerKilogram", "The number of kilogram per kilogram", typeof(MassFraction))]
+        [Description("Convert decigrams per kilogram into SI units (kilograms per kilogram)")]
+        [Input("decigramsPerKilogram", "The number of decigrams per kilogram to convert")]
+        [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromDecigramPerKilogram(this double decigramsPerKilogram)
         {
             UN.QuantityValue qv = decigramsPerKilogram;

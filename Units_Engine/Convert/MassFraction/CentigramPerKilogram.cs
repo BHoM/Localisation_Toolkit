@@ -37,16 +37,16 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilogram per kilogram) into centigram per kilogram")]
-        [Input("kilogramPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("centigramPerKilogram", "The number of centigrams per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into centigrams per kilogram")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
+        [Output("centigramsPerKilogram", "The number of centigrams per kilogram")]
         public static double ToCentigramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.CentigramPerKilogram);
         }
 
-        [Description("Convert centigram per kilogram into SI units (kilogram per kilogram)")]
+        [Description("Convert centigrams per kilogram into SI units (kilograms per kilogram)")]
         [Input("centigramsPerKilogram", "The number of centigrams per kilogram to convert")]
         [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
         public static double FromCentigramPerKilogram(this double centigramsPerKilogram)

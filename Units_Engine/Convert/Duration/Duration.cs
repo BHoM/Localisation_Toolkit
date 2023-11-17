@@ -42,10 +42,10 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a duration into SI units (Seconds).")]
+        [Description("Convert a duration into SI units (seconds).")]
         [Input("duration", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum DurationUnit.")]
-        [Output("Second", "The equivalent number of Second.")]
+        [Output("second", "The equivalent number of seconds.")]
         public static double FromDuration(this double duration, object unit)
         {
             if (Double.IsNaN(duration) || Double.IsInfinity(duration))
