@@ -49,7 +49,7 @@ namespace BH.Engine.Units
         [Output("seconds", "The number of seconds to convert.", typeof(Duration))]
         public static double FromMillisecond(this double milliseconds)
         {
-            UN.QuantityValue qv = millisecond;
+            UN.QuantityValue qv = milliseconds;
             return UN.UnitConverter.Convert(qv, DurationUnit.Millisecond, DurationUnit.Second);
         }
     }
