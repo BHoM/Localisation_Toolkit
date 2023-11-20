@@ -19,16 +19,13 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UnitsNet.Units;
-
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
@@ -37,18 +34,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (kilograms per kilogram) into nanograms per kilogram")]
-        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert", typeof(MassFraction))]
-        [Output("nanogramsPerKilogram", "The number of nanograms per kilogram")]
+        [Description("Convert SI units (kilograms per kilogram) into nanograms per kilogram.")]
+        [Input("kilogramsPerKilogram", "The number of kilograms per kilogram to convert.", typeof(MassFraction))]
+        [Output("nanogramsPerKilogram", "The number of nanograms per kilogram.")]
         public static double ToNanogramPerKilogram(this double kilogramsPerKilogram)
         {
             UN.QuantityValue qv = kilogramsPerKilogram;
             return UN.UnitConverter.Convert(qv, MassFractionUnit.KilogramPerKilogram, MassFractionUnit.NanogramPerKilogram);
         }
 
-        [Description("Convert nanograms per kilogram into SI units (kilograms per kilogram)")]
-        [Input("nanogramsPerKilogram", "The number of nanograms per kilogram to convert")]
-        [Output("kilogramsPerKilogram", "The number of kilograms per kilogram", typeof(MassFraction))]
+        [Description("Convert nanograms per kilogram into SI units (kilograms per kilogram).")]
+        [Input("nanogramsPerKilogram", "The number of nanograms per kilogram to convert.")]
+        [Output("kilogramsPerKilogram", "The number of kilograms per kilogram.", typeof(MassFraction))]
         public static double FromNanogramPerKilogram(this double nanogramsPerKilogram)
         {
             UN.QuantityValue qv = nanogramsPerKilogram;
@@ -56,6 +53,3 @@ namespace BH.Engine.Units
         }
     }
 }
-
-
-

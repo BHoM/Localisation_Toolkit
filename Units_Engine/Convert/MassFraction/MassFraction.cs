@@ -19,16 +19,13 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UNU = UnitsNet.Units;
-
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
@@ -41,7 +38,6 @@ namespace BH.Engine.Units
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
-
         [Description("Convert a mass fraction into SI units (kilogramsPerkilogram).")]
         [Input("massFraction", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MassFractionUnit.")]
@@ -57,16 +53,13 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = massFraction;
             UNU.MassFractionUnit unitSI = UNU.MassFractionUnit.KilogramPerKilogram;
             UNU.MassFractionUnit unUnit = ToMassFractionUnit(unit);
-
             if (unUnit != UNU.MassFractionUnit.Undefined)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;
         }
 
         /***************************************************/
-
         [Description("Convert SI units (kilogramsPerKilogram) into another massFraction unit.")]
         [Input("kilogramsPerKilogram", "The number of kilogramsPerKilogram to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum massFractionUnit.")]
@@ -82,10 +75,8 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = kilogramsPerKilogram;
             UNU.MassFractionUnit unitSI = UNU.MassFractionUnit.KilogramPerKilogram;
             UNU.MassFractionUnit unUnit = ToMassFractionUnit(unit);
-
             if (unUnit != UNU.MassFractionUnit.Undefined)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;
         }
@@ -93,12 +84,10 @@ namespace BH.Engine.Units
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
-
         private static UNU.MassFractionUnit ToMassFractionUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return UNU.MassFractionUnit.Undefined;
-
             if (unit.GetType() == typeof(string))
             {
                 DensityUnit unitEnum;
@@ -129,6 +118,3 @@ namespace BH.Engine.Units
         }
     }
 }
-
-
-

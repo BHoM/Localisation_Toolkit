@@ -19,16 +19,13 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UnitsNet.Units;
-
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
@@ -38,18 +35,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (seconds) into minutes")]
-        [Input("seconds", "The number of seconds to convert", typeof(Duration))]
-        [Output("minutes", "The number of minutes")]
+        [Description("Convert SI units (seconds) into minutes.")]
+        [Input("seconds", "The number of seconds to convert.", typeof(Duration))]
+        [Output("minutes", "The number of minutes.")]
         public static double ToMinute(this double seconds)
         {
             UN.QuantityValue qv = seconds;
             return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Minute);
         }
 
-        [Description("Convert minutes into SI units (seconds)")]
-        [Input("minutes", "The number of minutes to convert")]
-        [Output("seconds", "The number of seconds to convert", typeof(Duration))]
+        [Description("Convert minutes into SI units (seconds).")]
+        [Input("minutes", "The number of minutes to convert.")]
+        [Output("seconds", "The number of seconds to convert.", typeof(Duration))]
         public static double FromMinute(this double minutes)
         {
             UN.QuantityValue qv = minutes;
@@ -57,6 +54,3 @@ namespace BH.Engine.Units
         }
     }
 }
-
-
-
