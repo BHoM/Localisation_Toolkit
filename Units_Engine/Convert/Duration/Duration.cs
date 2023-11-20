@@ -63,18 +63,18 @@ namespace BH.Engine.Units
         /***************************************************/
 
         [Description("Convert SI units (seconds) into another duration unit.")]
-        [Input("second", "The number of seconds to convert.")]
+        [Input("seconds", "The number of seconds to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum DurationUnit.")]
         [Output("duration", "The equivalent quantity defined in the specified unit.")]
-        public static double ToDuration(this double second, object unit)
+        public static double ToDuration(this double seconds, object unit)
         {
-            if (Double.IsNaN(second) || Double.IsInfinity(second))
+            if (Double.IsNaN(seconds) || Double.IsInfinity(seconds))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = second;
+            UN.QuantityValue qv = seconds;
             UNU.DurationUnit unitSI = UNU.DurationUnit.Second;
             UNU.DurationUnit unUnit = ToDurationUnit(unit);
             if (unUnit != UNU.DurationUnit.Undefined)
