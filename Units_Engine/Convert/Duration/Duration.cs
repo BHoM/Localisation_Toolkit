@@ -38,6 +38,7 @@ namespace BH.Engine.Units
         /***************************************************/
         /**** Public Methods                            ****/
         /***************************************************/
+
         [Description("Convert a duration into SI units (seconds).")]
         [Input("duration", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum DurationUnit.")]
@@ -60,8 +61,9 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
+
         [Description("Convert SI units (seconds) into another duration unit.")]
-        [Input("Second", "The number of seconds to convert.")]
+        [Input("second", "The number of seconds to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum DurationUnit.")]
         [Output("duration", "The equivalent quantity defined in the specified unit.")]
         public static double ToDuration(this double second, object unit)
@@ -84,6 +86,7 @@ namespace BH.Engine.Units
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
+
         private static UNU.DurationUnit ToDurationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)

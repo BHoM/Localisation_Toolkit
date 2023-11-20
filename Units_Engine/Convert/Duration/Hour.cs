@@ -36,7 +36,7 @@ namespace BH.Engine.Units
     public static partial class Convert
     {
         [Description("Convert SI units (seconds) into hours.")]
-        [Input("second", "The number of seconds to convert.", typeof(Duration))]
+        [Input("seconds", "The number of seconds to convert.", typeof(Duration))]
         [Output("hours", "The number of hours.")]
         public static double ToHour(this double seconds)
         {
@@ -44,8 +44,10 @@ namespace BH.Engine.Units
             return UN.UnitConverter.Convert(qv, DurationUnit.Second, DurationUnit.Hour);
         }
 
+        /***************************************************/
+
         [Description("Convert hours into SI units (seconds).")]
-        [Input("hour", "The number of hours to convert.")]
+        [Input("hours", "The number of hours to convert.")]
         [Output("seconds", "The number of seconds.", typeof(Duration))]
         public static double FromHour(this double hours)
         {
