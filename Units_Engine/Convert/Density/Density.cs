@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
             UNU.DensityUnit unUnit = ToDensityUnit(unit);
 
-            if (unUnit != UNU.DensityUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
             UNU.DensityUnit unUnit = ToDensityUnit(unit);
 
-            if (unUnit != UNU.DensityUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.DensityUnit ToDensityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.DensityUnit.Undefined;
+                return UNU.DensityUnit.KilogramPerCubicMeter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -137,6 +129,7 @@ namespace BH.Engine.Units
                 case DensityUnit.KilogramPerCubicCentimeter:
                     return UNU.DensityUnit.KilogramPerCubicCentimeter;
                 case DensityUnit.KilogramPerCubicMeter:
+                default:
                     return UNU.DensityUnit.KilogramPerCubicMeter;
                 case DensityUnit.KilogramPerCubicMillimeter:
                     return UNU.DensityUnit.KilogramPerCubicMillimeter;
@@ -193,9 +186,6 @@ namespace BH.Engine.Units
                     return UNU.DensityUnit.TonnePerCubicMeter;
                 case DensityUnit.TonnePerCubicMillimeter:
                     return UNU.DensityUnit.TonnePerCubicMillimeter;
-                case DensityUnit.Undefined:
-                default:
-                    return UNU.DensityUnit.Undefined;
             }
         }
     }

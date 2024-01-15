@@ -19,16 +19,13 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UNU = UnitsNet.Units;
-
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
@@ -42,43 +39,41 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a temperature into SI units (celsius).")]
-        [Input("temperature", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum TemperatureUnit.")]
-        [Output("celsius", "The equivalent number of celsius.")]
-        public static double FromTemperature(this double temperature, object unit)
+        [Description("Convert a molality into SI units (molePerKilogram).")]
+        [Input("molality", "The quantity to convert.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MolalityUnit.")]
+        [Output("molePerKilograms", "The equivalent number of kilograms.")]
+        public static double FromMolality(this double molality, object unit)
         {
-            if (Double.IsNaN(temperature) || Double.IsInfinity(temperature))
+            if (Double.IsNaN(molality) || Double.IsInfinity(molality))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = temperature;
-            UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
-            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
-
+            UN.QuantityValue qv = molality;
+            UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
+            UNU.MolalityUnit unUnit = ToMolalityUnit(unit);
             return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
 
-        [Description("Convert SI units (celsius) into another temperature unit.")]
-        [Input("celsius", "The number of celsius to convert.")]
-        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum TemperatureUnit.")]
-        [Output("temperature", "The equivalent quantity defined in the specified unit.")]
-        public static double ToTemperature(this double celsius, object unit)
+        [Description("Convert SI units (molePerKilogram) into another duration unit.")]
+        [Input("molePerKilograms", "The number of molePerKilograms to convert.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MolalityUnit.")]
+        [Output("molality", "The equivalent quantity defined in the specified unit.")]
+        public static double ToMolality(this double molality, object unit)
         {
-            if (Double.IsNaN(celsius) || Double.IsInfinity(celsius))
+            if (Double.IsNaN(molality) || Double.IsInfinity(molality))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = celsius;
-            UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
-            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
-
+            UN.QuantityValue qv = molality;
+            UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
+            UNU.MolalityUnit unUnit = ToMolalityUnit(unit);
             return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
@@ -86,15 +81,14 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TemperatureUnit ToTemperatureUnit(object unit)
+        private static UNU.MolalityUnit ToMolalityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TemperatureUnit.DegreeCelsius;
-
+                return UNU.MolalityUnit.MolePerKilogram;
             if (unit.GetType() == typeof(string))
             {
-                TemperatureUnit unitEnum;
-                if (Enum.TryParse<TemperatureUnit>(unit.ToString(), out unitEnum))
+                DurationUnit unitEnum;
+                if (Enum.TryParse<DurationUnit>(unit.ToString(), out unitEnum))
                     unit = unitEnum;
                 else
                     unit = unit.ToString().ToLower();
@@ -102,40 +96,12 @@ namespace BH.Engine.Units
 
             switch (unit)
             {
-                case "celsius":
-                case "c":
-                case TemperatureUnit.DegreeCelsius:
+                case MolalityUnit.MolePerGram:
+                    return UNU.MolalityUnit.MolePerGram;
+                case MolalityUnit.MolePerKilogram:
                 default:
-                    return UNU.TemperatureUnit.DegreeCelsius;
-                case TemperatureUnit.DegreeDelisle:
-                    return UNU.TemperatureUnit.DegreeDelisle;
-                case "fahrenheit":
-                case "f":
-                case TemperatureUnit.DegreeFahrenheit:
-                    return UNU.TemperatureUnit.DegreeFahrenheit;
-                case TemperatureUnit.DegreeNewton:
-                    return UNU.TemperatureUnit.DegreeNewton;
-                case "rankine":
-                case "r":
-                case TemperatureUnit.DegreeRankine:
-                    return UNU.TemperatureUnit.DegreeRankine;
-                case TemperatureUnit.DegreeReaumur:
-                    return UNU.TemperatureUnit.DegreeReaumur;
-                case TemperatureUnit.DegreeRoemer:
-                    return UNU.TemperatureUnit.DegreeRoemer;
-                case "kelvin":
-                case "k":
-                case TemperatureUnit.Kelvin:
-                    return UNU.TemperatureUnit.Kelvin;
-                case TemperatureUnit.MillidegreeCelsius:
-                    return UNU.TemperatureUnit.MillidegreeCelsius;
-                case TemperatureUnit.SolarTemperature:
-                    return UNU.TemperatureUnit.SolarTemperature;
+                    return UNU.MolalityUnit.MolePerKilogram;
             }
         }
     }
 }
-
-
-
-

@@ -55,11 +55,7 @@ namespace BH.Engine.Units
             UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
             UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
 
-            if (unUnit != UNU.VolumeUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -80,11 +76,7 @@ namespace BH.Engine.Units
             UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
             UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
 
-            if (unUnit != UNU.VolumeUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -94,7 +86,7 @@ namespace BH.Engine.Units
         private static UNU.VolumeUnit ToVolumeUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.VolumeUnit.Undefined;
+                return UNU.VolumeUnit.CubicMeter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -131,6 +123,7 @@ namespace BH.Engine.Units
                     return UNU.VolumeUnit.CubicKilometer;
                 case "m^3":
                 case VolumeUnit.CubicMeter:
+                default:
                     return UNU.VolumeUnit.CubicMeter;
                 case VolumeUnit.CubicMicrometer:
                     return UNU.VolumeUnit.CubicMicrometer;
@@ -213,9 +206,6 @@ namespace BH.Engine.Units
                     return UNU.VolumeUnit.UsTablespoon;
                 case VolumeUnit.UsTeaspoon:
                     return UNU.VolumeUnit.UsTeaspoon;
-                case VolumeUnit.Undefined:
-                default:
-                    return UNU.VolumeUnit.Undefined;
             }
         }
     }

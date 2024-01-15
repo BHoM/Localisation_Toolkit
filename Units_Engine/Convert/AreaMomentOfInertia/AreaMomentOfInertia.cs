@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.AreaMomentOfInertiaUnit unitSI = UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
             UNU.AreaMomentOfInertiaUnit unUnit = ToAreaMomentOfInertiaUnit(unit);
 
-            if (unUnit != UNU.AreaMomentOfInertiaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.AreaMomentOfInertiaUnit unitSI = UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
             UNU.AreaMomentOfInertiaUnit unUnit = ToAreaMomentOfInertiaUnit(unit);
 
-            if (unUnit != UNU.AreaMomentOfInertiaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.AreaMomentOfInertiaUnit ToAreaMomentOfInertiaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AreaMomentOfInertiaUnit.Undefined;
+                return UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
 
             if (unit.GetType() == typeof(string))
             {
@@ -119,12 +111,10 @@ namespace BH.Engine.Units
                 case AreaMomentOfInertiaUnit.InchToTheFourth:
                     return UNU.AreaMomentOfInertiaUnit.InchToTheFourth;
                 case AreaMomentOfInertiaUnit.MeterToTheFourth:
+                default:
                     return UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
                 case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
                     return UNU.AreaMomentOfInertiaUnit.MillimeterToTheFourth;
-                case AreaMomentOfInertiaUnit.Undefined:
-                default:
-                    return UNU.AreaMomentOfInertiaUnit.Undefined;
             }
         }
     }

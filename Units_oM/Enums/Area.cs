@@ -30,7 +30,6 @@ namespace BH.oM.Units
 {
     public enum AreaUnit
     {
-        Undefined = 0,
         Acre = 1,
         Hectare = 2,
         SquareCentimeter = 3,

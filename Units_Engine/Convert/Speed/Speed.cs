@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
             UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
 
-            if (unUnit != UNU.SpeedUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
             UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
 
-            if (unUnit != UNU.SpeedUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.SpeedUnit ToSpeedUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.SpeedUnit.Undefined;
+                return UNU.SpeedUnit.MeterPerSecond;
 
             if (unit.GetType() == typeof(string))
             {
@@ -145,6 +137,7 @@ namespace BH.Engine.Units
                 case SpeedUnit.MeterPerMinute:
                     return UNU.SpeedUnit.MeterPerMinute;
                 case SpeedUnit.MeterPerSecond:
+                default:
                     return UNU.SpeedUnit.MeterPerSecond;
                 case SpeedUnit.MicrometerPerMinute:
                     return UNU.SpeedUnit.MicrometerPerMinute;
@@ -174,9 +167,6 @@ namespace BH.Engine.Units
                     return UNU.SpeedUnit.YardPerMinute;
                 case SpeedUnit.YardPerSecond:
                     return UNU.SpeedUnit.YardPerSecond;
-                case SpeedUnit.Undefined:
-                default:
-                    return UNU.SpeedUnit.Undefined;
             }
         }
     }

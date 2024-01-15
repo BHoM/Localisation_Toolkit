@@ -54,10 +54,7 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = duration;
             UNU.DurationUnit unitSI = UNU.DurationUnit.Second;
             UNU.DurationUnit unUnit = ToDurationUnit(unit);
-            if (unUnit != UNU.DurationUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -77,10 +74,7 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = seconds;
             UNU.DurationUnit unitSI = UNU.DurationUnit.Second;
             UNU.DurationUnit unUnit = ToDurationUnit(unit);
-            if (unUnit != UNU.DurationUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -90,7 +84,7 @@ namespace BH.Engine.Units
         private static UNU.DurationUnit ToDurationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.DurationUnit.Undefined;
+                return UNU.DurationUnit.Second;
             if (unit.GetType() == typeof(string))
             {
                 DurationUnit unitEnum;
@@ -105,14 +99,12 @@ namespace BH.Engine.Units
                 case DurationUnit.Millisecond:
                     return UNU.DurationUnit.Millisecond;
                 case DurationUnit.Second:
+                default:
                     return UNU.DurationUnit.Second;
                 case DurationUnit.Minute:
                     return UNU.DurationUnit.Minute;
                 case DurationUnit.Hour:
                     return UNU.DurationUnit.Hour;
-                case DurationUnit.Undefined:
-                default:
-                    return UNU.DurationUnit.Undefined;
             }
         }
     }

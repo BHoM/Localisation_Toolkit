@@ -30,7 +30,6 @@ namespace BH.oM.Units
 {
     public enum VolumeUnit
     {
-        Undefined = 0,
         AcreFoot = 1,
         AuTablespoon = 2,
         Centiliter = 3,

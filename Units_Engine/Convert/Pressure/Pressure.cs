@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
             UNU.PressureUnit unUnit = ToPressureUnit(unit);
 
-            if (unUnit != UNU.PressureUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
             UNU.PressureUnit unUnit = ToPressureUnit(unit);
 
-            if (unUnit != UNU.PressureUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.PressureUnit ToPressureUnit(this object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.PressureUnit.Undefined;
+                return UNU.PressureUnit.Pascal;
 
             if (unit.GetType() == typeof(string))
             {
@@ -177,6 +169,7 @@ namespace BH.Engine.Units
                 case PressureUnit.NewtonPerSquareMillimeter:
                     return UNU.PressureUnit.NewtonPerSquareMillimeter;
                 case PressureUnit.Pascal:
+                default:
                     return UNU.PressureUnit.Pascal;
                 case PressureUnit.PoundForcePerSquareFoot:
                     return UNU.PressureUnit.PoundForcePerSquareFoot;
@@ -194,9 +187,6 @@ namespace BH.Engine.Units
                     return UNU.PressureUnit.TonneForcePerSquareMillimeter;
                 case PressureUnit.Torr:
                     return UNU.PressureUnit.Torr;
-                case PressureUnit.Undefined:
-                default:
-                    return UNU.PressureUnit.Undefined;
             }
         }
     }

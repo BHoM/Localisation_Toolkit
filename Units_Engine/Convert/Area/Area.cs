@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
             UNU.AreaUnit unUnit = ToAreaUnit(unit);
 
-            if (unUnit != UNU.AreaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
             UNU.AreaUnit unUnit = ToAreaUnit(unit);
 
-            if (unUnit != UNU.AreaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.AreaUnit ToAreaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AreaUnit.Undefined;
+                return UNU.AreaUnit.SquareMeter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -125,6 +117,7 @@ namespace BH.Engine.Units
                 case AreaUnit.SquareKilometer:
                     return UNU.AreaUnit.SquareKilometer;
                 case AreaUnit.SquareMeter:
+                default:
                     return UNU.AreaUnit.SquareMeter;
                 case AreaUnit.SquareMicrometer:
                     return UNU.AreaUnit.SquareMicrometer;
@@ -138,9 +131,6 @@ namespace BH.Engine.Units
                     return UNU.AreaUnit.SquareYard;
                 case AreaUnit.UsSurveySquareFoot:
                     return UNU.AreaUnit.UsSurveySquareFoot;
-                case AreaUnit.Undefined:
-                default:
-                    return UNU.AreaUnit.Undefined;
             }
         }
     }

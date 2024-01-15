@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.ForcePerLengthUnit unitSI = UNU.ForcePerLengthUnit.NewtonPerMeter;
             UNU.ForcePerLengthUnit unUnit = ToForcePerLengthUnit(unit);
 
-            if (unUnit != UNU.ForcePerLengthUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.ForcePerLengthUnit unitSI = UNU.ForcePerLengthUnit.NewtonPerMeter;
             UNU.ForcePerLengthUnit unUnit = ToForcePerLengthUnit(unit);
 
-            if (unUnit != UNU.ForcePerLengthUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.ForcePerLengthUnit ToForcePerLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.ForcePerLengthUnit.Undefined;
+                return UNU.ForcePerLengthUnit.NewtonPerMeter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -172,6 +164,7 @@ namespace BH.Engine.Units
                     return UNU.ForcePerLengthUnit.NewtonPerCentimeter;
                 case ForcePerLengthUnit.NewtonPerMeter:
                     return UNU.ForcePerLengthUnit.NewtonPerMeter;
+                default:
                 case ForcePerLengthUnit.NewtonPerMillimeter:
                     return UNU.ForcePerLengthUnit.NewtonPerMillimeter;
                 case ForcePerLengthUnit.PoundForcePerFoot:
@@ -186,9 +179,6 @@ namespace BH.Engine.Units
                     return UNU.ForcePerLengthUnit.TonneForcePerMeter;
                 case ForcePerLengthUnit.TonneForcePerMillimeter:
                     return UNU.ForcePerLengthUnit.TonneForcePerMillimeter;
-                case ForcePerLengthUnit.Undefined:
-                default:
-                    return UNU.ForcePerLengthUnit.Undefined;
             }
         }
     }

@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
             UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
 
-            if (unUnit != UNU.TemperatureDeltaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
             UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
 
-            if (unUnit != UNU.TemperatureDeltaUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.TemperatureDeltaUnit ToTemperatureDeltaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TemperatureDeltaUnit.Undefined;
+                return UNU.TemperatureDeltaUnit.Kelvin;
 
             if (unit.GetType() == typeof(string))
             {
@@ -129,12 +121,10 @@ namespace BH.Engine.Units
                     return UNU.TemperatureDeltaUnit.DegreeRoemer;
                 case "k":
                 case TemperatureDeltaUnit.Kelvin:
+                default:
                     return UNU.TemperatureDeltaUnit.Kelvin;
                 case TemperatureDeltaUnit.MillidegreeCelsius:
                     return UNU.TemperatureDeltaUnit.MillidegreeCelsius;
-                case TemperatureDeltaUnit.Undefined:
-                default:
-                    return UNU.TemperatureDeltaUnit.Undefined;
             }
         }
     }

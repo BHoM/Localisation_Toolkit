@@ -19,28 +19,40 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
+using System.ComponentModel;
+using BH.oM.Base.Attributes;
+using BH.oM.Quantities.Attributes;
+using UnitsNet;
 
-namespace BH.oM.Units
+namespace BH.Engine.Units
 {
-    public enum TemperatureDeltaUnit
+    public static partial class Convert
     {
-        DegreeCelsius = 1,
-        DegreeDelisle = 2,
-        DegreeFahrenheit = 3,
-        DegreeNewton = 4,
-        DegreeRankine = 5,
-        DegreeReaumur = 6,
-        DegreeRoemer = 7,
-        Kelvin = 8,
-        MillidegreeCelsius = 9
+        [Description("Convert SI units (molePerKilogram) into molePerGram.")]
+        [Input("molePerKilograms", "The number of molePerKilogram to convert.", typeof(Molality))]
+        [Output("molePerGrams", "The number of molePerGram.")]
+        public static double ToMolePerGram(this double molePerKilograms)
+        {
+            UN.QuantityValue qv = molePerKilograms;
+            return UN.UnitConverter.Convert(qv, MolalityUnit.MolePerKilogram, MolalityUnit.MolePerGram);
+        }
+
+        /***************************************************/
+
+        [Description("Convert molePerGram into SI units (molePerKilogram).")]
+        [Input("molePerGrams", "The number of molePerGrams to convert.")]
+        [Output("molePerKilograms", "The number of molePerKilograms.", typeof(Molality))]
+        public static double FromMolePerGram(this double molePerGrams)
+        {
+            UN.QuantityValue qv = molePerGrams;
+            return UN.UnitConverter.Convert(qv, MolalityUnit.MolePerGram, MolalityUnit.MolePerKilogram);
+        }
     }
 }
-
-
-

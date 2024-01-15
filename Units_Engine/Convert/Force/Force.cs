@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
             UNU.ForceUnit unUnit = ToForceUnit(unit);
 
-            if (unUnit != UNU.ForceUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -84,11 +80,7 @@ namespace BH.Engine.Units
             UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
             UNU.ForceUnit unUnit = ToForceUnit(unit);
 
-            if (unUnit != UNU.ForceUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -98,7 +90,7 @@ namespace BH.Engine.Units
         private static UNU.ForceUnit ToForceUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.ForceUnit.Undefined;
+                return UNU.ForceUnit.Newton;
 
             if (unit.GetType() == typeof(string))
             {
@@ -133,6 +125,7 @@ namespace BH.Engine.Units
                     return UNU.ForceUnit.Millinewton;
                 case ForceUnit.Newton:
                     return UNU.ForceUnit.Newton;
+                default:
                 case ForceUnit.OunceForce:
                     return UNU.ForceUnit.OunceForce;
                 case ForceUnit.Poundal:
@@ -143,9 +136,6 @@ namespace BH.Engine.Units
                     return UNU.ForceUnit.PoundForce;
                 case ForceUnit.TonneForce:
                     return UNU.ForceUnit.TonneForce;
-                case ForceUnit.Undefined:
-                default:
-                    return UNU.ForceUnit.Undefined;
             }
         }
     }

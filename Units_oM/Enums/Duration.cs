@@ -29,7 +29,6 @@ namespace BH.oM.Units
 {
     public enum DurationUnit
     {
-        Undefined = 0,
         Millisecond = 1,
         Second = 2,
         Minute = 3,

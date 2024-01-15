@@ -30,7 +30,6 @@ namespace BH.oM.Units
 {
     public enum CoefficientOfThermalExpansionUnit
     {
-        Undefined = 0,
         InverseDegreeCelsius = 1,
         InverseDegreeFahrenheit = 2,
         InverseKelvin = 3

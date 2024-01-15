@@ -58,11 +58,7 @@ namespace BH.Engine.Units
             UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
             UNU.LengthUnit unUnit = ToLengthUnit(unit);
 
-            if (unUnit != UNU.LengthUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -83,11 +79,7 @@ namespace BH.Engine.Units
             UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
             UNU.LengthUnit unUnit = ToLengthUnit(unit);
 
-            if (unUnit != UNU.LengthUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -97,7 +89,7 @@ namespace BH.Engine.Units
         private static UNU.LengthUnit ToLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.LengthUnit.Undefined;
+                return UNU.LengthUnit.Meter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -137,6 +129,7 @@ namespace BH.Engine.Units
                     return UNU.LengthUnit.Kilometer;
                 case "m":
                 case LengthUnit.Meter:
+                default:
                     return UNU.LengthUnit.Meter;
                 case LengthUnit.Microinch:
                     return UNU.LengthUnit.Microinch;
@@ -155,9 +148,6 @@ namespace BH.Engine.Units
                 case "yd":
                 case LengthUnit.Yard:
                     return UNU.LengthUnit.Yard;
-                case LengthUnit.Undefined:
-                default:
-                    return UNU.LengthUnit.Undefined;
             }
         }
     }

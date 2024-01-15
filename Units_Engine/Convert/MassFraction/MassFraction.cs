@@ -53,10 +53,7 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = massFraction;
             UNU.MassFractionUnit unitSI = UNU.MassFractionUnit.KilogramPerKilogram;
             UNU.MassFractionUnit unUnit = ToMassFractionUnit(unit);
-            if (unUnit != UNU.MassFractionUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -75,10 +72,7 @@ namespace BH.Engine.Units
             UN.QuantityValue qv = kilogramsPerKilogram;
             UNU.MassFractionUnit unitSI = UNU.MassFractionUnit.KilogramPerKilogram;
             UNU.MassFractionUnit unUnit = ToMassFractionUnit(unit);
-            if (unUnit != UNU.MassFractionUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -87,7 +81,7 @@ namespace BH.Engine.Units
         private static UNU.MassFractionUnit ToMassFractionUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.MassFractionUnit.Undefined;
+                return UNU.MassFractionUnit.KilogramPerKilogram;
             if (unit.GetType() == typeof(string))
             {
                 DensityUnit unitEnum;
@@ -111,9 +105,9 @@ namespace BH.Engine.Units
                     return UNU.MassFractionUnit.DecigramPerKilogram;
                 case MassFractionUnit.GramPerKilogram:
                     return UNU.MassFractionUnit.GramPerKilogram;
-                case DensityUnit.Undefined:
+                case MassFractionUnit.KilogramPerKilogram:
                 default:
-                    return UNU.MassFractionUnit.Undefined;
+                    return UNU.MassFractionUnit.KilogramPerKilogram;
             }
         }
     }

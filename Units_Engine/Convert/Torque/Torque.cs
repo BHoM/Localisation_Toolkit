@@ -59,11 +59,7 @@ namespace BH.Engine.Units
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
             UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
 
-            if (unUnit != UNU.TorqueUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
         }
 
         /***************************************************/
@@ -84,11 +80,7 @@ namespace BH.Engine.Units
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
             UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
 
-            if (unUnit != UNU.TorqueUnit.Undefined)
-                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
-
-            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
-            return double.NaN;
+            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
         }
 
         /***************************************************/
@@ -98,7 +90,7 @@ namespace BH.Engine.Units
         private static UNU.TorqueUnit ToTorqueUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TorqueUnit.Undefined;
+                return UNU.TorqueUnit.NewtonMeter;
 
             if (unit.GetType() == typeof(string))
             {
@@ -140,6 +132,7 @@ namespace BH.Engine.Units
                 case TorqueUnit.NewtonCentimeter:
                     return UNU.TorqueUnit.NewtonCentimeter;
                 case TorqueUnit.NewtonMeter:
+                default:
                     return UNU.TorqueUnit.NewtonMeter;
                 case TorqueUnit.NewtonMillimeter:
                     return UNU.TorqueUnit.NewtonMillimeter;
@@ -153,9 +146,6 @@ namespace BH.Engine.Units
                     return UNU.TorqueUnit.TonneForceMeter;
                 case TorqueUnit.TonneForceMillimeter:
                     return UNU.TorqueUnit.TonneForceMillimeter;
-                case TorqueUnit.Undefined:
-                default:
-                    return UNU.TorqueUnit.Undefined;
             }
         }
     }

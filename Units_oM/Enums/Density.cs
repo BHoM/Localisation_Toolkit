@@ -30,7 +30,6 @@ namespace BH.oM.Units
 {
     public enum DensityUnit
     {
-        Undefined = 0,
         CentigramPerDeciliter = 1,
         CentigramPerLiter = 2,
         CentigramPerMilliliter = 3,
