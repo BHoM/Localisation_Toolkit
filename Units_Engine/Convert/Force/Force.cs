@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = force;
             UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
-            UNU.ForceUnit unUnit = ToForceUnit(unit);
+            UNU.ForceUnit? unUnit = ToForceUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -78,19 +82,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = newtons;
             UNU.ForceUnit unitSI = UNU.ForceUnit.Newton;
-            UNU.ForceUnit unUnit = ToForceUnit(unit);
+            UNU.ForceUnit? unUnit = ToForceUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.ForceUnit ToForceUnit(object unit)
+        private static UNU.ForceUnit? ToForceUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.ForceUnit.Newton;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -125,7 +133,6 @@ namespace BH.Engine.Units
                     return UNU.ForceUnit.Millinewton;
                 case ForceUnit.Newton:
                     return UNU.ForceUnit.Newton;
-                default:
                 case ForceUnit.OunceForce:
                     return UNU.ForceUnit.OunceForce;
                 case ForceUnit.Poundal:
@@ -136,6 +143,8 @@ namespace BH.Engine.Units
                     return UNU.ForceUnit.PoundForce;
                 case ForceUnit.TonneForce:
                     return UNU.ForceUnit.TonneForce;
+                default:
+                    return null;
             }
         }
     }

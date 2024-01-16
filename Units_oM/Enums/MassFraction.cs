@@ -29,6 +29,7 @@ namespace BH.oM.Units
 {
     public enum MassFractionUnit
     {
+        Undefined = 0,
         NanogramPerKilogram = 1,
         MicrogramPerKilogram = 2,
         MilligramPerKilogram = 3,

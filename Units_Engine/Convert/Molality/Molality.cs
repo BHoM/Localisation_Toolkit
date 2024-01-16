@@ -53,8 +53,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = molality;
             UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
-            UNU.MolalityUnit unUnit = ToMolalityUnit(unit);
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            UNU.MolalityUnit? unUnit = ToMolalityUnit(unit);
+
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -73,18 +78,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = molality;
             UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
-            UNU.MolalityUnit unUnit = ToMolalityUnit(unit);
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            UNU.MolalityUnit? unUnit = ToMolalityUnit(unit);
+
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.MolalityUnit ToMolalityUnit(object unit)
+        private static UNU.MolalityUnit? ToMolalityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.MolalityUnit.MolePerKilogram;
+                return null;
             if (unit.GetType() == typeof(string))
             {
                 DurationUnit unitEnum;
@@ -99,8 +109,9 @@ namespace BH.Engine.Units
                 case MolalityUnit.MolePerGram:
                     return UNU.MolalityUnit.MolePerGram;
                 case MolalityUnit.MolePerKilogram:
-                default:
                     return UNU.MolalityUnit.MolePerKilogram;
+                default:
+                    return null;
             }
         }
     }

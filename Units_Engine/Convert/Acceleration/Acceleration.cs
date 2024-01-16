@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = acceleration;
             UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
-            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            UNU.AccelerationUnit? unUnit = ToAccelerationUnit(unit);
 
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metresPerSecondSquared;
             UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
-            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            UNU.AccelerationUnit? unUnit = ToAccelerationUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AccelerationUnit ToAccelerationUnit(object unit)
+        private static UNU.AccelerationUnit? ToAccelerationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AccelerationUnit.MeterPerSecondSquared;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -119,7 +127,6 @@ namespace BH.Engine.Units
                 case AccelerationUnit.KnotPerSecond:
                     return UNU.AccelerationUnit.KnotPerSecond;
                 case AccelerationUnit.MeterPerSecondSquared:
-                default:
                     return UNU.AccelerationUnit.MeterPerSecondSquared;
                 case AccelerationUnit.MicrometerPerSecondSquared:
                     return UNU.AccelerationUnit.MicrometerPerSecondSquared;
@@ -129,6 +136,8 @@ namespace BH.Engine.Units
                     return UNU.AccelerationUnit.NanometerPerSecondSquared;
                 case AccelerationUnit.StandardGravity:
                     return UNU.AccelerationUnit.StandardGravity;
+                default:
+                    return null;
             }
         }
     }

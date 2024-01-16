@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum SpeedUnit
     {
+        Undefined = 0,
         CentimeterPerHour = 1,
         CentimeterPerMinute = 2,
         CentimeterPerSecond = 3,

@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = areaMomentOfInertia;
             UNU.AreaMomentOfInertiaUnit unitSI = UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
-            UNU.AreaMomentOfInertiaUnit unUnit = ToAreaMomentOfInertiaUnit(unit);
+            UNU.AreaMomentOfInertiaUnit? unUnit = ToAreaMomentOfInertiaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metresToTheFourth;
             UNU.AreaMomentOfInertiaUnit unitSI = UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
-            UNU.AreaMomentOfInertiaUnit unUnit = ToAreaMomentOfInertiaUnit(unit);
+            UNU.AreaMomentOfInertiaUnit? unUnit = ToAreaMomentOfInertiaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AreaMomentOfInertiaUnit ToAreaMomentOfInertiaUnit(object unit)
+        private static UNU.AreaMomentOfInertiaUnit? ToAreaMomentOfInertiaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -111,10 +119,11 @@ namespace BH.Engine.Units
                 case AreaMomentOfInertiaUnit.InchToTheFourth:
                     return UNU.AreaMomentOfInertiaUnit.InchToTheFourth;
                 case AreaMomentOfInertiaUnit.MeterToTheFourth:
-                default:
                     return UNU.AreaMomentOfInertiaUnit.MeterToTheFourth;
                 case AreaMomentOfInertiaUnit.MillimeterToTheFourth:
                     return UNU.AreaMomentOfInertiaUnit.MillimeterToTheFourth;
+                default:
+                    return null;
             }
         }
     }

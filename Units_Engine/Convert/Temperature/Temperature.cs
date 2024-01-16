@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = temperature;
             UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
-            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
+            UNU.TemperatureUnit? unUnit = ToTemperatureUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = celsius;
             UNU.TemperatureUnit unitSI = UNU.TemperatureUnit.DegreeCelsius;
-            UNU.TemperatureUnit unUnit = ToTemperatureUnit(unit);
+            UNU.TemperatureUnit? unUnit = ToTemperatureUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TemperatureUnit ToTemperatureUnit(object unit)
+        private static UNU.TemperatureUnit? ToTemperatureUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TemperatureUnit.DegreeCelsius;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -105,7 +113,6 @@ namespace BH.Engine.Units
                 case "celsius":
                 case "c":
                 case TemperatureUnit.DegreeCelsius:
-                default:
                     return UNU.TemperatureUnit.DegreeCelsius;
                 case TemperatureUnit.DegreeDelisle:
                     return UNU.TemperatureUnit.DegreeDelisle;
@@ -131,6 +138,8 @@ namespace BH.Engine.Units
                     return UNU.TemperatureUnit.MillidegreeCelsius;
                 case TemperatureUnit.SolarTemperature:
                     return UNU.TemperatureUnit.SolarTemperature;
+                default:
+                    return null;
             }
         }
     }

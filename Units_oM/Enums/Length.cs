@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum LengthUnit
     {
+        Undefined = 0,
         Centimeter = 2,
         Chain = 3,
         Decimeter = 4,

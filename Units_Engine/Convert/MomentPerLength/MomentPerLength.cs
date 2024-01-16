@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = momentPerLength;
             UNU.TorquePerLengthUnit unitSI = UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
-            UNU.TorquePerLengthUnit unUnit = ToTorquePerLengthUnit(unit);
+            UNU.TorquePerLengthUnit? unUnit = ToTorquePerLengthUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = newtonMeterPerMeter;
             UNU.TorquePerLengthUnit unitSI = UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
-            UNU.TorquePerLengthUnit unUnit = ToTorquePerLengthUnit(unit);
+            UNU.TorquePerLengthUnit? unUnit = ToTorquePerLengthUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TorquePerLengthUnit ToTorquePerLengthUnit(object unit)
+        private static UNU.TorquePerLengthUnit? ToTorquePerLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -131,7 +139,6 @@ namespace BH.Engine.Units
                 case TorquePerLengthUnit.NewtonCentimeterPerMeter:
                     return UNU.TorquePerLengthUnit.NewtonCentimeterPerMeter;
                 case TorquePerLengthUnit.NewtonMeterPerMeter:
-                default:
                     return UNU.TorquePerLengthUnit.NewtonMeterPerMeter;
                 case TorquePerLengthUnit.NewtonMillimeterPerMeter:
                     return UNU.TorquePerLengthUnit.NewtonMillimeterPerMeter;
@@ -145,6 +152,8 @@ namespace BH.Engine.Units
                     return UNU.TorquePerLengthUnit.TonneForceMeterPerMeter;
                 case TorquePerLengthUnit.TonneForceMillimeterPerMeter:
                     return UNU.TorquePerLengthUnit.TonneForceMillimeterPerMeter;
+                default:
+                    return null;
             }
         }
     }

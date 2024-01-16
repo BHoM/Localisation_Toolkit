@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum PressureUnit
     {
+        Undefined = 0,
         Atmosphere = 1,
         Bar = 2,
         Centibar = 3,

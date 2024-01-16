@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum AreaMomentOfInertiaUnit
     {
+        Undefined = 0,
         CentimeterToTheFourth = 1,
         DecimeterToTheFourth = 2,
         FootToTheFourth = 3,

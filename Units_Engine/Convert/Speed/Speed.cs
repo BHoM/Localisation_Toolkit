@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = speed;
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
-            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+            UNU.SpeedUnit? unUnit = ToSpeedUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metresPerSecond;
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
-            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+            UNU.SpeedUnit? unUnit = ToSpeedUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.SpeedUnit ToSpeedUnit(object unit)
+        private static UNU.SpeedUnit? ToSpeedUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.SpeedUnit.MeterPerSecond;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -137,7 +145,6 @@ namespace BH.Engine.Units
                 case SpeedUnit.MeterPerMinute:
                     return UNU.SpeedUnit.MeterPerMinute;
                 case SpeedUnit.MeterPerSecond:
-                default:
                     return UNU.SpeedUnit.MeterPerSecond;
                 case SpeedUnit.MicrometerPerMinute:
                     return UNU.SpeedUnit.MicrometerPerMinute;
@@ -167,6 +174,8 @@ namespace BH.Engine.Units
                     return UNU.SpeedUnit.YardPerMinute;
                 case SpeedUnit.YardPerSecond:
                     return UNU.SpeedUnit.YardPerSecond;
+                default:
+                    return null;
             }
         }
     }

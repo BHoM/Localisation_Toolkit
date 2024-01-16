@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = area;
             UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
-            UNU.AreaUnit unUnit = ToAreaUnit(unit);
+            UNU.AreaUnit? unUnit = ToAreaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = squareMetres;
             UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
-            UNU.AreaUnit unUnit = ToAreaUnit(unit);
+            UNU.AreaUnit? unUnit = ToAreaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AreaUnit ToAreaUnit(object unit)
+        private static UNU.AreaUnit? ToAreaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AreaUnit.SquareMeter;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -117,7 +125,6 @@ namespace BH.Engine.Units
                 case AreaUnit.SquareKilometer:
                     return UNU.AreaUnit.SquareKilometer;
                 case AreaUnit.SquareMeter:
-                default:
                     return UNU.AreaUnit.SquareMeter;
                 case AreaUnit.SquareMicrometer:
                     return UNU.AreaUnit.SquareMicrometer;
@@ -131,6 +138,8 @@ namespace BH.Engine.Units
                     return UNU.AreaUnit.SquareYard;
                 case AreaUnit.UsSurveySquareFoot:
                     return UNU.AreaUnit.UsSurveySquareFoot;
+                default:
+                    return null;
             }
         }
     }

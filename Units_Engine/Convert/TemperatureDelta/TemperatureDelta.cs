@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = temperatureDelta;
             UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
-            UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
+            UNU.TemperatureDeltaUnit? unUnit = ToTemperatureDeltaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = kelvin;
             UNU.TemperatureDeltaUnit unitSI = UNU.TemperatureDeltaUnit.Kelvin;
-            UNU.TemperatureDeltaUnit unUnit = ToTemperatureDeltaUnit(unit);
+            UNU.TemperatureDeltaUnit? unUnit = ToTemperatureDeltaUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TemperatureDeltaUnit ToTemperatureDeltaUnit(object unit)
+        private static UNU.TemperatureDeltaUnit? ToTemperatureDeltaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TemperatureDeltaUnit.Kelvin;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -121,10 +129,11 @@ namespace BH.Engine.Units
                     return UNU.TemperatureDeltaUnit.DegreeRoemer;
                 case "k":
                 case TemperatureDeltaUnit.Kelvin:
-                default:
                     return UNU.TemperatureDeltaUnit.Kelvin;
                 case TemperatureDeltaUnit.MillidegreeCelsius:
                     return UNU.TemperatureDeltaUnit.MillidegreeCelsius;
+                default:
+                    return null;
             }
         }
     }

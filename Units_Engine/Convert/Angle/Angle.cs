@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = angle;
             UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
-            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+            UNU.AngleUnit? unUnit = ToAngleUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,24 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = radian;
             UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
-            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+            UNU.AngleUnit? unUnit = ToAngleUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
+
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AngleUnit ToAngleUnit(object unit)
+        private static UNU.AngleUnit? ToAngleUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AngleUnit.Radian;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -133,13 +142,14 @@ namespace BH.Engine.Units
                 case "radians":
                 case "rad":
                 case AngleUnit.Radian:
-                default:
                     return UNU.AngleUnit.Radian;
                 case "revolutions":
                 case "revs":
                 case "rev":
                 case AngleUnit.Revolution:
                     return UNU.AngleUnit.Revolution;
+                default:
+                    return null;
             }
         }
     }

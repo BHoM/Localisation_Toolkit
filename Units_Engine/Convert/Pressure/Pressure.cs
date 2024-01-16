@@ -56,9 +56,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = pressure;
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
-            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+            UNU.PressureUnit? unUnit = ToPressureUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -77,19 +81,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = pascal;
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
-            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+            UNU.PressureUnit? unUnit = ToPressureUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.PressureUnit ToPressureUnit(this object unit)
+        private static UNU.PressureUnit? ToPressureUnit(this object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.PressureUnit.Pascal;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -169,7 +177,6 @@ namespace BH.Engine.Units
                 case PressureUnit.NewtonPerSquareMillimeter:
                     return UNU.PressureUnit.NewtonPerSquareMillimeter;
                 case PressureUnit.Pascal:
-                default:
                     return UNU.PressureUnit.Pascal;
                 case PressureUnit.PoundForcePerSquareFoot:
                     return UNU.PressureUnit.PoundForcePerSquareFoot;
@@ -187,6 +194,8 @@ namespace BH.Engine.Units
                     return UNU.PressureUnit.TonneForcePerSquareMillimeter;
                 case PressureUnit.Torr:
                     return UNU.PressureUnit.Torr;
+                default:
+                    return null;
             }
         }
     }

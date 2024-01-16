@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum AngleUnit
     {
+        Undefined = 0,
         Arcminute = 1,
         Arcsecond = 2,
         Centiradian = 3,

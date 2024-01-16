@@ -53,9 +53,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = volume;
             UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
-            UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
+            UNU.VolumeUnit? unUnit = ToVolumeUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -74,19 +78,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = cubicMeter;
             UNU.VolumeUnit unitSI = UNU.VolumeUnit.CubicMeter;
-            UNU.VolumeUnit unUnit = ToVolumeUnit(unit);
+            UNU.VolumeUnit? unUnit = ToVolumeUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.VolumeUnit ToVolumeUnit(object unit)
+        private static UNU.VolumeUnit? ToVolumeUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.VolumeUnit.CubicMeter;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -123,7 +131,6 @@ namespace BH.Engine.Units
                     return UNU.VolumeUnit.CubicKilometer;
                 case "m^3":
                 case VolumeUnit.CubicMeter:
-                default:
                     return UNU.VolumeUnit.CubicMeter;
                 case VolumeUnit.CubicMicrometer:
                     return UNU.VolumeUnit.CubicMicrometer;
@@ -206,6 +213,8 @@ namespace BH.Engine.Units
                     return UNU.VolumeUnit.UsTablespoon;
                 case VolumeUnit.UsTeaspoon:
                     return UNU.VolumeUnit.UsTeaspoon;
+                default:
+                    return null;
             }
         }
     }

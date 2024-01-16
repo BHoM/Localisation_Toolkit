@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum TorqueUnit
     {
+        Undefined = 0,
         KilogramForceCentimeter = 1,
         KilogramForceMeter = 2,
         KilogramForceMillimeter = 3,

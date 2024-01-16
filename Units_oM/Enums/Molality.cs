@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum MolalityUnit
     {
+        Undefined = 0,
         MolePerKilogram = 1,
         MolePerGram = 2
     }

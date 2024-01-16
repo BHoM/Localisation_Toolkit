@@ -30,6 +30,7 @@ namespace BH.oM.Units
 {
     public enum ForcePerLengthUnit
     {
+        Undefined = 0,
         CentinewtonPerCentimeter = 1,
         CentinewtonPerMeter = 2,
         CentinewtonPerMillimeter = 3,

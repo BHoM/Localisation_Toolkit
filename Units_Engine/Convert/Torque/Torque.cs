@@ -57,9 +57,13 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = torque;
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
-            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+            UNU.TorqueUnit? unUnit = ToTorqueUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unUnit, unitSI);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
@@ -78,19 +82,23 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = newtonMeter;
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
-            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+            UNU.TorqueUnit? unUnit = ToTorqueUnit(unit);
 
-            return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+            if (unUnit != null)
+                return UN.UnitConverter.Convert(qv, unitSI, unUnit);
+
+            Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
+            return double.NaN;
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TorqueUnit ToTorqueUnit(object unit)
+        private static UNU.TorqueUnit? ToTorqueUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TorqueUnit.NewtonMeter;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -132,7 +140,6 @@ namespace BH.Engine.Units
                 case TorqueUnit.NewtonCentimeter:
                     return UNU.TorqueUnit.NewtonCentimeter;
                 case TorqueUnit.NewtonMeter:
-                default:
                     return UNU.TorqueUnit.NewtonMeter;
                 case TorqueUnit.NewtonMillimeter:
                     return UNU.TorqueUnit.NewtonMillimeter;
@@ -146,6 +153,8 @@ namespace BH.Engine.Units
                     return UNU.TorqueUnit.TonneForceMeter;
                 case TorqueUnit.TonneForceMillimeter:
                     return UNU.TorqueUnit.TonneForceMillimeter;
+                default:
+                    return null;
             }
         }
     }
