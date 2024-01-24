@@ -19,9 +19,5 @@
     <Exec Command="xcopy &quot;$(TargetDir)$(TargetFileName)&quot;  &quot;$(ProgramData)\BHoM\Assemblies&quot; /Y" />
   </Target>
 
-  <ItemGroup>
-    <PackageReference Include="UnitsNet" Version="5.42.0" />
-  </ItemGroup>
-
 
 </Project>
