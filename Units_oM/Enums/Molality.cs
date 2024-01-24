@@ -36,5 +36,3 @@ namespace BH.oM.Units
     }
 }
 
-
-
