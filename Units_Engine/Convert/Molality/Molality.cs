@@ -68,7 +68,7 @@ namespace BH.Engine.Units
         [Input("molePerKilograms", "The number of molePerKilograms to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MolalityUnit.")]
         [Output("molality", "The equivalent quantity defined in the specified unit.")]
-        public static double ToMolality(this double molality, object unit)
+        public static double ToMolality(this double molePerKilograms, object unit)
         {
             if (Double.IsNaN(molality) || Double.IsInfinity(molality))
             {
