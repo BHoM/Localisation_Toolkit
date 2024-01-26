@@ -70,13 +70,13 @@ namespace BH.Engine.Units
         [Output("molality", "The equivalent quantity defined in the specified unit.")]
         public static double ToMolality(this double molePerKilograms, object unit)
         {
-            if (Double.IsNaN(molality) || Double.IsInfinity(molality))
+            if (Double.IsNaN(molePerKilograms) || Double.IsInfinity(molePerKilograms))
             {
-                Compute.RecordError("Quantity is not a real number.");
+                Compute.RecordError("Quantity is not a valid number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = molality;
+            UN.QuantityValue qv = molePerKilograms;
             UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
             UNU.MolalityUnit? unUnit = ToMolalityUnit(unit);
 
