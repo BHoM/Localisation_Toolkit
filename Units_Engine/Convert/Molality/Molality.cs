@@ -19,16 +19,13 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UNU = UnitsNet.Units;
-
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
@@ -42,21 +39,21 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a area into SI units (squareMetres).")]
-        [Input("area", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum AreaUnit.")]
-        [Output("squareMetres", "The equivalent number of squareMetres.")]
-        public static double FromArea(this double area, object unit)
+        [Description("Convert a molality into SI units (molePerKilogram).")]
+        [Input("molality", "The quantity to convert.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MolalityUnit.")]
+        [Output("molePerKilograms", "The equivalent number of kilograms.")]
+        public static double FromMolality(this double molality, object unit)
         {
-            if (Double.IsNaN(area) || Double.IsInfinity(area))
+            if (Double.IsNaN(molality) || Double.IsInfinity(molality))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = area;
-            UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
-            UNU.AreaUnit? unUnit = ToAreaUnit(unit);
+            UN.QuantityValue qv = molality;
+            UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
+            UNU.MolalityUnit? unUnit = ToMolalityUnit(unit);
 
             if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
@@ -67,21 +64,21 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (squareMetres) into another area unit.")]
-        [Input("squareMetres", "The number of squareMetres to convert.")]
-        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum AreaUnit.")]
-        [Output("area", "The equivalent quantity defined in the specified unit.")]
-        public static double ToArea(this double squareMetres, object unit)
+        [Description("Convert SI units (molePerKilogram) into another duration unit.")]
+        [Input("molePerKilograms", "The number of molePerKilograms to convert.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MolalityUnit.")]
+        [Output("molality", "The equivalent quantity defined in the specified unit.")]
+        public static double ToMolality(this double molePerKilograms, object unit)
         {
-            if (Double.IsNaN(squareMetres) || Double.IsInfinity(squareMetres))
+            if (Double.IsNaN(molePerKilograms) || Double.IsInfinity(molePerKilograms))
             {
-                Compute.RecordError("Quantity is not a real number.");
+                Compute.RecordError("Quantity is not a valid number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = squareMetres;
-            UNU.AreaUnit unitSI = UNU.AreaUnit.SquareMeter;
-            UNU.AreaUnit? unUnit = ToAreaUnit(unit);
+            UN.QuantityValue qv = molePerKilograms;
+            UNU.MolalityUnit unitSI = UNU.MolalityUnit.MolePerKilogram;
+            UNU.MolalityUnit? unUnit = ToMolalityUnit(unit);
 
             if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
@@ -94,15 +91,14 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AreaUnit? ToAreaUnit(object unit)
+        private static UNU.MolalityUnit? ToMolalityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;
-
             if (unit.GetType() == typeof(string))
             {
-                AreaUnit unitEnum;
-                if (Enum.TryParse<AreaUnit>(unit.ToString(), out unitEnum))
+                DurationUnit unitEnum;
+                if (Enum.TryParse<DurationUnit>(unit.ToString(), out unitEnum))
                     unit = unitEnum;
                 else
                     unit = unit.ToString().ToLower();
@@ -110,41 +106,13 @@ namespace BH.Engine.Units
 
             switch (unit)
             {
-                case AreaUnit.Acre:
-                    return UNU.AreaUnit.Acre;
-                case AreaUnit.Hectare:
-                    return UNU.AreaUnit.Hectare;
-                case AreaUnit.SquareCentimeter:
-                    return UNU.AreaUnit.SquareCentimeter;
-                case AreaUnit.SquareDecimeter:
-                    return UNU.AreaUnit.SquareDecimeter;
-                case AreaUnit.SquareFoot:
-                    return UNU.AreaUnit.SquareFoot;
-                case AreaUnit.SquareInch:
-                    return UNU.AreaUnit.SquareInch;
-                case AreaUnit.SquareKilometer:
-                    return UNU.AreaUnit.SquareKilometer;
-                case AreaUnit.SquareMeter:
-                    return UNU.AreaUnit.SquareMeter;
-                case AreaUnit.SquareMicrometer:
-                    return UNU.AreaUnit.SquareMicrometer;
-                case AreaUnit.SquareMile:
-                    return UNU.AreaUnit.SquareMile;
-                case AreaUnit.SquareMillimeter:
-                    return UNU.AreaUnit.SquareMillimeter;
-                case AreaUnit.SquareNauticalMile:
-                    return UNU.AreaUnit.SquareNauticalMile;
-                case AreaUnit.SquareYard:
-                    return UNU.AreaUnit.SquareYard;
-                case AreaUnit.UsSurveySquareFoot:
-                    return UNU.AreaUnit.UsSurveySquareFoot;
+                case MolalityUnit.MolePerGram:
+                    return UNU.MolalityUnit.MolePerGram;
+                case MolalityUnit.MolePerKilogram:
+                    return UNU.MolalityUnit.MolePerKilogram;
                 default:
                     return null;
             }
         }
     }
 }
-
-
-
-

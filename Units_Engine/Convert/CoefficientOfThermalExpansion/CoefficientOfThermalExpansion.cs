@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = coefficientOfThermalExpansion;
             UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
-            UNU.CoefficientOfThermalExpansionUnit unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+            UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
-            if (unUnit != UNU.CoefficientOfThermalExpansionUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = inverseDeltaKelvins;
             UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
-            UNU.CoefficientOfThermalExpansionUnit unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+            UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
-            if (unUnit != UNU.CoefficientOfThermalExpansionUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.CoefficientOfThermalExpansionUnit ToCoefficientOfThermalExpansionUnit(object unit)
+        private static UNU.CoefficientOfThermalExpansionUnit? ToCoefficientOfThermalExpansionUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.CoefficientOfThermalExpansionUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -116,9 +116,9 @@ namespace BH.Engine.Units
                     return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin:
                     return UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
-                case CoefficientOfThermalExpansionUnit.Undefined:
                 default:
-                    return UNU.CoefficientOfThermalExpansionUnit.Undefined;
+                    return null;
+
             }
         }
     }

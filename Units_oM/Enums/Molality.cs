@@ -19,6 +19,7 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,15 +28,11 @@ using System.Threading.Tasks;
 
 namespace BH.oM.Units
 {
-    public enum MassFractionUnit
+    public enum MolalityUnit
     {
         Undefined = 0,
-        NanogramPerKilogram = 1,
-        MicrogramPerKilogram = 2,
-        MilligramPerKilogram = 3,
-        CentigramPerKilogram = 4,
-        DecigramPerKilogram = 5,
-        GramPerKilogram = 6,
-        KilogramPerKilogram = 7
+        MolePerKilogram = 1,
+        MolePerGram = 2
     }
 }
+

@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = angle;
             UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
-            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+            UNU.AngleUnit? unUnit = ToAngleUnit(unit);
 
-            if (unUnit != UNU.AngleUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,23 +81,24 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = radian;
             UNU.AngleUnit unitSI = UNU.AngleUnit.Radian;
-            UNU.AngleUnit unUnit = ToAngleUnit(unit);
+            UNU.AngleUnit? unUnit = ToAngleUnit(unit);
 
-            if (unUnit != UNU.AngleUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;
+
         }
 
         /***************************************************/
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AngleUnit ToAngleUnit(object unit)
+        private static UNU.AngleUnit? ToAngleUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AngleUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -147,9 +148,8 @@ namespace BH.Engine.Units
                 case "rev":
                 case AngleUnit.Revolution:
                     return UNU.AngleUnit.Revolution;
-                case AngleUnit.Undefined:
                 default:
-                    return UNU.AngleUnit.Undefined;
+                    return null;
             }
         }
     }

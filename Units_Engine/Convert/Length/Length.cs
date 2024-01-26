@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = length;
             UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
-            UNU.LengthUnit unUnit = ToLengthUnit(unit);
+            UNU.LengthUnit? unUnit = ToLengthUnit(unit);
 
-            if (unUnit != UNU.LengthUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metres;
             UNU.LengthUnit unitSI = UNU.LengthUnit.Meter;
-            UNU.LengthUnit unUnit = ToLengthUnit(unit);
+            UNU.LengthUnit? unUnit = ToLengthUnit(unit);
 
-            if (unUnit != UNU.LengthUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.LengthUnit ToLengthUnit(object unit)
+        private static UNU.LengthUnit? ToLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.LengthUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -155,9 +155,8 @@ namespace BH.Engine.Units
                 case "yd":
                 case LengthUnit.Yard:
                     return UNU.LengthUnit.Yard;
-                case LengthUnit.Undefined:
                 default:
-                    return UNU.LengthUnit.Undefined;
+                    return null;
             }
         }
     }

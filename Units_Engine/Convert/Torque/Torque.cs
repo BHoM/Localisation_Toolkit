@@ -57,9 +57,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = torque;
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
-            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+            UNU.TorqueUnit? unUnit = ToTorqueUnit(unit);
 
-            if (unUnit != UNU.TorqueUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -82,9 +82,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = newtonMeter;
             UNU.TorqueUnit unitSI = UNU.TorqueUnit.NewtonMeter;
-            UNU.TorqueUnit unUnit = ToTorqueUnit(unit);
+            UNU.TorqueUnit? unUnit = ToTorqueUnit(unit);
 
-            if (unUnit != UNU.TorqueUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -95,10 +95,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.TorqueUnit ToTorqueUnit(object unit)
+        private static UNU.TorqueUnit? ToTorqueUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.TorqueUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -153,9 +153,8 @@ namespace BH.Engine.Units
                     return UNU.TorqueUnit.TonneForceMeter;
                 case TorqueUnit.TonneForceMillimeter:
                     return UNU.TorqueUnit.TonneForceMillimeter;
-                case TorqueUnit.Undefined:
                 default:
-                    return UNU.TorqueUnit.Undefined;
+                    return null;
             }
         }
     }
