@@ -41,7 +41,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (joules) into british thermal units")]
         [Input("joules", "The number of joules to convert", typeof(Energy))]
-        [Output("BTUs", "The number of british thermal units")]
+        [Output("britishThermalUnits", "The number of british thermal units")]
         public static double ToBritishThermalUnit(this double joules)
         {
             UN.QuantityValue qv = joules;
@@ -49,11 +49,11 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert british thermal units into SI units (joules)")]
-        [Input("BTUs", "The number of british thermal units to convert")]
+        [Input("britishThermalUnits", "The number of british thermal units to convert")]
         [Output("joules", "The number of joules", typeof(Energy))]
-        public static double FromBritishThermalUnit(this double BTUs)
+        public static double FromBritishThermalUnit(this double britishThermalUnits)
         {
-            UN.QuantityValue qv = BTUs;
+            UN.QuantityValue qv = britishThermalUnits;
             return UN.UnitConverter.Convert(qv, EnergyUnit.BritishThermalUnit, EnergyUnit.Joule);
         }
     }

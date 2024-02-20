@@ -20,20 +20,11 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UNU = UnitsNet.Units;
-
-using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Units;
-using BH.Engine.Base;
 using BH.oM.Quantities.Attributes;
+using BH.oM.Units;
+using System.ComponentModel;
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 
 namespace BH.Engine.Units
 {
@@ -41,7 +32,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (joules) into kilowatt-hours.")]
         [Input("joules", "The number of joules to convert.", typeof(Energy))]
-        [Output("kWhs", "The number of kilowatt-hours.")]
+        [Output("kilowattHours", "The number of kilowatt-hours.")]
         public static double ToKilowattHour(this double joules)
         {
             UN.QuantityValue qv = joules;
@@ -49,11 +40,11 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert kilowatt-hours into SI units (joules).")]
-        [Input("kWhs", "The number of kilowatt-hours to convert.")]
+        [Input("kilowattHours", "The number of kilowatt-hours to convert.")]
         [Output("joules", "The number of joules.", typeof(Energy))]
-        public static double FromKilowattHour(this double kWhs)
+        public static double FromKilowattHour(this double kilowattHours)
         {
-            UN.QuantityValue qv = kWhs;
+            UN.QuantityValue qv = kilowattHours;
             return UN.UnitConverter.Convert(qv, EnergyUnit.KilowattHour, EnergyUnit.Joule);
         }
     }
