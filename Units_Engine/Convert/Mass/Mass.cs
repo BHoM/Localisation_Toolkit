@@ -45,7 +45,7 @@ namespace BH.Engine.Units
         [Description("Convert a angle into SI units (kiloGram).")]
         [Input("mass", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MassUnit.")]
-        [Output("kiloGram", "The equivalent number of kiloGrams.")]
+        [Output("kilogram", "The equivalent number of kilograms.")]
         public static double FromMass(this double mass, object unit)
         {
             if (Double.IsNaN(mass) || Double.IsInfinity(mass))
@@ -67,8 +67,8 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (kiloGram) into another angle unit.")]
-        [Input("kiloGram", "The number of kiloGram to convert.")]
+        [Description("Convert SI units (kilogram) into another angle unit.")]
+        [Input("kilogram", "The number of kiloGram to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MassUnit.")]
         [Output("mass", "The equivalent quantity defined in the specified unit.")]
         public static double ToMass(this double kilogram, object unit)
