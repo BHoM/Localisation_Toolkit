@@ -42,7 +42,7 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a angle into SI units (joule).")]
+        [Description("Convert an energy into SI units (joule).")]
         [Input("energy", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum EnergyUnit.")]
         [Output("joule", "The equivalent number of joules.")]
@@ -67,7 +67,7 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (joule) into another angle unit.")]
+        [Description("Convert SI units (joule) into another energy unit.")]
         [Input("joule", "The number of joule to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum EnergyUnit.")]
         [Output("energy", "The equivalent quantity defined in the specified unit.")]
