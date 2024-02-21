@@ -119,7 +119,7 @@ namespace BH.Engine.Units
                 case EnergyUnit.Joule:
                     return UNU.EnergyUnit.Joule;
                 case "kbtu":
-                case EnergyUnit.KilobritishThermalUnit:
+                case EnergyUnit.KiloBritishThermalUnit:
                     return UNU.EnergyUnit.KilobritishThermalUnit;
                 case "kj":
                 case EnergyUnit.Kilojoule:
@@ -128,7 +128,7 @@ namespace BH.Engine.Units
                 case EnergyUnit.KilowattHour:
                     return UNU.EnergyUnit.KilowattHour;
                 case "mmbtu":
-                case EnergyUnit.MegabritishThermalUnit:
+                case EnergyUnit.MegaBritishThermalUnit:
                     return UNU.EnergyUnit.MegabritishThermalUnit;
                 case EnergyUnit.Megajoule:
                     return UNU.EnergyUnit.Megajoule;

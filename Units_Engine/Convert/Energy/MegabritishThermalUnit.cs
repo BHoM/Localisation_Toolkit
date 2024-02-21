@@ -27,11 +27,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UNU = UnitsNet.Units;
+using UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Units;
 using BH.Engine.Base;
 using BH.oM.Quantities.Attributes;
 
@@ -42,7 +41,7 @@ namespace BH.Engine.Units
         [Description("Convert SI units (joules) into mega british thermal units")]
         [Input("joules", "The number of joules to convert", typeof(Energy))]
         [Output("megaBritishThermalUnits", "The number of mega british thermal units")]
-        public static double ToMegabritishThermalUnit(this double joules)
+        public static double ToMegaBritishThermalUnit(this double joules)
         {
             UN.QuantityValue qv = joules;
             return UN.UnitConverter.Convert(qv, EnergyUnit.Joule, EnergyUnit.MegabritishThermalUnit);
@@ -51,7 +50,7 @@ namespace BH.Engine.Units
         [Description("Convert mega british thermal units into SI units (joules)")]
         [Input("megaBritishThermalUnits", "The number of mega british thermal units to convert")]
         [Output("joules", "The number of joules", typeof(Energy))]
-        public static double FromMegabritishThermalUnit(this double megaBritishThermalUnits)
+        public static double FromMegaBritishThermalUnit(this double megaBritishThermalUnits)
         {
             UN.QuantityValue qv = megaBritishThermalUnits;
             return UN.UnitConverter.Convert(qv, EnergyUnit.MegabritishThermalUnit, EnergyUnit.Joule);
