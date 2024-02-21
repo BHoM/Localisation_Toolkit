@@ -145,6 +145,3 @@ namespace BH.Engine.Units
     }
 }
 
-
-
-
