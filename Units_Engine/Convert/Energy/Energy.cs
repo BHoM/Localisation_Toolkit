@@ -42,7 +42,7 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert an energy into SI units (joule).")]
+        [Description("Convert a measure of energy into SI units (joule).")]
         [Input("energy", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum EnergyUnit.")]
         [Output("joule", "The equivalent number of joules.")]
