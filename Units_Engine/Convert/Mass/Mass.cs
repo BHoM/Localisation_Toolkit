@@ -42,7 +42,7 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a angle into SI units (kiloGram).")]
+        [Description("Convert a mass into SI units (kiloGram).")]
         [Input("mass", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MassUnit.")]
         [Output("kilogram", "The equivalent number of kilograms.")]
@@ -67,7 +67,7 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (kilogram) into another angle unit.")]
+        [Description("Convert SI units (kilogram) into another mass unit.")]
         [Input("kilogram", "The number of kiloGram to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MassUnit.")]
         [Output("mass", "The equivalent quantity defined in the specified unit.")]
