@@ -42,7 +42,7 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a mass into SI units (kiloGram).")]
+        [Description("Convert a mass into SI units (kilogram).")]
         [Input("mass", "The quantity to convert.")]
         [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum MassUnit.")]
         [Output("kilogram", "The equivalent number of kilograms.")]
@@ -68,7 +68,7 @@ namespace BH.Engine.Units
         /***************************************************/
 
         [Description("Convert SI units (kilogram) into another mass unit.")]
-        [Input("kilogram", "The number of kiloGram to convert.")]
+        [Input("kilogram", "The number of kilogram to convert.")]
         [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum MassUnit.")]
         [Output("mass", "The equivalent quantity defined in the specified unit.")]
         public static double ToMass(this double kilogram, object unit)
@@ -88,7 +88,6 @@ namespace BH.Engine.Units
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
             return double.NaN;
-
         }
 
         /***************************************************/

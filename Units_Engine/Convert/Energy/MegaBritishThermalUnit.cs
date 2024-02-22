@@ -40,7 +40,7 @@ namespace BH.Engine.Units
     {
         [Description("Convert SI units (joules) into mega British thermal units")]
         [Input("joules", "The number of joules to convert", typeof(Energy))]
-        [Output("megaBritishThermalUnits", "The number of mega british thermal units")]
+        [Output("megaBritishThermalUnits", "The number of mega British thermal units")]
         public static double ToMegaBritishThermalUnit(this double joules)
         {
             UN.QuantityValue qv = joules;
@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         }
 
         [Description("Convert mega British thermal units into SI units (joules)")]
-        [Input("megaBritishThermalUnits", "The number of mega british thermal units to convert")]
+        [Input("megaBritishThermalUnits", "The number of mega British thermal units to convert")]
         [Output("joules", "The number of joules", typeof(Energy))]
         public static double FromMegaBritishThermalUnit(this double megaBritishThermalUnits)
         {
