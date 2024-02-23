@@ -27,11 +27,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-using UNU = UnitsNet.Units;
+using UnitsNet.Units;
 
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
-using BH.oM.Units;
 using BH.Engine.Base;
 using BH.oM.Quantities.Attributes;
 

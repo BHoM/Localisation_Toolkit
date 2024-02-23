@@ -22,9 +22,9 @@
 
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
-using BH.oM.Units;
 using System.ComponentModel;
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
 
 namespace BH.Engine.Units
 {
