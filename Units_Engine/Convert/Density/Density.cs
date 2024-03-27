@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = density;
             UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
-            UNU.DensityUnit unUnit = ToDensityUnit(unit);
+            UNU.DensityUnit? unUnit = ToDensityUnit(unit);
 
-            if (unUnit != UNU.DensityUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = kilogramPerCubicMetres;
             UNU.DensityUnit unitSI = UNU.DensityUnit.KilogramPerCubicMeter;
-            UNU.DensityUnit unUnit = ToDensityUnit(unit);
+            UNU.DensityUnit? unUnit = ToDensityUnit(unit);
 
-            if (unUnit != UNU.DensityUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.DensityUnit ToDensityUnit(object unit)
+        private static UNU.DensityUnit? ToDensityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.DensityUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -193,13 +193,13 @@ namespace BH.Engine.Units
                     return UNU.DensityUnit.TonnePerCubicMeter;
                 case DensityUnit.TonnePerCubicMillimeter:
                     return UNU.DensityUnit.TonnePerCubicMillimeter;
-                case DensityUnit.Undefined:
                 default:
-                    return UNU.DensityUnit.Undefined;
+                    return null;
             }
         }
     }
 }
+
 
 
 

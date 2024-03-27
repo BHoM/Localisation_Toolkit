@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = pressure;
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
-            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+            UNU.PressureUnit? unUnit = ToPressureUnit(unit);
 
-            if (unUnit != UNU.PressureUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = pascal;
             UNU.PressureUnit unitSI = UNU.PressureUnit.Pascal;
-            UNU.PressureUnit unUnit = ToPressureUnit(unit);
+            UNU.PressureUnit? unUnit = ToPressureUnit(unit);
 
-            if (unUnit != UNU.PressureUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.PressureUnit ToPressureUnit(this object unit)
+        private static UNU.PressureUnit? ToPressureUnit(this object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.PressureUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -194,13 +194,13 @@ namespace BH.Engine.Units
                     return UNU.PressureUnit.TonneForcePerSquareMillimeter;
                 case PressureUnit.Torr:
                     return UNU.PressureUnit.Torr;
-                case PressureUnit.Undefined:
                 default:
-                    return UNU.PressureUnit.Undefined;
+                    return null;
             }
         }
     }
 }
+
 
 
 

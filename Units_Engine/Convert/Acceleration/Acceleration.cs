@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = acceleration;
             UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
-            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            UNU.AccelerationUnit? unUnit = ToAccelerationUnit(unit);
 
-            if (unUnit != UNU.AccelerationUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metresPerSecondSquared;
             UNU.AccelerationUnit unitSI = UNU.AccelerationUnit.MeterPerSecondSquared;
-            UNU.AccelerationUnit unUnit = ToAccelerationUnit(unit);
+            UNU.AccelerationUnit? unUnit = ToAccelerationUnit(unit);
 
-            if (unUnit != UNU.AccelerationUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.AccelerationUnit ToAccelerationUnit(object unit)
+        private static UNU.AccelerationUnit? ToAccelerationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.AccelerationUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -136,13 +136,13 @@ namespace BH.Engine.Units
                     return UNU.AccelerationUnit.NanometerPerSecondSquared;
                 case AccelerationUnit.StandardGravity:
                     return UNU.AccelerationUnit.StandardGravity;
-                case AccelerationUnit.Undefined:
                 default:
-                    return UNU.AccelerationUnit.Undefined;
+                    return null;
             }
         }
     }
 }
+
 
 
 

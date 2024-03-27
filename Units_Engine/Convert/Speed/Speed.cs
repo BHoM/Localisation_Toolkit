@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2023, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -56,9 +56,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = speed;
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
-            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+            UNU.SpeedUnit? unUnit = ToSpeedUnit(unit);
 
-            if (unUnit != UNU.SpeedUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -81,9 +81,9 @@ namespace BH.Engine.Units
 
             UN.QuantityValue qv = metresPerSecond;
             UNU.SpeedUnit unitSI = UNU.SpeedUnit.MeterPerSecond;
-            UNU.SpeedUnit unUnit = ToSpeedUnit(unit);
+            UNU.SpeedUnit? unUnit = ToSpeedUnit(unit);
 
-            if (unUnit != UNU.SpeedUnit.Undefined)
+            if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
 
             Compute.RecordError("Unit was undefined. Please use the appropriate BHoM Units Enum.");
@@ -94,10 +94,10 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.SpeedUnit ToSpeedUnit(object unit)
+        private static UNU.SpeedUnit? ToSpeedUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
-                return UNU.SpeedUnit.Undefined;
+                return null;
 
             if (unit.GetType() == typeof(string))
             {
@@ -174,11 +174,11 @@ namespace BH.Engine.Units
                     return UNU.SpeedUnit.YardPerMinute;
                 case SpeedUnit.YardPerSecond:
                     return UNU.SpeedUnit.YardPerSecond;
-                case SpeedUnit.Undefined:
                 default:
-                    return UNU.SpeedUnit.Undefined;
+                    return null;
             }
         }
     }
 }
+
 
