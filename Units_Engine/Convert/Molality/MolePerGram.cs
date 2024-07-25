@@ -29,7 +29,6 @@ using UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
-using UnitsNet;
 
 namespace BH.Engine.Units
 {
