@@ -159,7 +159,7 @@ namespace BH.Engine.Units
                     return UNU.DensityUnit.MilligramPerCubicMeter;
                 case DensityUnit.MilligramPerDeciliter:
                     return UNU.DensityUnit.MilligramPerDeciliter;
-                case "mgCaCO3/L":
+                case "mgcaco3/l":
                 case DensityUnit.MilligramPerLiter:
                     return UNU.DensityUnit.MilligramPerLiter;
                 case DensityUnit.MilligramPerMilliliter:
