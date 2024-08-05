@@ -19,21 +19,39 @@
  * You should have received a copy of the GNU Lesser General Public License     
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+using UnitsNet.Units;
+using System.ComponentModel;
+using BH.oM.Base.Attributes;
+using BH.oM.Quantities.Attributes;
 
-namespace BH.oM.Units
+namespace BH.Engine.Units
 {
-    public enum MolalityUnit
+    public static partial class Convert
     {
-        Undefined = 0,
-        MolePerKilogram = 1,
-        MolePerGram = 2,
-        MillimolPerKilogram = 3
+        [Description("Convert SI units (molePerKilogram) into millimolePerKilogram.")]
+        [Input("molePerKilograms", "The number of molePerKilogram to convert.", typeof(Molality))]
+        [Output("millimolePerKilograms", "The number of millimolePerKilogram.")]
+        public static double ToMillimolePerKilogram(this double molePerKilograms)
+        {
+            UN.QuantityValue qv = molePerKilograms;
+            return UN.UnitConverter.Convert(qv, MolalityUnit.MolePerKilogram, MolalityUnit.MillimolePerKilogram);
+        }
+
+        /***************************************************/
+
+        [Description("Convert millimolePerKilogram into SI units (molePerKilogram).")]
+        [Input("millimolePerKilograms", "The number of millimolePerKilograms to convert.")]
+        [Output("molePerKilograms", "The number of molePerKilograms.", typeof(Molality))]
+        public static double FromMillimolePerKiloram(this double millimolePerKilograms)
+        {
+            UN.QuantityValue qv = millimolePerKilograms;
+            return UN.UnitConverter.Convert(qv, MolalityUnit.MillimolePerKilogram, MolalityUnit.MolePerKilogram);
+        }
     }
 }
-
