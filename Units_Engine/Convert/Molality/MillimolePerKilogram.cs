@@ -48,7 +48,7 @@ namespace BH.Engine.Units
         [Description("Convert millimolePerKilogram into SI units (molePerKilogram).")]
         [Input("millimolePerKilograms", "The number of millimolePerKilograms to convert.")]
         [Output("molePerKilograms", "The number of molePerKilograms.", typeof(Molality))]
-        public static double FromMillimolePerKiloram(this double millimolePerKilograms)
+        public static double FromMillimolePerKilogram(this double millimolePerKilograms)
         {
             UN.QuantityValue qv = millimolePerKilograms;
             return UN.UnitConverter.Convert(qv, MolalityUnit.MillimolePerKilogram, MolalityUnit.MolePerKilogram);
