@@ -110,7 +110,7 @@ namespace BH.Engine.Units
                     return UNU.MolalityUnit.MolePerGram;
                 case MolalityUnit.MolePerKilogram:
                     return UNU.MolalityUnit.MolePerKilogram;
-                case MolalityUnit.MillimolPerKilogram:
+                case MolalityUnit.MillimolePerKilogram:
                     return UNU.MolalityUnit.MillimolePerKilogram;
                 default:
                     return null;
