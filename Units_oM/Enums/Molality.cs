@@ -32,7 +32,8 @@ namespace BH.oM.Units
     {
         Undefined = 0,
         MolePerKilogram = 1,
-        MolePerGram = 2
+        MolePerGram = 2,
+        MillimolePerKilogram = 3
     }
 }
 
