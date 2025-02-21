@@ -55,7 +55,7 @@ namespace BH.Engine.Units
             }
 
             UN.QuantityValue qv = coefficientOfThermalExpansion;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
             UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
             if (unUnit != null)
@@ -80,7 +80,7 @@ namespace BH.Engine.Units
             }
 
             UN.QuantityValue qv = inverseDeltaKelvins;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
             UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
             if (unUnit != null)
@@ -111,11 +111,11 @@ namespace BH.Engine.Units
             switch (unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeCelsius;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeCelsius;
                 case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
                 default:
                     return null;
 
