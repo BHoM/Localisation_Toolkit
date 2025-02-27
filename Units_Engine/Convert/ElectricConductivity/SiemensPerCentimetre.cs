@@ -32,28 +32,27 @@ using UnitsNet.Units;
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Quantities.Attributes;
-using UnitsNet;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (inverse delta Kelvins) into inverse delta degress Fahrenheit")]
-        [Input("inverseDeltaKelvins", "The number of inverse delta Kelvins to convert", typeof(ThermalExpansionCoefficient))]
-        [Output("inverseDeltaDegreesFahrenheit", "The number of inverse delta degrees Fahrenheit")]
-        public static double ToInverseDeltaDegreeFahrenheit(this double inverseDeltaKelvins)
+        [Description("Convert SI units (siemens per metre) into siemens per centimetre.")]
+        [Input("siemensPerMetre", "The number of siemens per metre to convert.", typeof(ElectricConductivity))]
+        [Output("siemensPerCentimetre", "The number of siemens per centimetre.")]
+        public static double ToSiemensPerCentimetre(this double siemensPerMetre)
         {
-            UN.QuantityValue qv = inverseDeltaKelvins;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit);
+            UN.QuantityValue qv = siemensPerMetre;
+            return UN.UnitConverter.Convert(qv, ElectricConductivityUnit.SiemensPerMeter, ElectricConductivityUnit.SiemensPerCentimeter);
         }
 
-        [Description("Convert inverse delta degrees Fahrenheit into SI units (inverse delta Kelvins)")]
-        [Input("inverseDeltaDegreesFahrenheit", "The number of inverse delta degrees Fahrenheit to convert")]
-        [Output("inverseDeltaKelvins", "The number of inverse delta Kelvins", typeof(ThermalExpansionCoefficient))]
-        public static double FromInverseDeltaDegreeFahrenheit(this double inverseDeltaDegreesFahrenheit)
+        [Description("Convert siemens per centimetre into SI units (siemens per metre).")]
+        [Input("siemensPerCentimetre", "The number of siemens per centimetre.")]
+        [Output("siemensPerMetre", "The number of siemens per metre.", typeof(ElectricConductivity))]
+        public static double FromSiemensPerCentimetre(this double siemensPerCentimetre)
         {
-            UN.QuantityValue qv = inverseDeltaDegreesFahrenheit;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit, CoefficientOfThermalExpansionUnit.PerKelvin);
+            UN.QuantityValue qv = siemensPerCentimetre;
+            return UN.UnitConverter.Convert(qv, ElectricConductivityUnit.SiemensPerCentimeter, ElectricConductivityUnit.SiemensPerMeter);
         }
     }
 }

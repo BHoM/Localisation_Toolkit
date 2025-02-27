@@ -33,6 +33,7 @@ using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
 using BH.Engine.Base;
+using UnitsNet.Units;
 
 namespace BH.Engine.Units
 {
@@ -42,21 +43,21 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Convert a coefficientOfThermalExpansion into SI units (inverseDeltaKelvins).")]
-        [Input("coefficientOfThermalExpansion", "The quantity to convert.")]
-        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum CoefficientOfThermalExpansionUnit.")]
-        [Output("inverseDeltaKelvins", "The equivalent number of inverseDeltaKelvins.")]
-        public static double FromCoefficientOfThermalExpansion(this double coefficientOfThermalExpansion, object unit)
+        [Description("Convert a conductivity into SI units (siemens per metre).")]
+        [Input("conductivity", "The quantity to convert.")]
+        [Input("unit", "The unit in which the quantity is defined. This can be a string, or you can use the BHoM Enum ConductivityUnit.")]
+        [Output("siemensPerMetre", "The equivalent number of siemens per metre.")]
+        public static double FromElectricConductivity(this double conductivity, object unit)
         {
-            if (Double.IsNaN(coefficientOfThermalExpansion) || Double.IsInfinity(coefficientOfThermalExpansion))
+            if (Double.IsNaN(conductivity) || Double.IsInfinity(conductivity))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = coefficientOfThermalExpansion;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
-            UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+            UN.QuantityValue qv = conductivity;
+            UNU.ElectricConductivityUnit unitSI = UNU.ElectricConductivityUnit.SiemensPerMeter;
+            UNU.ElectricConductivityUnit? unUnit = ToElectricConductivityUnit(unit);
 
             if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unUnit, unitSI);
@@ -67,21 +68,21 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
-        [Description("Convert SI units (inverseDeltaKelvins) into another coefficientOfThermalExpansion unit.")]
-        [Input("inverseDeltaKelvins", "The number of inverseDeltaKelvins to convert.")]
-        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum CoefficientOfThermalExpansionUnit.")]
-        [Output("coefficientOfThermalExpansion", "The equivalent quantity defined in the specified unit.")]
-        public static double ToCoefficientOfThermalExpansion(this double inverseDeltaKelvins, object unit)
+        [Description("Convert SI units (siemensPerMetre) into another conductivity unit.")]
+        [Input("siemensPerMetre", "The number of siemensPerMetre to convert.")]
+        [Input("unit", "The unit to convert to. This can be a string, or you can use the BHoM Enum ConductivityUnit.")]
+        [Output("conductivity", "The equivalent quantity defined in the specified unit.")]
+        public static double ToElectricConductivity(this double siemensPerMetre, object unit)
         {
-            if (Double.IsNaN(inverseDeltaKelvins) || Double.IsInfinity(inverseDeltaKelvins))
+            if (Double.IsNaN(siemensPerMetre) || Double.IsInfinity(siemensPerMetre))
             {
                 Compute.RecordError("Quantity is not a real number.");
                 return double.NaN;
             }
 
-            UN.QuantityValue qv = inverseDeltaKelvins;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
-            UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
+            UN.QuantityValue qv = siemensPerMetre;
+            UNU.ElectricConductivityUnit unitSI = UNU.ElectricConductivityUnit.SiemensPerMeter;
+            UNU.ElectricConductivityUnit? unUnit = ToElectricConductivityUnit(unit);
 
             if (unUnit != null)
                 return UN.UnitConverter.Convert(qv, unitSI, unUnit);
@@ -94,15 +95,15 @@ namespace BH.Engine.Units
         /**** Private Methods                           ****/
         /***************************************************/
 
-        private static UNU.CoefficientOfThermalExpansionUnit? ToCoefficientOfThermalExpansionUnit(object unit)
+        private static UNU.ElectricConductivityUnit? ToElectricConductivityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;
 
             if (unit.GetType() == typeof(string))
             {
-                CoefficientOfThermalExpansionUnit unitEnum;
-                if (Enum.TryParse<CoefficientOfThermalExpansionUnit>(unit.ToString(), out unitEnum))
+                UNU.ElectricConductivityUnit unitEnum;
+                if (Enum.TryParse<UNU.ElectricConductivityUnit>(unit.ToString(), out unitEnum))
                     unit = unitEnum;
                 else
                     unit = unit.ToString().ToLower();
@@ -110,15 +111,16 @@ namespace BH.Engine.Units
 
             switch (unit)
             {
-                case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
-                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeCelsius;
-                case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
-                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit;
-                case CoefficientOfThermalExpansionUnit.InverseKelvin:
-                    return UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
+                case oM.Units.ElectricConductivityUnit.SiemensPerCentimetre:
+                    return UNU.ElectricConductivityUnit.SiemensPerCentimeter;
+                case oM.Units.ElectricConductivityUnit.SiemensPerFoot:
+                    return UNU.ElectricConductivityUnit.SiemensPerFoot;
+                case oM.Units.ElectricConductivityUnit.SiemensPerInch:
+                    return UNU.ElectricConductivityUnit.SiemensPerInch;
+                case oM.Units.ElectricConductivityUnit.SiemensPerMetre:
+                    return UNU.ElectricConductivityUnit.SiemensPerMeter;
                 default:
                     return null;
-
             }
         }
     }
