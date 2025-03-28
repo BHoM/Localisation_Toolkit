@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2025, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -55,7 +55,7 @@ namespace BH.Engine.Units
             }
 
             UN.QuantityValue qv = coefficientOfThermalExpansion;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
             UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
             if (unUnit != null)
@@ -80,7 +80,7 @@ namespace BH.Engine.Units
             }
 
             UN.QuantityValue qv = inverseDeltaKelvins;
-            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+            UNU.CoefficientOfThermalExpansionUnit unitSI = UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
             UNU.CoefficientOfThermalExpansionUnit? unUnit = ToCoefficientOfThermalExpansionUnit(unit);
 
             if (unUnit != null)
@@ -111,11 +111,11 @@ namespace BH.Engine.Units
             switch (unit)
             {
                 case CoefficientOfThermalExpansionUnit.InverseDegreeCelsius:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeCelsius;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeCelsius;
                 case CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseDegreeFahrenheit;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerDegreeFahrenheit;
                 case CoefficientOfThermalExpansionUnit.InverseKelvin:
-                    return UNU.CoefficientOfThermalExpansionUnit.InverseKelvin;
+                    return UNU.CoefficientOfThermalExpansionUnit.PerKelvin;
                 default:
                     return null;
 
@@ -123,6 +123,7 @@ namespace BH.Engine.Units
         }
     }
 }
+
 
 
 

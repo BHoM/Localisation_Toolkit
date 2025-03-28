@@ -1,6 +1,6 @@
 /*
  * This file is part of the Buildings and Habitats object Model (BHoM)
- * Copyright (c) 2015 - 2024, the respective contributors. All rights reserved.
+ * Copyright (c) 2015 - 2025, the respective contributors. All rights reserved.
  *
  * Each contributor holds copyright over their respective contributions.
  * The project versioning (Git) records all such contribution source information.
@@ -44,7 +44,7 @@ namespace BH.Engine.Units
         public static double ToInverseDeltaDegreeCelsius(this double inverseDeltaKelvins)
         {
             UN.QuantityValue qv = inverseDeltaKelvins;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseKelvin, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius);
+            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.PerKelvin, CoefficientOfThermalExpansionUnit.PerDegreeCelsius);
         }
 
         [Description("Convert inverse delta degrees Celsius into SI units (inverse delta Kelvins)")]
@@ -53,10 +53,11 @@ namespace BH.Engine.Units
         public static double FromInverseDeltaDegreeCelsius(this double inverseDeltaDegreesCelsius)
         {
             UN.QuantityValue qv = inverseDeltaDegreesCelsius;
-            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.InverseDegreeCelsius, CoefficientOfThermalExpansionUnit.InverseKelvin);
+            return UN.UnitConverter.Convert(qv, CoefficientOfThermalExpansionUnit.PerDegreeCelsius, CoefficientOfThermalExpansionUnit.PerKelvin);
         }
     }
 }
+
 
 
 
