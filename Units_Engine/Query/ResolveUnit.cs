@@ -100,6 +100,20 @@ namespace BH.Engine.Units
             Set(table, "min", UNU.DurationUnit.Minute, UNU.DurationUnit.Second);    // not Angle.Arcminute
             Set(table, "sec", UNU.DurationUnit.Second, UNU.DurationUnit.Second);    // not Angle.Arcsecond
 
+            // Units no UnitsNet quantity can express, carried as a plain multiplier to SI instead of a unit.
+            // A warping constant is the sixth power of a length, and UnitsNet stops at the fourth; section
+            // tables publish it in dm6 in metric practice and in6 in US practice, so it follows the region
+            // rather than the length family, which is why all three spellings have to read.
+            AddFactored(table, "dm⁶", c_DecimetreToTheSixthFactor);
+            AddFactored(table, "dm6", c_DecimetreToTheSixthFactor);
+            AddFactored(table, "m⁶", 1.0);
+            AddFactored(table, "m6", 1.0);
+            AddFactored(table, "in⁶", m_InchToTheSixthFactor);
+            AddFactored(table, "in6", m_InchToTheSixthFactor);
+
+            // UnitsNet publishes "%" only as a MassFraction, which BH.oM.Units has no member for.
+            AddFactored(table, "%", c_PercentFactor);
+
             return table;
         }
 
@@ -133,6 +147,15 @@ namespace BH.Engine.Units
         private static void Set(Dictionary<string, UnitSpec> table, string symbol, Enum unit, Enum siUnit)
         {
             table[symbol] = Spec(UN.Quantity.GetUnitInfo(unit), siUnit);
+        }
+
+        /***************************************************/
+
+        // Claims a symbol for a plain multiplier to SI, leaving any earlier claim on that symbol in place.
+        private static void AddFactored(Dictionary<string, UnitSpec> table, string symbol, double toSIFactor)
+        {
+            if (!table.ContainsKey(symbol))
+                table[symbol] = new UnitSpec { Factor = toSIFactor };
         }
 
         /***************************************************/
@@ -193,6 +216,13 @@ namespace BH.Engine.Units
             UNU.MassFractionUnit.KilogramPerKilogram,
             UNU.MolalityUnit.MolePerKilogram,
         };
+
+        private const double c_DecimetreToTheSixthFactor = 1e-6;
+        private const double c_PercentFactor = 0.01;
+
+        // Taken from LengthUnit.Inch rather than written out, so it cannot drift from the inch the rest of
+        // the toolkit converts with.
+        private static readonly double m_InchToTheSixthFactor = 1.0 / Math.Pow(1.0.ToLength(LengthUnit.Inch), 6);
 
         private static readonly Dictionary<string, UnitSpec> m_UnitTable = BuildUnitTable();
 

@@ -28,7 +28,8 @@ namespace BH.oM.Units
     [Description("Specification linking a unit symbol to its unit enumeration value and the SI unit its quantity converts to.")]
     public class UnitSpec
     {
-        [Description("The resolved unit. Null for a dimensionless value, in which case no conversion is applied.")]
+        [Description("The resolved unit. Null for a dimensionless value and for a unit no UnitsNet quantity " +
+            "can express, in which case Factor is applied instead.")]
         public virtual Enum Unit { get; set; } = null;
 
         [Description("The SI unit that this quantity converts to and from, as defined by the BHoM convention for the quantity.")]
@@ -36,5 +37,10 @@ namespace BH.oM.Units
 
         [Description("Name of the quantity the unit belongs to, e.g. \"Force\". Empty for a dimensionless value.")]
         public virtual string QuantityName { get; set; } = "";
+
+        [Description("Multiplier taking a value in this unit to SI, read only when Unit is null. 1 for a " +
+            "dimensionless value; otherwise the conversion for a unit UnitsNet has no quantity for, such as " +
+            "the sixth power of a length a warping constant is measured in.")]
+        public virtual double Factor { get; set; } = 1.0;
     }
 }
