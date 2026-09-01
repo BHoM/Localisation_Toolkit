@@ -24,8 +24,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
-
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
 using BH.Engine.Base;
@@ -46,13 +44,18 @@ namespace BH.Engine.Units
         [Output("siValue", "The value in SI units, or NaN when the unit has no conversion.")]
         public static double FromUnit(this double value, Enum unit)
         {
+            // No unit is how a dimensionless quantity arrives - a Ratio or a Strain. Nothing to convert,
+            // so the value passes straight through.
+            if (unit == null)
+                return value;
+
             Enum bhomUnit = BHoMUnit(unit);
             if (bhomUnit == null)
                 return double.NaN;
 
-            // The unit's type names its quantity, so the type is the whole of the dispatch. A symbol that two
-            // quantities both publish - "t" for both a tonne and a teaspoon - cannot arise here as it does
-            // when the unit arrives as text, because the caller has already said which quantity it means.
+            // The unit's type names its quantity, so the type is the whole of the dispatch. This is why the
+            // unit travels as an enum and not as a symbol: a symbol two quantities both publish - "t" for
+            // both a tonne and a teaspoon - would have to be guessed at, where a type cannot be mistaken.
             switch (bhomUnit.GetType().Name)
             {
                 case nameof(LengthUnit):                        return value.FromLength(bhomUnit);
@@ -77,31 +80,12 @@ namespace BH.Engine.Units
                 case nameof(ElectricConductivityUnit):          return value.FromElectricConductivity(bhomUnit);
                 case nameof(MassFractionUnit):                  return value.FromMassFraction(bhomUnit);
                 case nameof(MolalityUnit):                      return value.FromMolality(bhomUnit);
+                case nameof(WarpingMomentOfInertiaUnit):        return value.FromWarpingMomentOfInertia(bhomUnit);
 
                 default:
                     Compute.RecordError($"BH.Engine.Units has no conversion for a {bhomUnit.GetType().Name}.");
                     return double.NaN;
             }
-        }
-
-        /***************************************************/
-
-        [Description("Converts a value from the given unit symbol to SI, e.g. 12 \"mm\" → 0.012 m.")]
-        [Input("value", "The value in the specified unit.")]
-        [Input("unitSymbol", "Unit symbol (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive. An empty symbol or \"-\" leaves the value unchanged.")]
-        [Output("siValue", "The value in SI units, or NaN if the unit is unrecognised.")]
-        public static double FromUnit(this double value, string unitSymbol)
-        {
-            UnitSpec spec = Query.ResolveUnit(unitSymbol);
-            if (spec == null)
-                return double.NaN;
-
-            // A dimensionless unit carries no Unit and a Factor of 1, so it passes straight through; the
-            // units no quantity in UnitsNet can express carry a Factor instead of a Unit.
-            if (spec.Unit == null)
-                return value * spec.Factor;
-
-            return ConvertUnit(value, spec.Unit, spec.SIUnit, unitSymbol);
         }
 
         /***************************************************/
@@ -113,12 +97,6 @@ namespace BH.Engine.Units
         // case and then come back NaN from FromForce, which reads only BHoM units.
         private static Enum BHoMUnit(Enum unit)
         {
-            if (unit == null)
-            {
-                Compute.RecordError("No unit was given to convert with.");
-                return null;
-            }
-
             Enum bhomUnit = unit.GetType().Namespace == "BH.oM.Units" ? unit : ToBHoMUnit(unit);
             if (bhomUnit == null)
                 return null;
@@ -171,23 +149,6 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-
-        // Shared conversion step for the FromUnit and ToUnit symbol overloads. The unit and its SI counterpart
-        // both come from the same UnitSpec, so the only difference between the two is which way round they are passed.
-        private static double ConvertUnit(double value, Enum fromUnit, Enum toUnit, string unitSymbol)
-        {
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                Compute.RecordError("Quantity is not a real number.");
-                return double.NaN;
-            }
-
-            if (UN.UnitConverter.TryConvert(value, fromUnit, toUnit, out double result))
-                return result;
-
-            Compute.RecordError($"No conversion is available between '{unitSymbol}' and its SI unit.");
-            return double.NaN;
-        }
 
         /***************************************************/
         /**** Private Fields                            ****/

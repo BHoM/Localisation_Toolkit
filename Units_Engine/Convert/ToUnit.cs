@@ -43,11 +43,18 @@ namespace BH.Engine.Units
         [Output("value", "The value in the given unit, or NaN when the unit has no conversion.")]
         public static double ToUnit(this double siValue, Enum unit)
         {
+            // No unit is how a dimensionless quantity arrives - a Ratio or a Strain. Nothing to convert,
+            // so the value passes straight through.
+            if (unit == null)
+                return siValue;
+
             Enum bhomUnit = BHoMUnit(unit);
             if (bhomUnit == null)
                 return double.NaN;
 
-            // See FromUnit: the unit's type names its quantity, so the type is the whole of the dispatch.
+            // The unit's type names its quantity, so the type is the whole of the dispatch. This is why the
+            // unit travels as an enum and not as a symbol: a symbol two quantities both publish - "t" for
+            // both a tonne and a teaspoon - would have to be guessed at, where a type cannot be mistaken.
             switch (bhomUnit.GetType().Name)
             {
                 case nameof(LengthUnit):                        return siValue.ToLength(bhomUnit);
@@ -72,30 +79,12 @@ namespace BH.Engine.Units
                 case nameof(ElectricConductivityUnit):          return siValue.ToElectricConductivity(bhomUnit);
                 case nameof(MassFractionUnit):                  return siValue.ToMassFraction(bhomUnit);
                 case nameof(MolalityUnit):                      return siValue.ToMolality(bhomUnit);
+                case nameof(WarpingMomentOfInertiaUnit):        return siValue.ToWarpingMomentOfInertia(bhomUnit);
 
                 default:
                     Compute.RecordError($"BH.Engine.Units has no conversion for a {bhomUnit.GetType().Name}.");
                     return double.NaN;
             }
-        }
-
-        /***************************************************/
-
-        [Description("Converts an SI value to the given unit symbol, e.g. 0.012 m → 12 \"mm\".")]
-        [Input("siValue", "The value in SI units.")]
-        [Input("unitSymbol", "Unit symbol to convert to (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive. An empty symbol or \"-\" leaves the value unchanged.")]
-        [Output("value", "The value in the specified unit, or NaN if the unit is unrecognised.")]
-        public static double ToUnit(this double siValue, string unitSymbol)
-        {
-            UnitSpec spec = Query.ResolveUnit(unitSymbol);
-            if (spec == null)
-                return double.NaN;
-
-            // FromUnit multiplies by the factor to reach SI, so coming back the other way divides by it.
-            if (spec.Unit == null)
-                return siValue / spec.Factor;
-
-            return ConvertUnit(siValue, spec.SIUnit, spec.Unit, unitSymbol);
         }
 
         /***************************************************/
