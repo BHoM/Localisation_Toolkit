@@ -23,6 +23,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
 using UNU = UnitsNet.Units;
@@ -40,14 +41,14 @@ namespace BH.Engine.Units
         /**** Public Methods                            ****/
         /***************************************************/
 
-        [Description("Resolves a unit symbol string to its corresponding UnitSpec, identifying the quantity family and unit.")]
+        [Description("Resolves a unit symbol string to its corresponding UnitSpec, identifying the unit and the SI unit its quantity converts to.")]
         [Input("unitSymbol", "Unit symbol to resolve (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive.")]
         [Output("unitSpec", "The resolved UnitSpec, or null if the unit is unrecognised.")]
         public static UnitSpec ResolveUnit(string unitSymbol)
         {
             string key = unitSymbol?.Trim() ?? "";
             if (key == "" || key == "-")
-                return new UnitSpec { Family = QuantityFamily.None, Unit = null };
+                return new UnitSpec();
 
             if (m_UnitTable.TryGetValue(key, out UnitSpec spec))
                 return spec;
@@ -64,35 +65,51 @@ namespace BH.Engine.Units
         {
             var table = new Dictionary<string, UnitSpec>(StringComparer.Ordinal);
 
-            foreach (var family in m_Families)
+            foreach (Enum siUnit in m_SIUnits)
             {
-                foreach (object unit in Enum.GetValues(family.Key))
+                UN.QuantityInfo quantityInfo = UN.Quantity.Infos.FirstOrDefault(x => x.UnitType == siUnit.GetType());
+                if (quantityInfo == null)
+                    continue;
+
+                foreach (UN.UnitInfo unitInfo in quantityInfo.UnitInfos)
                 {
-                    foreach (string symbol in GetAbbreviations(family.Key, (int)(object)unit))
+                    foreach (string symbol in GetAbbreviations(unitInfo))
                     {
-                        TryAdd(table, symbol, family.Value, unit);
-                        TryAdd(table, Ascii(symbol), family.Value, unit);
+                        TryAdd(table, symbol, unitInfo, siUnit);
+                        TryAdd(table, Ascii(symbol), unitInfo, siUnit);
                     }
                 }
             }
 
             // Torque aliases UnitsNet doesn't publish
-            TryAdd(table, "Nm", QuantityFamily.Torque, UNU.TorqueUnit.NewtonMeter);
-            TryAdd(table, "N.m", QuantityFamily.Torque, UNU.TorqueUnit.NewtonMeter);
-            TryAdd(table, "kNm", QuantityFamily.Torque, UNU.TorqueUnit.KilonewtonMeter);
-            TryAdd(table, "kN.m", QuantityFamily.Torque, UNU.TorqueUnit.KilonewtonMeter);
+            UN.UnitInfo newtonMetre = UN.Quantity.GetUnitInfo(UNU.TorqueUnit.NewtonMeter);
+            UN.UnitInfo kilonewtonMetre = UN.Quantity.GetUnitInfo(UNU.TorqueUnit.KilonewtonMeter);
+
+            TryAdd(table, "Nm", newtonMetre, UNU.TorqueUnit.NewtonMeter);
+            TryAdd(table, "N.m", newtonMetre, UNU.TorqueUnit.NewtonMeter);
+            TryAdd(table, "kNm", kilonewtonMetre, UNU.TorqueUnit.NewtonMeter);
+            TryAdd(table, "kN.m", kilonewtonMetre, UNU.TorqueUnit.NewtonMeter);
+
+            // Symbols that more than one quantity claims, forced to the reading expected in a building
+            // engineering context. Left to the loop above, each of these lands on a unit that is never
+            // the one intended here. The remaining overlaps the loop resolves acceptably on its own:
+            // "g" to gram, "mg" to milligram, "MN" to meganewton, "kt" to kilotonne, "mil" to mil,
+            // "m" to metre, "'" to foot and the double prime to inch.
+            Set(table, "t", UNU.MassUnit.Tonne, UNU.MassUnit.Kilogram);             // not Volume.MetricTeaspoon
+            Set(table, "h", UNU.DurationUnit.Hour, UNU.DurationUnit.Second);        // not Length.Hand
+            Set(table, "min", UNU.DurationUnit.Minute, UNU.DurationUnit.Second);    // not Angle.Arcminute
+            Set(table, "sec", UNU.DurationUnit.Second, UNU.DurationUnit.Second);    // not Angle.Arcsecond
 
             return table;
         }
 
         /***************************************************/
 
-        private static IEnumerable<string> GetAbbreviations(Type unitType, int unitValue)
+        private static IEnumerable<string> GetAbbreviations(UN.UnitInfo unitInfo)
         {
             try
             {
-                return UN.UnitsNetSetup.Default.UnitAbbreviations
-                    .GetUnitAbbreviations(unitType, unitValue, CultureInfo.InvariantCulture);
+                return UN.UnitsNetSetup.Default.UnitAbbreviations.GetAbbreviations(unitInfo, CultureInfo.InvariantCulture);
             }
             catch
             {
@@ -102,11 +119,32 @@ namespace BH.Engine.Units
 
         /***************************************************/
 
+        // Claims a symbol for a unit, leaving any earlier claim on that symbol in place.
         private static void TryAdd(Dictionary<string, UnitSpec> table, string symbol,
-                                   QuantityFamily family, object unit)
+                                   UN.UnitInfo unitInfo, Enum siUnit)
         {
             if (!string.IsNullOrWhiteSpace(symbol) && !table.ContainsKey(symbol))
-                table[symbol] = new UnitSpec { Family = family, Unit = unit };
+                table[symbol] = Spec(unitInfo, siUnit);
+        }
+
+        /***************************************************/
+
+        // Claims a symbol for a unit, overriding any earlier claim on that symbol.
+        private static void Set(Dictionary<string, UnitSpec> table, string symbol, Enum unit, Enum siUnit)
+        {
+            table[symbol] = Spec(UN.Quantity.GetUnitInfo(unit), siUnit);
+        }
+
+        /***************************************************/
+
+        private static UnitSpec Spec(UN.UnitInfo unitInfo, Enum siUnit)
+        {
+            return new UnitSpec
+            {
+                Unit = unitInfo.Value,
+                SIUnit = siUnit,
+                QuantityName = unitInfo.QuantityName
+            };
         }
 
         /***************************************************/
@@ -124,18 +162,36 @@ namespace BH.Engine.Units
         /**** Private Fields                            ****/
         /***************************************************/
 
-        private static readonly Dictionary<Type, QuantityFamily> m_Families = new Dictionary<Type, QuantityFamily>
+        // The quantities recognised by ResolveUnit, each represented by the SI unit it converts to and from.
+        // The unit type of the quantity is taken from the entry itself, so adding a quantity is a single line.
+        // These are the SI units used by the corresponding BHoM Convert methods, which is not always the UnitsNet
+        // base unit - notably Temperature, where the BHoM convention is degrees Celsius rather than Kelvin.
+        // Order matters: where two quantities publish the same unit symbol, the first entry to claim it wins.
+        // Mass precedes Angle and Acceleration so that "g" resolves to gram rather than gradian or standard gravity.
+        private static readonly Enum[] m_SIUnits = new Enum[]
         {
-            { typeof(UNU.LengthUnit),              QuantityFamily.Length },
-            { typeof(UNU.AreaUnit),                QuantityFamily.Area },
-            { typeof(UNU.VolumeUnit),              QuantityFamily.Volume },
-            { typeof(UNU.AreaMomentOfInertiaUnit), QuantityFamily.AreaMomentOfInertia },
-            { typeof(UNU.PressureUnit),            QuantityFamily.Pressure },
-            { typeof(UNU.ForceUnit),               QuantityFamily.Force },
-            { typeof(UNU.TorqueUnit),              QuantityFamily.Torque },
-            { typeof(UNU.ForcePerLengthUnit),      QuantityFamily.ForcePerLength },
-            { typeof(UNU.AngleUnit),               QuantityFamily.Angle },
-            { typeof(UNU.MassUnit),                QuantityFamily.Mass },
+            UNU.LengthUnit.Meter,
+            UNU.AreaUnit.SquareMeter,
+            UNU.VolumeUnit.CubicMeter,
+            UNU.AreaMomentOfInertiaUnit.MeterToTheFourth,
+            UNU.PressureUnit.Pascal,
+            UNU.ForceUnit.Newton,
+            UNU.TorqueUnit.NewtonMeter,
+            UNU.ForcePerLengthUnit.NewtonPerMeter,
+            UNU.TorquePerLengthUnit.NewtonMeterPerMeter,
+            UNU.MassUnit.Kilogram,
+            UNU.AngleUnit.Radian,
+            UNU.AccelerationUnit.MeterPerSecondSquared,
+            UNU.DensityUnit.KilogramPerCubicMeter,
+            UNU.EnergyUnit.Joule,
+            UNU.SpeedUnit.MeterPerSecond,
+            UNU.DurationUnit.Second,
+            UNU.TemperatureUnit.DegreeCelsius,
+            UNU.TemperatureDeltaUnit.Kelvin,
+            UNU.CoefficientOfThermalExpansionUnit.PerKelvin,
+            UNU.ElectricConductivityUnit.SiemensPerMeter,
+            UNU.MassFractionUnit.KilogramPerKilogram,
+            UNU.MolalityUnit.MolePerKilogram,
         };
 
         private static readonly Dictionary<string, UnitSpec> m_UnitTable = BuildUnitTable();

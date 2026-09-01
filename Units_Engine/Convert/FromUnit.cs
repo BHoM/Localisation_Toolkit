@@ -21,18 +21,25 @@
  */
 
 using System;
-using System.Collections.Generic;
+
+using UN = UnitsNet; //This is to avoid clashes between UnitsNet quantity attributes and BHoM quantity attributes
+
 using System.ComponentModel;
 using BH.oM.Base.Attributes;
 using BH.oM.Units;
+using BH.Engine.Base;
 
 namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Converts a value from the given unit symbol to SI, e.g. 12 \"mm\" → 0.012 m.")]
         [Input("value", "The value in the specified unit.")]
-        [Input("unitSymbol", "Unit symbol (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive.")]
+        [Input("unitSymbol", "Unit symbol (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive. An empty symbol or \"-\" leaves the value unchanged.")]
         [Output("siValue", "The value in SI units, or NaN if the unit is unrecognised.")]
         public static double FromUnit(this double value, string unitSymbol)
         {
@@ -40,32 +47,33 @@ namespace BH.Engine.Units
             if (spec == null)
                 return double.NaN;
 
-            return FromUnit(value, spec);
+            if (spec.Unit == null)
+                return value;
+
+            return ConvertUnit(value, spec.Unit, spec.SIUnit, unitSymbol);
         }
 
-        private static double FromUnit(double value, UnitSpec spec)
+        /***************************************************/
+        /**** Private Methods                           ****/
+        /***************************************************/
+
+        // Shared conversion step for FromUnit and ToUnit. The unit and its SI counterpart both come from the
+        // same UnitSpec, so the only difference between the two is which way round they are passed.
+        private static double ConvertUnit(double value, Enum fromUnit, Enum toUnit, string unitSymbol)
         {
-            switch (spec.Family)
+            if (double.IsNaN(value) || double.IsInfinity(value))
             {
-                case QuantityFamily.Length:                 return value.FromLength(spec.Unit);
-                case QuantityFamily.Area:                   return value.FromArea(spec.Unit);
-                case QuantityFamily.Volume:                 return value.FromVolume(spec.Unit);
-                case QuantityFamily.AreaMomentOfInertia:    return value.FromAreaMomentOfInertia(spec.Unit);
-                case QuantityFamily.Pressure:               return value.FromPressure(spec.Unit);
-                case QuantityFamily.Force:                  return value.FromForce(spec.Unit);
-                case QuantityFamily.Torque:                 return value.FromTorque(spec.Unit);
-                case QuantityFamily.ForcePerLength:         return value.FromForcePerLength(spec.Unit);
-                case QuantityFamily.Angle:                  return value.FromAngle(spec.Unit);
-                case QuantityFamily.Mass:                   return value.FromMass(spec.Unit);
-                case QuantityFamily.Acceleration:           return value.FromAcceleration(spec.Unit);
-                case QuantityFamily.Density:                return value.FromDensity(spec.Unit);
-                case QuantityFamily.Energy:                 return value.FromEnergy(spec.Unit);
-                case QuantityFamily.Speed:                  return value.FromSpeed(spec.Unit);
-                case QuantityFamily.Temperature:            return value.FromTemperature(spec.Unit);
-                case QuantityFamily.Time:                   return value.FromDuration(spec.Unit);
-                case QuantityFamily.None:                   return value;
-                default: return double.NaN;
+                Compute.RecordError("Quantity is not a real number.");
+                return double.NaN;
             }
+
+            if (UN.UnitConverter.TryConvert(value, fromUnit, toUnit, out double result))
+                return result;
+
+            Compute.RecordError($"No conversion is available between '{unitSymbol}' and its SI unit.");
+            return double.NaN;
         }
+
+        /***************************************************/
     }
 }

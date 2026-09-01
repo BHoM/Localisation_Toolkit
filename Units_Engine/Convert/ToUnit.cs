@@ -28,9 +28,13 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
+        /***************************************************/
+        /**** Public Methods                            ****/
+        /***************************************************/
+
         [Description("Converts an SI value to the given unit symbol, e.g. 0.012 m → 12 \"mm\".")]
         [Input("siValue", "The value in SI units.")]
-        [Input("unitSymbol", "Unit symbol to convert to (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive.")]
+        [Input("unitSymbol", "Unit symbol to convert to (e.g. \"mm\", \"kN\", \"MPa\"). Case-sensitive. An empty symbol or \"-\" leaves the value unchanged.")]
         [Output("value", "The value in the specified unit, or NaN if the unit is unrecognised.")]
         public static double ToUnit(this double siValue, string unitSymbol)
         {
@@ -38,32 +42,12 @@ namespace BH.Engine.Units
             if (spec == null)
                 return double.NaN;
 
-            return ToUnit(siValue, spec);
+            if (spec.Unit == null)
+                return siValue;
+
+            return ConvertUnit(siValue, spec.SIUnit, spec.Unit, unitSymbol);
         }
 
-        private static double ToUnit(double siValue, UnitSpec spec)
-        {
-            switch (spec.Family)
-            {
-                case QuantityFamily.Length:                 return siValue.ToLength(spec.Unit);
-                case QuantityFamily.Area:                   return siValue.ToArea(spec.Unit);
-                case QuantityFamily.Volume:                 return siValue.ToVolume(spec.Unit);
-                case QuantityFamily.AreaMomentOfInertia:    return siValue.ToAreaMomentOfInertia(spec.Unit);
-                case QuantityFamily.Pressure:               return siValue.ToPressure(spec.Unit);
-                case QuantityFamily.Force:                  return siValue.ToForce(spec.Unit);
-                case QuantityFamily.Torque:                 return siValue.ToTorque(spec.Unit);
-                case QuantityFamily.ForcePerLength:         return siValue.ToForcePerLength(spec.Unit);
-                case QuantityFamily.Angle:                  return siValue.ToAngle(spec.Unit);
-                case QuantityFamily.Mass:                   return siValue.ToMass(spec.Unit);
-                case QuantityFamily.Acceleration:           return siValue.ToAcceleration(spec.Unit);
-                case QuantityFamily.Density:                return siValue.ToDensity(spec.Unit);
-                case QuantityFamily.Energy:                 return siValue.ToEnergy(spec.Unit);
-                case QuantityFamily.Speed:                  return siValue.ToSpeed(spec.Unit);
-                case QuantityFamily.Temperature:            return siValue.ToTemperature(spec.Unit);
-                case QuantityFamily.Time:                   return siValue.ToDuration(spec.Unit);
-                case QuantityFamily.None:                   return siValue;
-                default: return double.NaN;
-            }
-        }
+        /***************************************************/
     }
 }

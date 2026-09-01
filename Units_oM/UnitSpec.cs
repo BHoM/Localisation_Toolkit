@@ -20,14 +20,21 @@
  * along with this code. If not, see <https://www.gnu.org/licenses/lgpl-3.0.html>.      
  */
 
+using System;
 using System.ComponentModel;
 
 namespace BH.oM.Units
 {
-    [Description("Specification linking a unit symbol to its quantity family and unit enumeration value.")]
+    [Description("Specification linking a unit symbol to its unit enumeration value and the SI unit its quantity converts to.")]
     public class UnitSpec
     {
-        public virtual QuantityFamily Family { get; set; } = QuantityFamily.None;
-        public virtual object Unit { get; set; } = null;
+        [Description("The resolved unit. Null for a dimensionless value, in which case no conversion is applied.")]
+        public virtual Enum Unit { get; set; } = null;
+
+        [Description("The SI unit that this quantity converts to and from, as defined by the BHoM convention for the quantity.")]
+        public virtual Enum SIUnit { get; set; } = null;
+
+        [Description("Name of the quantity the unit belongs to, e.g. \"Force\". Empty for a dimensionless value.")]
+        public virtual string QuantityName { get; set; } = "";
     }
 }
