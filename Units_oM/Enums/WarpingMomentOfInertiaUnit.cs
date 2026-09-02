@@ -28,8 +28,6 @@ using System.Threading.Tasks;
 
 namespace BH.oM.Units
 {
-    // The sixth power of a length, which is what a warping constant is measured in. Member names match
-    // UnitsNet's WarpingMomentOfInertiaUnit so the by-name bridge to it holds.
     public enum WarpingMomentOfInertiaUnit
     {
         Undefined = 0,

@@ -46,43 +46,39 @@ namespace BH.Engine.Units
             // No unit is how a dimensionless quantity arrives - a Ratio or a Strain. Nothing to convert,
             // so the value passes straight through.
             if (unit == null)
-                return siValue;
-
-            Enum bhomUnit = BHoMUnit(unit);
-            if (bhomUnit == null)
-                return double.NaN;
-
-            // The unit's type names its quantity, so the type is the whole of the dispatch. This is why the
-            // unit travels as an enum and not as a symbol: a symbol two quantities both publish - "t" for
-            // both a tonne and a teaspoon - would have to be guessed at, where a type cannot be mistaken.
-            switch (bhomUnit.GetType().Name)
             {
-                case nameof(LengthUnit):                        return siValue.ToLength(bhomUnit);
-                case nameof(AreaUnit):                          return siValue.ToArea(bhomUnit);
-                case nameof(VolumeUnit):                        return siValue.ToVolume(bhomUnit);
-                case nameof(AreaMomentOfInertiaUnit):           return siValue.ToAreaMomentOfInertia(bhomUnit);
-                case nameof(PressureUnit):                      return siValue.ToPressure(bhomUnit);
-                case nameof(ForceUnit):                         return siValue.ToForce(bhomUnit);
-                case nameof(TorqueUnit):                        return siValue.ToTorque(bhomUnit);
-                case nameof(ForcePerLengthUnit):                return siValue.ToForcePerLength(bhomUnit);
-                case nameof(TorquePerLengthUnit):               return siValue.ToMomentPerLength(bhomUnit);
-                case nameof(MassUnit):                          return siValue.ToMass(bhomUnit);
-                case nameof(AngleUnit):                         return siValue.ToAngle(bhomUnit);
-                case nameof(AccelerationUnit):                  return siValue.ToAcceleration(bhomUnit);
-                case nameof(DensityUnit):                       return siValue.ToDensity(bhomUnit);
-                case nameof(EnergyUnit):                        return siValue.ToEnergy(bhomUnit);
-                case nameof(SpeedUnit):                         return siValue.ToSpeed(bhomUnit);
-                case nameof(DurationUnit):                      return siValue.ToDuration(bhomUnit);
-                case nameof(TemperatureUnit):                   return siValue.ToTemperature(bhomUnit);
-                case nameof(TemperatureDeltaUnit):              return siValue.ToTemperatureDelta(bhomUnit);
-                case nameof(CoefficientOfThermalExpansionUnit): return siValue.ToCoefficientOfThermalExpansion(bhomUnit);
-                case nameof(ElectricConductivityUnit):          return siValue.ToElectricConductivity(bhomUnit);
-                case nameof(MassFractionUnit):                  return siValue.ToMassFraction(bhomUnit);
-                case nameof(MolalityUnit):                      return siValue.ToMolality(bhomUnit);
-                case nameof(WarpingMomentOfInertiaUnit):        return siValue.ToWarpingMomentOfInertia(bhomUnit);
+                Compute.RecordError($"BH.Engine.Units has no conversion for a null unit.");
+                return siValue;
+            }
+
+            switch (unit.GetType().Name)
+            {
+                case nameof(LengthUnit):                        return siValue.ToLength(unit);
+                case nameof(AreaUnit):                          return siValue.ToArea(unit);
+                case nameof(VolumeUnit):                        return siValue.ToVolume(unit);
+                case nameof(AreaMomentOfInertiaUnit):           return siValue.ToAreaMomentOfInertia(unit);
+                case nameof(PressureUnit):                      return siValue.ToPressure(unit);
+                case nameof(ForceUnit):                         return siValue.ToForce(unit);
+                case nameof(TorqueUnit):                        return siValue.ToTorque(unit);
+                case nameof(ForcePerLengthUnit):                return siValue.ToForcePerLength(unit);
+                case nameof(TorquePerLengthUnit):               return siValue.ToMomentPerLength(unit);
+                case nameof(MassUnit):                          return siValue.ToMass(unit);
+                case nameof(AngleUnit):                         return siValue.ToAngle(unit);
+                case nameof(AccelerationUnit):                  return siValue.ToAcceleration(unit);
+                case nameof(DensityUnit):                       return siValue.ToDensity(unit);
+                case nameof(EnergyUnit):                        return siValue.ToEnergy(unit);
+                case nameof(SpeedUnit):                         return siValue.ToSpeed(unit);
+                case nameof(DurationUnit):                      return siValue.ToDuration(unit);
+                case nameof(TemperatureUnit):                   return siValue.ToTemperature(unit);
+                case nameof(TemperatureDeltaUnit):              return siValue.ToTemperatureDelta(unit);
+                case nameof(CoefficientOfThermalExpansionUnit): return siValue.ToCoefficientOfThermalExpansion(unit);
+                case nameof(ElectricConductivityUnit):          return siValue.ToElectricConductivity(unit);
+                case nameof(MassFractionUnit):                  return siValue.ToMassFraction(unit);
+                case nameof(MolalityUnit):                      return siValue.ToMolality(unit);
+                case nameof(WarpingMomentOfInertiaUnit):        return siValue.ToWarpingMomentOfInertia(unit);
 
                 default:
-                    Compute.RecordError($"BH.Engine.Units has no conversion for a {bhomUnit.GetType().Name}.");
+                    Compute.RecordError($"BH.Engine.Units has no conversion for a {unit.GetType().Name}.");
                     return double.NaN;
             }
         }
