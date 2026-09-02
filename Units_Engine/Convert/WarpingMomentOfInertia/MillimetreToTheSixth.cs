@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metres to the sixth) into millimetres to the sixth")]
-        [Input("metresToTheSixth", "The number of metres to the sixth to convert", typeof(WarpingMomentOfInertiaUnit))]
-        [Output("millimetresToTheSixth", "The number of millimetres to the sixth")]
+        [Description("Convert SI units (metres to the sixth) into millimetres to the sixth.")]
+        [Input("metresToTheSixth", "The number of metres to the sixth to convert.", typeof(WarpingMomentOfInertiaUnit))]
+        [Output("millimetresToTheSixth", "The number of millimetres to the sixth.")]
         public static double ToMillimetreToTheSixth(this double metresToTheSixth)
         {
             UN.QuantityValue qv = metresToTheSixth;
             return UN.UnitConverter.Convert(qv, WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.MillimeterToTheSixth);
         }
 
-        [Description("Convert millimetres to the sixth into SI units (metres to the sixth)")]
-        [Input("millimetresToTheSixth", "The number of millimetres to the sixth to convert")]
-        [Output("metresToTheSixth", "The number of metres to the sixth", typeof(WarpingMomentOfInertiaUnit))]
+        [Description("Convert millimetres to the sixth into SI units (metres to the sixth).")]
+        [Input("millimetresToTheSixth", "The number of millimetres to the sixth to convert.")]
+        [Output("metresToTheSixth", "The number of metres to the sixth.", typeof(WarpingMomentOfInertiaUnit))]
         public static double FromMillimetreToTheSixth(this double millimetresToTheSixth)
         {
             UN.QuantityValue qv = millimetresToTheSixth;

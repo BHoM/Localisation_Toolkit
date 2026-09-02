@@ -37,18 +37,18 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metres to the sixth) into feet to the sixth")]
-        [Input("metresToTheSixth", "The number of metres to the sixth to convert", typeof(WarpingMomentOfInertiaUnit))]
-        [Output("feetToTheSixth", "The number of feet to the sixth")]
+        [Description("Convert SI units (metres to the sixth) into feet to the sixth.")]
+        [Input("metresToTheSixth", "The number of metres to the sixth to convert.", typeof(WarpingMomentOfInertiaUnit))]
+        [Output("feetToTheSixth", "The number of feet to the sixth.")]
         public static double ToFootToTheSixth(this double metresToTheSixth)
         {
             UN.QuantityValue qv = metresToTheSixth;
             return UN.UnitConverter.Convert(qv, WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.FootToTheSixth);
         }
 
-        [Description("Convert feet to the sixth into SI units (metres to the sixth)")]
-        [Input("feetToTheSixth", "The number of feet to the sixth to convert")]
-        [Output("metresToTheSixth", "The number of metres to the sixth", typeof(WarpingMomentOfInertiaUnit))]
+        [Description("Convert feet to the sixth into SI units (metres to the sixth).")]
+        [Input("feetToTheSixth", "The number of feet to the sixth to convert.")]
+        [Output("metresToTheSixth", "The number of metres to the sixth.", typeof(WarpingMomentOfInertiaUnit))]
         public static double FromFootToTheSixth(this double feetToTheSixth)
         {
             UN.QuantityValue qv = feetToTheSixth;

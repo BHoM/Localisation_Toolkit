@@ -37,17 +37,17 @@ namespace BH.Engine.Units
 {
     public static partial class Convert
     {
-        [Description("Convert SI units (metres to the sixth) into centimetres to the sixth")]
-        [Input("metresToTheSixth", "The number of metres to the sixth to convert", typeof(WarpingMomentOfInertiaUnit))]
-        [Output("centimetresToTheSixth", "The number of centimetres to the sixth")]
+        [Description("Convert SI units (metres to the sixth) into centimetres to the sixth.")]
+        [Input("metresToTheSixth", "The number of metres to the sixth to convert.", typeof(WarpingMomentOfInertiaUnit))]
+        [Output("centimetresToTheSixth", "The number of centimetres to the sixth.")]
         public static double ToCentimetreToTheSixth(this double metresToTheSixth)
         {
             UN.QuantityValue qv = metresToTheSixth;
             return UN.UnitConverter.Convert(qv, WarpingMomentOfInertiaUnit.MeterToTheSixth, WarpingMomentOfInertiaUnit.CentimeterToTheSixth);
         }
 
-        [Description("Convert centimetres to the sixth into SI units (metres to the sixth)")]
-        [Input("centimetresToTheSixth", "The number of centimetres to the sixth to convert")]
+        [Description("Convert centimetres to the sixth into SI units (metres to the sixth).")]
+        [Input("centimetresToTheSixth", "The number of centimetres to the sixth to convert.")]
         [Output("metresToTheSixth", "The number of metres to the sixth", typeof(WarpingMomentOfInertiaUnit))]
         public static double FromCentimetreToTheSixth(this double centimetresToTheSixth)
         {
