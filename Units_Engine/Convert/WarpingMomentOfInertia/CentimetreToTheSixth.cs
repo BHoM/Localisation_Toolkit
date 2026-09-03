@@ -48,7 +48,7 @@ namespace BH.Engine.Units
 
         [Description("Convert centimetres to the sixth into SI units (metres to the sixth).")]
         [Input("centimetresToTheSixth", "The number of centimetres to the sixth to convert.")]
-        [Output("metresToTheSixth", "The number of metres to the sixth", typeof(WarpingMomentOfInertiaUnit))]
+        [Output("metresToTheSixth", "The number of metres to the sixth.", typeof(WarpingMomentOfInertiaUnit))]
         public static double FromCentimetreToTheSixth(this double centimetresToTheSixth)
         {
             UN.QuantityValue qv = centimetresToTheSixth;
