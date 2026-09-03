@@ -91,10 +91,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.PressureUnit? ToPressureUnit(this object unit)
+        internal static UNU.PressureUnit? ToPressureUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

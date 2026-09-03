@@ -92,10 +92,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.ForceUnit? ToForceUnit(object unit)
+        internal static UNU.ForceUnit? ToForceUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

@@ -92,10 +92,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.AngleUnit? ToAngleUnit(object unit)
+        internal static UNU.AngleUnit? ToAngleUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

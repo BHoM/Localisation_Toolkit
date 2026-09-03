@@ -88,10 +88,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.DurationUnit? ToDurationUnit(object unit)
+        internal static UNU.DurationUnit? ToDurationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;
