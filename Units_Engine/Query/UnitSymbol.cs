@@ -39,10 +39,8 @@ namespace BH.Engine.Units
         /***************************************************/
 
         [Description("The engineer-facing symbol for a unit, e.g. LengthUnit.Millimeter -> \"mm\" and " +
-            "AreaMomentOfInertiaUnit.CentimeterToTheFourth -> \"cm⁴\". The symbol itself comes from UnitsNet: " +
-            "UnitsNet is the only thing in the stack that names a unit, and a BH.oM.Units member carries no " +
-            "symbol of its own.")]
-        [Input("unit", "A member of one of the BH.oM.Units unit enums, e.g. LengthUnit.Millimeter.")]
+            "AreaMomentOfInertiaUnit.CentimeterToTheFourth -> \"cm⁴\.")]
+        [Input("unit", "A member of one of the unit enums, e.g. LengthUnit.Millimeter.")]
         [Output("symbol", "The unit's display symbol, or an empty string for a unit with no symbol.")]
         public static string UnitSymbol(this Enum unit)
         {
