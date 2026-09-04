@@ -58,6 +58,7 @@ namespace BH.Engine.Units
                 case nameof(AreaUnit):                          return Symbol(unit, Convert.ToAreaUnit(unit));
                 case nameof(VolumeUnit):                        return Symbol(unit, Convert.ToVolumeUnit(unit));
                 case nameof(AreaMomentOfInertiaUnit):           return Symbol(unit, Convert.ToAreaMomentOfInertiaUnit(unit));
+                case nameof(WarpingMomentOfInertiaUnit):        return Symbol(unit, Convert.ToWarpingMomentOfInertiaUnit(unit));
                 case nameof(PressureUnit):                      return Symbol(unit, Convert.ToPressureUnit(unit));
                 case nameof(ForceUnit):                         return Symbol(unit, Convert.ToForceUnit(unit));
                 case nameof(TorqueUnit):                        return Symbol(unit, Convert.ToTorqueUnit(unit));
