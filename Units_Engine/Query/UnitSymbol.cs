@@ -39,7 +39,7 @@ namespace BH.Engine.Units
         /***************************************************/
 
         [Description("The engineer-facing symbol for a unit, e.g. LengthUnit.Millimeter -> \"mm\" and " +
-            "AreaMomentOfInertiaUnit.CentimeterToTheFourth -> \"cm⁴\.")]
+            "AreaMomentOfInertiaUnit.CentimeterToTheFourth -> \"cm⁴\".")]
         [Input("unit", "A member of one of the unit enums, e.g. LengthUnit.Millimeter.")]
         [Output("symbol", "The unit's display symbol, or an empty string for a unit with no symbol.")]
         public static string UnitSymbol(this Enum unit)
