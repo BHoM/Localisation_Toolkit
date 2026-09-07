@@ -91,10 +91,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.ForcePerLengthUnit? ToForcePerLengthUnit(object unit)
+        internal static UNU.ForcePerLengthUnit? ToForcePerLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

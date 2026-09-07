@@ -85,10 +85,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.WarpingMomentOfInertiaUnit? ToWarpingMomentOfInertiaUnit(object unit)
+        internal static UNU.WarpingMomentOfInertiaUnit? ToWarpingMomentOfInertiaUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;
