@@ -88,10 +88,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.MolalityUnit? ToMolalityUnit(object unit)
+        internal static UNU.MolalityUnit? ToMolalityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

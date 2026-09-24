@@ -91,10 +91,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.AccelerationUnit? ToAccelerationUnit(object unit)
+        internal static UNU.AccelerationUnit? ToAccelerationUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

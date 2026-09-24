@@ -91,10 +91,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.TorquePerLengthUnit? ToTorquePerLengthUnit(object unit)
+        internal static UNU.TorquePerLengthUnit? ToTorquePerLengthUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

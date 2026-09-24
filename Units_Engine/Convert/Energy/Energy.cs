@@ -92,10 +92,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.EnergyUnit? ToEnergyUnit(object unit)
+        internal static UNU.EnergyUnit? ToEnergyUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;

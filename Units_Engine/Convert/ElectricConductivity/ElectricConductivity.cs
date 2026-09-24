@@ -92,10 +92,10 @@ namespace BH.Engine.Units
         }
 
         /***************************************************/
-        /**** Private Methods                           ****/
+        /**** Internal Methods                          ****/
         /***************************************************/
 
-        private static UNU.ElectricConductivityUnit? ToElectricConductivityUnit(object unit)
+        internal static UNU.ElectricConductivityUnit? ToElectricConductivityUnit(object unit)
         {
             if (unit == null || unit.ToString() == null)
                 return null;
